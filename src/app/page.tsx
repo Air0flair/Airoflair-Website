@@ -14,6 +14,7 @@ const navItems = [
 export default function Home() {
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-50">
+      {/* Favicon is automatically picked up from src/app/favicon.ico */}
       <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-zinc-900 via-zinc-950 to-black" />
 
       <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-4 sm:px-6 lg:px-8">
@@ -121,20 +122,24 @@ export default function Home() {
               </p>
 
               <div className="mt-5 space-y-4">
-
                 {/* Inspect */}
                 <div className="flex items-start gap-3 rounded-2xl border border-zinc-800 bg-zinc-900/70 p-4">
                   <div className="mt-1 h-8 w-8 rounded-full bg-sky-500/10 text-sky-400 flex items-center justify-center text-xs font-semibold">
                     IN
                   </div>
                   <div className="flex-1">
-                    <span className="text-sm font-semibold text-zinc-50">Inspect</span>
+                    <span className="text-sm font-semibold text-zinc-50">
+                      Inspect
+                    </span>
                     <span className="ml-2 rounded-full bg-sky-500/15 px-2 py-0.5 text-[10px] uppercase tracking-wide text-sky-300">
                       Web
                     </span>
                     <p className="mt-1 text-xs text-zinc-400">
                       Fully customisable inspection and reporting portal on{" "}
-                      <span className="font-medium text-zinc-200">inspect.airoflair.com</span>.
+                      <span className="font-medium text-zinc-200">
+                        inspect.airoflair.com
+                      </span>
+                      .
                     </p>
                   </div>
                 </div>
@@ -145,7 +150,9 @@ export default function Home() {
                     QI
                   </div>
                   <div className="flex-1">
-                    <span className="text-sm font-semibold text-zinc-50">Quick Inspect</span>
+                    <span className="text-sm font-semibold text-zinc-50">
+                      Quick Inspect
+                    </span>
                     <span className="ml-2 rounded-full bg-emerald-500/15 px-2 py-0.5 text-[10px] uppercase tracking-wide text-emerald-300">
                       Mobile
                     </span>
@@ -161,7 +168,9 @@ export default function Home() {
                     DA
                   </div>
                   <div className="flex-1">
-                    <span className="text-sm font-semibold text-zinc-50">Airoflair Data</span>
+                    <span className="text-sm font-semibold text-zinc-50">
+                      Airoflair Data
+                    </span>
                     <span className="ml-2 rounded-full bg-indigo-500/15 px-2 py-0.5 text-[10px] text-indigo-300">
                       Mobile
                     </span>
@@ -177,7 +186,9 @@ export default function Home() {
                     SB
                   </div>
                   <div className="flex-1">
-                    <span className="text-sm font-semibold text-zinc-50">SplitBill</span>
+                    <span className="text-sm font-semibold text-zinc-50">
+                      SplitBill
+                    </span>
                     <span className="ml-2 rounded-full bg-fuchsia-500/15 px-2 py-0.5 text-[10px] tracking-wide text-fuchsia-300">
                       Web
                     </span>
@@ -185,11 +196,11 @@ export default function Home() {
                       Smart bill splitting at{" "}
                       <span className="font-medium text-zinc-200">
                         splitbill.airoflair.com
-                      </span>.
+                      </span>
+                      .
                     </p>
                   </div>
                 </div>
-
               </div>
             </div>
           </section>
@@ -212,12 +223,13 @@ export default function Home() {
             </h2>
 
             <div className="grid gap-6 md:grid-cols-2">
-
               {/* Inspect */}
               <div className="flex flex-col justify-between rounded-3xl border border-sky-700/50 bg-gradient-to-br from-sky-950/70 via-zinc-950 to-black p-6">
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="text-sm font-semibold text-white">Inspect</span>
+                    <span className="text-sm font-semibold text-white">
+                      Inspect
+                    </span>
                     <span className="rounded-full bg-sky-500/20 px-2 py-0.5 text-[11px] text-sky-200">
                       Web platform
                     </span>
@@ -243,7 +255,9 @@ export default function Home() {
               <div className="flex flex-col justify-between rounded-3xl border border-emerald-700/50 bg-gradient-to-br from-emerald-950/70 via-zinc-950 to-black p-6">
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="text-sm font-semibold text-white">Quick Inspect</span>
+                    <span className="text-sm font-semibold text-white">
+                      Quick Inspect
+                    </span>
                     <span className="rounded-full bg-emerald-500/20 px-2 py-0.5 text-[11px] text-emerald-200">
                       Mobile
                     </span>
@@ -275,7 +289,9 @@ export default function Home() {
               <div className="flex flex-col justify-between rounded-3xl border border-indigo-700/50 bg-gradient-to-br from-indigo-950/70 via-zinc-950 to-black p-6">
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="text-sm font-semibold text-white">Airoflair Data</span>
+                    <span className="text-sm font-semibold text-white">
+                      Airoflair Data
+                    </span>
                     <span className="rounded-full bg-indigo-500/20 px-2 py-0.5 text-[11px] text-indigo-200">
                       Mobile
                     </span>
@@ -307,7 +323,9 @@ export default function Home() {
               <div className="flex flex-col justify-between rounded-3xl border border-fuchsia-700/50 bg-gradient-to-br from-fuchsia-950/70 via-zinc-950 to-black p-6">
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="text-sm font-semibold text-white">SplitBill</span>
+                    <span className="text-sm font-semibold text-white">
+                      SplitBill
+                    </span>
                     <span className="rounded-full bg-fuchsia-500/20 px-2 py-0.5 text-[11px] text-fuchsia-200">
                       Web
                     </span>
@@ -328,7 +346,6 @@ export default function Home() {
                   </Link>
                 </div>
               </div>
-
             </div>
           </section>
 
@@ -395,12 +412,13 @@ export default function Home() {
 
             <div className="mt-6 flex flex-col gap-2 border-t border-zinc-900 pt-4 text-xs text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
               <p>© {new Date().getFullYear()} Airoflair. All rights reserved.</p>
-              <div className="flex flex-wrap gap-4">
-                <Link
-                  href="https://www.airoflair.com/privacy-policy"
-                  className="hover:text-zinc-300"
-                >
+              <div className="flex flex-wrap items-center gap-3">
+                <Link href="/privacy-policy" className="hover:text-zinc-300">
                   Privacy Policy
+                </Link>
+                <span className="text-zinc-700">|</span>
+                <Link href="/terms-of-service" className="hover:text-zinc-300">
+                  Terms of Service
                 </Link>
                 <span className="text-zinc-700">|</span>
                 <span className="text-zinc-500">
