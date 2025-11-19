@@ -158,11 +158,11 @@ export default function Home() {
                 <span className="bg-gradient-to-r from-sky-400 via-emerald-400 to-indigo-400 bg-clip-text text-transparent">
                   reporting & data
                 </span>{" "}
-                in one ecosystem.
+                ready to use.
               </h1>
 
               <p className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-zinc-300 sm:text-lg">
-                Airoflair connects all types of inspections data and reporting
+                Airoflair connects all types of inspection data and reporting
                 into one professional toolset from mobile apps to a full web
                 platform.
               </p>
