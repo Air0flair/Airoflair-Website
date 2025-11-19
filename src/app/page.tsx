@@ -14,7 +14,7 @@ const navItems = [
 export default function Home() {
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-50">
-      {/* Favicon is automatically picked up from src/app/favicon.ico */}
+      {/* Background */}
       <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-zinc-900 via-zinc-950 to-black" />
 
       <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-4 sm:px-6 lg:px-8">
@@ -22,7 +22,8 @@ export default function Home() {
         <header className="flex items-center justify-between py-6">
           <div className="flex items-center gap-3">
             <Link href="/" className="flex items-center gap-3">
-              <div className="relative h-9 w-32 sm:h-10 sm:w-40">
+              {/* Logo (25% bigger) */}
+              <div className="relative h-11 w-40 sm:h-12 sm:w-48">
                 <Image
                   src={Logo}
                   alt="Airoflair Logo"
@@ -124,80 +125,84 @@ export default function Home() {
               <div className="mt-5 space-y-4">
                 {/* Inspect */}
                 <div className="flex items-start gap-3 rounded-2xl border border-zinc-800 bg-zinc-900/70 p-4">
-                  <div className="mt-1 h-8 w-8 rounded-full bg-sky-500/10 text-sky-400 flex items-center justify-center text-xs font-semibold">
+                  <div className="mt-1 flex h-8 w-8 items-center justify-center rounded-full bg-sky-500/10 text-xs font-semibold text-sky-400">
                     IN
                   </div>
                   <div className="flex-1">
-                    <span className="text-sm font-semibold text-zinc-50">
-                      Inspect
-                    </span>
-                    <span className="ml-2 rounded-full bg-sky-500/15 px-2 py-0.5 text-[10px] uppercase tracking-wide text-sky-300">
-                      Web
-                    </span>
-                    <p className="mt-1 text-xs text-zinc-400">
-                      Fully customisable inspection and reporting portal on{" "}
-                      <span className="font-medium text-zinc-200">
-                        inspect.airoflair.com
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="text-sm font-semibold text-zinc-50">
+                        Inspect
                       </span>
-                      .
+                      <span className="rounded-full bg-sky-500/15 px-2 py-0.5 text-[10px] uppercase tracking-wide text-sky-300">
+                        WEB
+                      </span>
+                      <span className="rounded-full bg-emerald-500/15 px-2 py-0.5 text-[10px] uppercase tracking-wide text-emerald-300">
+                        MOBILE
+                      </span>
+                    </div>
+                    <p className="mt-1 text-xs text-zinc-400">
+                      Fully customisable inspection and reporting portal.
                     </p>
                   </div>
                 </div>
 
                 {/* Quick Inspect */}
                 <div className="flex items-start gap-3 rounded-2xl border border-zinc-800 bg-zinc-900/40 p-4">
-                  <div className="mt-1 h-8 w-8 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xs font-semibold">
+                  <div className="mt-1 flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/10 text-xs font-semibold text-emerald-400">
                     QI
                   </div>
                   <div className="flex-1">
-                    <span className="text-sm font-semibold text-zinc-50">
-                      Quick Inspect
-                    </span>
-                    <span className="ml-2 rounded-full bg-emerald-500/15 px-2 py-0.5 text-[10px] uppercase tracking-wide text-emerald-300">
-                      Mobile
-                    </span>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="text-sm font-semibold text-zinc-50">
+                        Quick Inspect
+                      </span>
+                      <span className="rounded-full bg-emerald-500/15 px-2 py-0.5 text-[10px] uppercase tracking-wide text-emerald-300">
+                        MOBILE
+                      </span>
+                    </div>
                     <p className="mt-1 text-xs text-zinc-400">
-                      Fast, offline-ready inspections for iOS & Android.
+                      Fast, offline-ready inspections for iOS &amp; Android.
                     </p>
                   </div>
                 </div>
 
                 {/* Data */}
                 <div className="flex items-start gap-3 rounded-2xl border border-zinc-800 bg-zinc-900/40 p-4">
-                  <div className="mt-1 h-8 w-8 rounded-full bg-indigo-500/10 text-indigo-300 flex items-center justify-center text-xs font-semibold">
+                  <div className="mt-1 flex h-8 w-8 items-center justify-center rounded-full bg-indigo-500/10 text-xs font-semibold text-indigo-300">
                     DA
                   </div>
                   <div className="flex-1">
-                    <span className="text-sm font-semibold text-zinc-50">
-                      Airoflair Data
-                    </span>
-                    <span className="ml-2 rounded-full bg-indigo-500/15 px-2 py-0.5 text-[10px] text-indigo-300">
-                      Mobile
-                    </span>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="text-sm font-semibold text-zinc-50">
+                        Data
+                      </span>
+                      <span className="rounded-full bg-indigo-500/15 px-2 py-0.5 text-[10px] uppercase tracking-wide text-indigo-300">
+                        MOBILE
+                      </span>
+                    </div>
                     <p className="mt-1 text-xs text-zinc-400">
-                      Engineering calculators & reference data for the field.
+                      Engineering calculators &amp; reference data for the
+                      field.
                     </p>
                   </div>
                 </div>
 
                 {/* SplitBill */}
                 <div className="flex items-start gap-3 rounded-2xl border border-zinc-800 bg-zinc-900/40 p-4">
-                  <div className="mt-1 h-8 w-8 rounded-full bg-fuchsia-500/10 text-fuchsia-300 flex items-center justify-center text-xs font-semibold">
+                  <div className="mt-1 flex h-8 w-8 items-center justify-center rounded-full bg-fuchsia-500/10 text-xs font-semibold text-fuchsia-300">
                     SB
                   </div>
                   <div className="flex-1">
-                    <span className="text-sm font-semibold text-zinc-50">
-                      SplitBill
-                    </span>
-                    <span className="ml-2 rounded-full bg-fuchsia-500/15 px-2 py-0.5 text-[10px] tracking-wide text-fuchsia-300">
-                      Web
-                    </span>
-                    <p className="mt-1 text-xs text-zinc-400">
-                      Smart bill splitting at{" "}
-                      <span className="font-medium text-zinc-200">
-                        splitbill.airoflair.com
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="text-sm font-semibold text-zinc-50">
+                        SplitBill
                       </span>
-                      .
+                      <span className="rounded-full bg-fuchsia-500/15 px-2 py-0.5 text-[10px] tracking-wide text-fuchsia-300">
+                        Web
+                      </span>
+                    </div>
+                    <p className="mt-1 text-xs text-zinc-400">
+                      Smart bill splitting.
                     </p>
                   </div>
                 </div>
@@ -234,8 +239,7 @@ export default function Home() {
                     </span>
                   </div>
                   <p className="mt-3 text-sm text-zinc-200">
-                    A fully customisable inspection reporting platform at{" "}
-                    <span className="font-semibold">inspect.airoflair.com</span>.
+                    A fully customisable inspection reporting platform.
                   </p>
                 </div>
 
@@ -266,20 +270,20 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="mt-5 flex gap-3 flex-wrap">
+                <div className="mt-5 flex flex-wrap gap-3">
                   <Link
                     href="https://apps.apple.com/us/app/airoflair-quick-inspect/id6751975606"
                     target="_blank"
                     className="rounded-full bg-zinc-50 px-4 py-2 text-[11px] font-semibold text-zinc-950 hover:bg-zinc-200"
                   >
-                    App Store (iOS)
+                    App Store
                   </Link>
                   <Link
                     href="https://play.google.com/store/apps/details?id=com.airoflair.quickinspect&pcampaignid=web_share"
                     target="_blank"
                     className="rounded-full border border-zinc-400/60 bg-zinc-900 px-4 py-2 text-[11px] font-semibold text-zinc-50 hover:border-zinc-200"
                   >
-                    Google Play (Android)
+                    Google Play
                   </Link>
                 </div>
               </div>
@@ -296,24 +300,24 @@ export default function Home() {
                     </span>
                   </div>
                   <p className="mt-3 text-sm text-zinc-200">
-                    Calculators & engineering tools.
+                    Calculators &amp; engineering tools.
                   </p>
                 </div>
 
-                <div className="mt-5 flex gap-3 flex-wrap">
+                <div className="mt-5 flex flex-wrap gap-3">
                   <Link
                     href="https://apps.apple.com/us/app/airoflair-data/id6749357700"
                     target="_blank"
                     className="rounded-full bg-zinc-50 px-4 py-2 text-[11px] font-semibold text-zinc-950 hover:bg-zinc-200"
                   >
-                    App Store (iOS)
+                    App Store
                   </Link>
                   <Link
                     href="https://play.google.com/store/apps/details?id=com.airoflair.data&pcampaignid=web_share"
                     target="_blank"
                     className="rounded-full border border-zinc-400/60 bg-zinc-900 px-4 py-2 text-[11px] font-semibold text-zinc-50 hover:border-zinc-200"
                   >
-                    Google Play (Android)
+                    Google Play
                   </Link>
                 </div>
               </div>
@@ -325,13 +329,9 @@ export default function Home() {
                     <span className="text-sm font-semibold text-white">
                       SplitBill
                     </span>
-                    <span className="rounded-full bg-fuchsia-500/20 px-2 py-0.5 text-[11px] text-fuchsia-200">
-                      Web
-                    </span>
                   </div>
                   <p className="mt-3 text-sm text-zinc-200">
-                    Smart bill splitting at{" "}
-                    <span className="font-semibold">splitbill.airoflair.com</span>.
+                    Smart bill splitting.
                   </p>
                 </div>
 
@@ -351,11 +351,10 @@ export default function Home() {
           {/* WHY AIROFLAIR */}
           <section id="why" className="mt-10 space-y-6 border-t border-zinc-800 pt-10">
             <h2 className="text-xl font-semibold text-white sm:text-2xl">
-              Why teams choose Airoflair.
+              Why Airoflair?
             </h2>
 
             <div className="grid gap-6 md:grid-cols-3">
-              {/* UPDATED CARD */}
               <div className="rounded-2xl border border-zinc-800 bg-zinc-950/70 p-5">
                 <h3 className="text-sm font-semibold text-white">
                   Built to inspect.
@@ -423,7 +422,7 @@ export default function Home() {
                 </Link>
                 <span className="text-zinc-700">|</span>
                 <span className="text-zinc-500">
-                  Powered by Airoflair inspection & data tools.
+                  Powered by Airoflair inspection &amp; data tools.
                 </span>
               </div>
             </div>
