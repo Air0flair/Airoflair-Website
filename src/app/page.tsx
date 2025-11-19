@@ -63,7 +63,7 @@ export default function Home() {
             <div>
               <div className="inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/60 px-3 py-1 text-xs text-zinc-300">
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                Built by inspection engineers, not marketers.
+                Quick professional inspection reports
               </div>
 
               <h1 className="mt-5 max-w-2xl text-balance text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl">
@@ -76,7 +76,7 @@ export default function Home() {
 
               <p className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-zinc-300 sm:text-lg">
                 Airoflair connects field inspections, engineering calculations,
-                and reporting into one professional toolset — from mobile apps
+                and reporting into one professional toolset from mobile apps
                 to a full web platform.
               </p>
 
@@ -358,11 +358,11 @@ export default function Home() {
             <div className="grid gap-6 md:grid-cols-3">
               <div className="rounded-2xl border border-zinc-800 bg-zinc-950/70 p-5">
                 <h3 className="text-sm font-semibold text-white">
-                  Built by inspection engineers.
+                  Built to inspect.
                 </h3>
                 <p className="mt-2 text-sm text-zinc-400">
-                  Workflows mirror real API 570, piping, structural and tank
-                  inspection work.
+                  Data Collection made faster and easier.
+                  Quick - Efficient - Useful
                 </p>
               </div>
 
@@ -371,8 +371,8 @@ export default function Home() {
                   Start small, scale later.
                 </h3>
                 <p className="mt-2 text-sm text-zinc-400">
-                  Use Quick Inspect and Data on small jobs, then graduate into
-                  the full Inspect portal.
+                  Quick Inspect is fast inspection reporting.
+                  Management system with Airoflair Inspect.
                 </p>
               </div>
 
@@ -381,7 +381,7 @@ export default function Home() {
                   Brand-quality reports.
                 </h3>
                 <p className="mt-2 text-sm text-zinc-400">
-                  Clean, professional PDFs and standards for every client.
+                  Clean, professional PDF inspection reports.
                 </p>
               </div>
             </div>
@@ -398,7 +398,7 @@ export default function Home() {
                   Get in touch
                 </p>
                 <p className="mt-1 max-w-xl text-sm text-zinc-300">
-                  Ready to modernise your reporting and data workflow? Let's talk.
+                  Ready to modernise your reporting and data workflow?
                 </p>
               </div>
 
