@@ -266,7 +266,7 @@ export default function Home() {
                     </span>
                   </div>
                   <p className="mt-3 text-sm text-zinc-200">
-                    A fast, offline-ready inspection app for quick jobs.
+                    A fast, offline-ready inspection app for quick tasks.
                   </p>
                 </div>
 
@@ -293,7 +293,7 @@ export default function Home() {
                 <div>
                   <div className="flex items-center gap-2">
                     <span className="text-sm font-semibold text-white">
-                      Airoflair Data
+                      Data
                     </span>
                     <span className="rounded-full bg-indigo-500/20 px-2 py-0.5 text-[11px] text-indigo-200">
                       Mobile
@@ -327,7 +327,7 @@ export default function Home() {
                 <div>
                   <div className="flex items-center gap-2">
                     <span className="text-sm font-semibold text-white">
-                      SplitBill
+                      Split Bill
                     </span>
                   </div>
                   <p className="mt-3 text-sm text-zinc-200">
@@ -341,7 +341,7 @@ export default function Home() {
                     target="_blank"
                     className="rounded-full bg-fuchsia-500 px-4 py-2 text-[11px] font-semibold text-zinc-50 hover:bg-fuchsia-400"
                   >
-                    Open SplitBill
+                    Open Split Bill
                   </Link>
                 </div>
               </div>
