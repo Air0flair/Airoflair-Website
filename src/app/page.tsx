@@ -75,7 +75,7 @@ export default function Home() {
               </h1>
 
               <p className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-zinc-300 sm:text-lg">
-                Airoflair connects field inspections, engineering calculations,
+                Airoflair connects all types of inspections data
                 and reporting into one professional toolset from mobile apps
                 to a full web platform.
               </p>
@@ -103,7 +103,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="inline-block h-2 w-2 rounded-full bg-sky-400" />
-                  API 570 / Mechanical / Electrical data
+                  Inspection data
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="inline-block h-2 w-2 rounded-full bg-indigo-400" />
@@ -211,15 +211,14 @@ export default function Home() {
               One ecosystem for real inspection work.
             </h2>
             <p className="max-w-2xl text-sm text-zinc-400 sm:text-base">
-              Designed from years offshore — built for speed, accuracy and
-              professional reporting.
+              Built for speed, accuracy and professional inspection reporting.
             </p>
           </section>
 
           {/* PRODUCTS GRID */}
           <section id="products" className="mt-10 space-y-6">
             <h2 className="text-xl font-semibold text-white sm:text-2xl">
-              Products in the Airoflair family.
+              Airoflair products
             </h2>
 
             <div className="grid gap-6 md:grid-cols-2">
@@ -297,7 +296,7 @@ export default function Home() {
                     </span>
                   </div>
                   <p className="mt-3 text-sm text-zinc-200">
-                    Calculators & engineering tools for real fieldwork.
+                    Calculators & engineering tools.
                   </p>
                 </div>
 
@@ -356,22 +355,24 @@ export default function Home() {
             </h2>
 
             <div className="grid gap-6 md:grid-cols-3">
+              {/* UPDATED CARD */}
               <div className="rounded-2xl border border-zinc-800 bg-zinc-950/70 p-5">
                 <h3 className="text-sm font-semibold text-white">
                   Built to inspect.
                 </h3>
                 <p className="mt-2 text-sm text-zinc-400">
                   Data Collection made faster and easier.
-                  Quick - Efficient - Useful
+                  <br />
+                  Quick – Efficient – Useful
                 </p>
               </div>
 
               <div className="rounded-2xl border border-zinc-800 bg-zinc-950/70 p-5">
                 <h3 className="text-sm font-semibold text-white">
-                  Start small, scale later.
+                  Start and scale later.
                 </h3>
                 <p className="mt-2 text-sm text-zinc-400">
-                  Quick Inspect is fast inspection reporting.
+                  Quick Inspect for fast inspection reporting.
                   Management system with Airoflair Inspect.
                 </p>
               </div>
