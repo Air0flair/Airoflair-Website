@@ -119,7 +119,7 @@ export default function Home() {
                 Airoflair product stack
               </h2>
               <p className="mt-2 text-xs text-zinc-400">
-                One ecosystem. Four focused tools that fit together.
+                Inspection and data tools.
               </p>
 
               <div className="mt-5 space-y-4">
@@ -195,7 +195,7 @@ export default function Home() {
                   <div className="flex-1">
                     <div className="flex flex-wrap items-center gap-2">
                       <span className="text-sm font-semibold text-zinc-50">
-                        SplitBill
+                        Split Bill
                       </span>
                       <span className="rounded-full bg-fuchsia-500/15 px-2 py-0.5 text-[10px] tracking-wide text-fuchsia-300">
                         Web
