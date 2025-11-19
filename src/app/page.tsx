@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "@/assets/images/logo.png";
@@ -12,6 +13,19 @@ const navItems = [
 ];
 
 export default function Home() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const handleNavClick = (href: string) => {
+    // Close menu, then jump to section
+    setMobileOpen(false);
+    if (href.startsWith("#")) {
+      const el = document.querySelector(href);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-50">
       {/* Background */}
@@ -38,25 +52,97 @@ export default function Home() {
             </span>
           </div>
 
-          <nav className="hidden items-center gap-6 text-sm text-zinc-300 md:flex">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="hover:text-white transition-colors"
+          <div className="flex items-center gap-3">
+            {/* Desktop nav */}
+            <nav className="hidden items-center gap-6 text-sm text-zinc-300 md:flex">
+              {navItems.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="hover:text-white transition-colors"
+                >
+                  {item.label}
+                </a>
+              ))}
+              <Link
+                href="https://inspect.airoflair.com"
+                target="_blank"
+                className="rounded-full bg-zinc-50 px-4 py-2 text-sm font-semibold text-zinc-950 shadow-sm transition hover:bg-zinc-200"
               >
-                {item.label}
-              </a>
-            ))}
-            <Link
-              href="https://inspect.airoflair.com"
-              target="_blank"
-              className="rounded-full bg-zinc-50 px-4 py-2 text-sm font-semibold text-zinc-950 shadow-sm transition hover:bg-zinc-200"
+                Open Inspect
+              </Link>
+            </nav>
+
+            {/* Mobile hamburger */}
+            <button
+              type="button"
+              className="inline-flex items-center justify-center rounded-full border border-zinc-800/80 bg-zinc-900/80 p-2 text-zinc-200 transition hover:border-zinc-500 hover:bg-zinc-900 md:hidden"
+              aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
+              onClick={() => setMobileOpen((open) => !open)}
             >
-              Open Inspect
-            </Link>
-          </nav>
+              {mobileOpen ? (
+                // X icon
+                <svg
+                  className="h-5 w-5"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M6 6l12 12M18 6L6 18"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              ) : (
+                // Hamburger icon
+                <svg
+                  className="h-5 w-5"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M4 7h16M4 12h16M4 17h10"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              )}
+            </button>
+          </div>
         </header>
+
+        {/* Mobile dropdown nav */}
+        {mobileOpen && (
+          <div className="mb-4 md:hidden">
+            <div className="rounded-3xl border border-zinc-800 bg-zinc-950/95 px-4 py-3 shadow-lg backdrop-blur">
+              <nav className="flex flex-col gap-2 text-sm">
+                {navItems.map((item) => (
+                  <button
+                    key={item.href}
+                    type="button"
+                    onClick={() => handleNavClick(item.href)}
+                    className="flex w-full items-center justify-between rounded-xl px-2 py-2 text-left text-zinc-200 hover:bg-zinc-900"
+                  >
+                    <span>{item.label}</span>
+                    <span className="text-[10px] uppercase tracking-wide text-zinc-500">
+                      Section
+                    </span>
+                  </button>
+                ))}
+                <Link
+                  href="https://inspect.airoflair.com"
+                  target="_blank"
+                  onClick={() => setMobileOpen(false)}
+                  className="mt-2 inline-flex items-center justify-center rounded-2xl bg-zinc-50 px-3 py-2 text-sm font-semibold text-zinc-950 shadow-sm hover:bg-zinc-200"
+                >
+                  Open Inspect
+                </Link>
+              </nav>
+            </div>
+          </div>
+        )}
 
         {/* HERO */}
         <main className="flex flex-1 flex-col justify-center gap-16 py-6">
@@ -76,9 +162,9 @@ export default function Home() {
               </h1>
 
               <p className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-zinc-300 sm:text-lg">
-                Airoflair connects all types of inspections data
-                and reporting into one professional toolset from mobile apps
-                to a full web platform.
+                Airoflair connects all types of inspections data and reporting
+                into one professional toolset from mobile apps to a full web
+                platform.
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -371,8 +457,8 @@ export default function Home() {
                   Start and scale later.
                 </h3>
                 <p className="mt-2 text-sm text-zinc-400">
-                  Quick Inspect for fast inspection reporting.
-                  Management system with Airoflair Inspect.
+                  Quick Inspect for fast inspection reporting. Management system
+                  with Airoflair Inspect.
                 </p>
               </div>
 
