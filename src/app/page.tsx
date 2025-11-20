@@ -105,6 +105,7 @@ export default function Home() {
                 </Link>
               </nav>
 
+              {/* Mobile toggle */}
               <button
                 type="button"
                 aria-label={mobileOpen ? "Close menu" : "Open menu"}
@@ -132,8 +133,8 @@ export default function Home() {
                   {navItems.map((item) => (
                     <button
                       key={item.href}
-                      className="w-full rounded-xl px-2 py-2 text-left text-zinc-200 hover:bg-zinc-900"
                       onClick={() => handleNavClick(item.href)}
+                      className="w-full rounded-xl px-2 py-2 text-left text-zinc-200 hover:bg-zinc-900"
                     >
                       {item.label}
                     </button>
@@ -141,7 +142,6 @@ export default function Home() {
                   <Link
                     href="https://inspect.airoflair.com"
                     target="_blank"
-                    onClick={() => setMobileOpen(false)}
                     className="mt-2 inline-flex items-center justify-center rounded-2xl bg-zinc-50 px-3 py-2 text-sm font-semibold text-zinc-950 hover:bg-zinc-200"
                   >
                     Open Inspect
@@ -161,18 +161,23 @@ export default function Home() {
                   Quick professional inspection reports
                 </div>
 
-                {/* ⭐ UPDATED MOBILE SPLIT HEADING */}
-                <h1 className="mt-5 max-w-3xl text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl leading-tight">
+                {/* ⭐ MOBILE-LINE VERSION WITH GRADIENT */}
+                <h1 className="mt-5 max-w-3xl text-4xl font-semibold tracking-tight text-white leading-tight sm:text-5xl md:text-6xl">
                   All your inspection <br className="sm:hidden" />
-                  reporting &amp; data <br className="sm:hidden" />
+
+                  <span className="bg-gradient-to-r from-indigo-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                    reporting &amp; data
+                  </span>
+
+                  <br className="sm:hidden" />
                   ready to use.
                 </h1>
 
-                {/* Desktop alternate text stays long form */}
+                {/* Description */}
                 <p className="mt-5 max-w-xl text-base text-zinc-300 sm:text-lg">
-                  Airoflair connects inspection reporting, engineering tools, and data
-                  workflows into one ecosystem – from powerful mobile apps to a full
-                  web platform with photo-rich PDF reports.
+                  Airoflair connects inspection reporting, engineering tools, and
+                  data workflows into one ecosystem – from powerful mobile apps to a
+                  full web platform with photo-rich PDF reports.
                 </p>
 
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -194,12 +199,8 @@ export default function Home() {
 
               {/* PRODUCT STACK CARD */}
               <div className="rounded-3xl border border-zinc-800 bg-zinc-950/70 p-5 shadow-[0_0_0_1px_rgba(255,255,255,0.02)]">
-                <h2 className="text-sm font-semibold text-zinc-200">
-                  Airoflair product stack
-                </h2>
-                <p className="mt-2 text-xs text-zinc-400">
-                  Inspection reporting and data tools.
-                </p>
+                <h2 className="text-sm font-semibold text-zinc-200">Airoflair product stack</h2>
+                <p className="mt-2 text-xs text-zinc-400">Inspection reporting and data tools.</p>
 
                 <div className="mt-5 space-y-4">
                   {/* Inspect */}
@@ -209,12 +210,8 @@ export default function Home() {
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
-                        <span className="text-sm font-semibold text-zinc-50">
-                          Inspect
-                        </span>
-                        <span className="rounded-full bg-sky-500/15 px-2 py-0.5 text-[10px] text-sky-300">
-                          Web
-                        </span>
+                        <span className="text-sm font-semibold text-zinc-50">Inspect</span>
+                        <span className="rounded-full bg-sky-500/15 px-2 py-0.5 text-[10px] text-sky-300">Web</span>
                         <span className="rounded-full bg-emerald-500/15 px-2 py-0.5 text-[10px] text-emerald-300">
                           Mobile
                         </span>
@@ -232,9 +229,7 @@ export default function Home() {
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
-                        <span className="text-sm font-semibold text-zinc-50">
-                          Quick Inspect
-                        </span>
+                        <span className="text-sm font-semibold text-zinc-50">Quick Inspect</span>
                         <span className="rounded-full bg-emerald-500/15 px-2 py-0.5 text-[10px] text-emerald-300">
                           Mobile
                         </span>
@@ -252,16 +247,12 @@ export default function Home() {
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
-                        <span className="text-sm font-semibold text-zinc-50">
-                          Data
-                        </span>
+                        <span className="text-sm font-semibold text-zinc-50">Data</span>
                         <span className="rounded-full bg-indigo-500/15 px-2 py-0.5 text-[10px] text-indigo-300">
                           Mobile
                         </span>
                       </div>
-                      <p className="mt-1 text-xs text-zinc-400">
-                        Engineering calculators &amp; tools.
-                      </p>
+                      <p className="mt-1 text-xs text-zinc-400">Engineering calculators &amp; tools.</p>
                     </div>
                   </div>
 
@@ -271,12 +262,8 @@ export default function Home() {
                       SB
                     </div>
                     <div className="flex-1">
-                      <span className="text-sm font-semibold text-zinc-50">
-                        Split Bill
-                      </span>
-                      <p className="mt-1 text-xs text-zinc-400">
-                        Smart bill splitting for groups.
-                      </p>
+                      <span className="text-sm font-semibold text-zinc-50">Split Bill</span>
+                      <p className="mt-1 text-xs text-zinc-400">Smart bill splitting for groups.</p>
                     </div>
                   </div>
                 </div>
@@ -293,35 +280,30 @@ export default function Home() {
               </p>
             </section>
 
-            {/* PRODUCTS */}
+            {/* PRODUCTS GRID */}
             <section id="products" className="mt-10 space-y-6">
-              <h2 className="text-xl font-semibold text-white sm:text-2xl">
-                Airoflair products
-              </h2>
+              <h2 className="text-xl font-semibold text-white sm:text-2xl">Airoflair products</h2>
 
               <div className="grid gap-6 md:grid-cols-2">
                 {/* Inspect */}
                 <div className="flex flex-col justify-between rounded-3xl border border-sky-700/50 bg-gradient-to-br from-sky-950/70 via-zinc-950 to-black p-6">
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="text-sm font-semibold text-white">
-                        Inspect
-                      </span>
+                      <span className="text-sm font-semibold text-white">Inspect</span>
                       <span className="rounded-full bg-sky-500/20 px-2 py-0.5 text-[11px] text-sky-200">
                         Web platform
                       </span>
                     </div>
                     <p className="mt-3 text-sm text-zinc-200">
-                      A full inspection reporting platform for teams.
+                      A fully customisable inspection reporting platform.
                     </p>
                   </div>
-                  <div className="mt-5">
+
+                  <div className="mt-5 flex gap-3">
                     <Link
                       href="https://inspect.airoflair.com"
                       target="_blank"
-                      className="
-                        rounded-full bg-sky-500 px-4 py-2 text-[11px] font-semibold text-zinc-950
-                        hover:bg-sky-400"
+                      className="rounded-full bg-sky-500 px-4 py-2 text-[11px] font-semibold text-zinc-950 hover:bg-sky-400"
                     >
                       Go to Inspect
                     </Link>
@@ -366,15 +348,13 @@ export default function Home() {
                 <div className="flex flex-col justify-between rounded-3xl border border-indigo-700/50 bg-gradient-to-br from-indigo-950/70 via-zinc-950 to-black p-6">
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="text-sm font-semibold text-white">
-                        Data
-                      </span>
+                      <span className="text-sm font-semibold text-white">Data</span>
                       <span className="rounded-full bg-indigo-500/20 px-2 py-0.5 text-[11px] text-indigo-200">
                         Mobile
                       </span>
                     </div>
                     <p className="mt-3 text-sm text-zinc-200">
-                      Engineering calculators &amp; tools for the field.
+                      Engineering calculators &amp; tools.
                     </p>
                   </div>
 
@@ -399,9 +379,7 @@ export default function Home() {
                 {/* SplitBill */}
                 <div className="flex flex-col justify-between rounded-3xl border border-fuchsia-700/50 bg-gradient-to-br from-fuchsia-950/70 via-zinc-950 to-black p-6">
                   <div>
-                    <span className="text-sm font-semibold text-white">
-                      Split Bill
-                    </span>
+                    <span className="text-sm font-semibold text-white">Split Bill</span>
                     <p className="mt-3 text-sm text-zinc-200">
                       Smart bill splitting system.
                     </p>
@@ -420,38 +398,29 @@ export default function Home() {
               </div>
             </section>
 
-            {/* WHY AIROFLAIR */}
+            {/* WHY */}
             <section id="why" className="mt-10 space-y-6 border-t border-zinc-800 pt-10">
-              <h2 className="text-xl font-semibold text-white sm:text-2xl">
-                Why Airoflair?
-              </h2>
+              <h2 className="text-xl font-semibold text-white sm:text-2xl">Why Airoflair?</h2>
 
               <div className="grid gap-6 md:grid-cols-3">
                 <div className="rounded-2xl border border-zinc-800 bg-zinc-950/70 p-5">
-                  <h3 className="text-sm font-semibold text-white">
-                    Built to inspect.
-                  </h3>
+                  <h3 className="text-sm font-semibold text-white">Built to inspect.</h3>
                   <p className="mt-2 text-sm text-zinc-400">
-                    Data collection made faster and easier.  
-                    Quick – Efficient – Useful.
+                    Data collection made faster and easier.
                   </p>
                 </div>
 
                 <div className="rounded-2xl border border-zinc-800 bg-zinc-950/70 p-5">
-                  <h3 className="text-sm font-semibold text-white">
-                    Start and scale later.
-                  </h3>
+                  <h3 className="text-sm font-semibold text-white">Start and scale later.</h3>
                   <p className="mt-2 text-sm text-zinc-400">
-                    Quick Inspect for fast tasks, and the full management system with Airoflair Inspect.
+                    Quick Inspect for fast tasks, and full management with Inspect.
                   </p>
                 </div>
 
                 <div className="rounded-2xl border border-zinc-800 bg-zinc-950/70 p-5">
-                  <h3 className="text-sm font-semibold text-white">
-                    Brand-quality reports.
-                  </h3>
+                  <h3 className="text-sm font-semibold text-white">Brand-quality reports.</h3>
                   <p className="mt-2 text-sm text-zinc-400">
-                    Clean, professional PDF inspection reports.
+                    Clean, professional PDF reporting.
                   </p>
                 </div>
               </div>
