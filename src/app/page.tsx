@@ -20,7 +20,7 @@ const jsonLd = {
   url: "https://airoflair.com",
   logo: "https://airoflair.com/logo.png",
   description:
-    "Airoflair provides inspection reporting software, mobile apps, engineering tools, and photo-rich PDF reporting.",
+    "Airoflair provides inspection reporting software, mobile apps and engineering tools.",
 };
 
 export default function Home() {
@@ -42,8 +42,9 @@ export default function Home() {
         </title>
         <meta
           name="description"
-          content="Airoflair provides fast mobile inspection apps and a full web platform for professional reporting, data tools, photo-rich PDFs, and offline inspections for teams in the field."
+          content="Airoflair provides fast mobile inspection apps, full web platform for professional reporting and data tools."
         />
+        {/* Canonical URL pointing to main site */}
         <link rel="canonical" href="https://airoflair.com" />
 
         {/* Open Graph */}
