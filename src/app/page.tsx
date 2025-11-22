@@ -17,7 +17,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Airoflair",
-  url: "https://airoflair.com",
+  url: "https://airoflair.com/",
   logo: "https://airoflair.com/logo.png",
   description:
     "Airoflair provides inspection reporting software, mobile apps and engineering tools.",
@@ -44,8 +44,11 @@ export default function Home() {
           name="description"
           content="Airoflair provides fast mobile inspection apps, full web platform for professional reporting and data tools."
         />
-        {/* Canonical URL pointing to main site */}
-        <link rel="canonical" href="https://airoflair.com" />
+        {/* Explicit robots meta */}
+        <meta name="robots" content="index,follow" />
+
+        {/* Canonical URL pointing to main site (with trailing slash) */}
+        <link rel="canonical" href="https://airoflair.com/" />
 
         {/* Open Graph */}
         <meta
@@ -57,7 +60,7 @@ export default function Home() {
           content="Airoflair connects inspection reporting, engineering tools, and data workflows into one ecosystem – from powerful mobile apps to a full web platform."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://airoflair.com" />
+        <meta property="og:url" content="https://airoflair.com/" />
         <meta property="og:site_name" content="Airoflair" />
         <meta property="og:image" content="https://airoflair.com/og-image.png" />
 
@@ -341,8 +344,7 @@ export default function Home() {
                       </span>
                     </div>
                     <p className="mt-3 text-sm text-zinc-200">
-                      A fully customisable inspection reporting platform for teams and
-                      companies.
+                      A fully customisable inspection reporting platform.
                     </p>
                   </div>
 
