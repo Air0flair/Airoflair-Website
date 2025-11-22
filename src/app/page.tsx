@@ -201,9 +201,9 @@ export default function Home() {
                 </h1>
 
                 <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-300 sm:text-lg">
-                  Airoflair connects inspection reporting, engineering tools, and
-                  data workflows into one ecosystem – from powerful mobile apps to a
-                  full web platform with photo-rich PDF reports.
+                  Airoflair connects your inspection reporting, engineering tools
+                  and data workflows. From fast mobile apps to a full web platform,
+                  streamlining your entire inspection process.
                 </p>
 
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -317,11 +317,10 @@ export default function Home() {
             {/* SOLUTIONS */}
             <section id="solutions" className="mt-4 space-y-6">
               <h2 className="text-xl font-semibold text-white sm:text-2xl">
-                One ecosystem for real inspection work.
+                Streamline your inspection workflow
               </h2>
               <p className="max-w-2xl text-sm text-zinc-400 sm:text-base">
-                Built for speed, accuracy and professional inspection reporting —
-                from walkdowns and corrosion circuits to full campaigns.
+                Collect data efficiently, stay organised and produce clean, consistent reports.
               </p>
             </section>
 
@@ -506,8 +505,7 @@ export default function Home() {
                     Get in touch
                   </p>
                   <p className="mt-1 max-w-xl text-sm text-zinc-300">
-                    Ready to modernise your reporting and data workflow? Reach out and
-                    let&apos;s explore how Airoflair can support your inspections.
+                    Ready to modernise your reporting and data workflow?
                   </p>
                 </div>
 
