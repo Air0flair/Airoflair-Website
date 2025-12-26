@@ -44,7 +44,7 @@ jobs:
           ###### Repository/Build Configurations ######
           app_location: "/"        # App source code path
           api_location: ""         # API source code path - optional
-          output_location: ".next" # ✅ Next.js build output
+          output_location: "out"   # Next.js static export output (from next.config.mjs output: "export")
           github_id_token: ${{ steps.idtoken.outputs.result }}
           ###### End of Repository/Build Configurations ######
 
