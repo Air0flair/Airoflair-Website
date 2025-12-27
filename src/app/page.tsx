@@ -1,155 +1,65 @@
 // src/app/page.tsx
 "use client";
 
-import { useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 
-// Images (src/assets/images)
-import Logo from "@/assets/images/logo.png";
-import MacbookMain from "@/assets/images/macbookmain.png";
+import macbookMain from "@/assets/images/macbookmain.png";
 
-import InspectLogo from "@/assets/images/inspectlogo.png";
-import InspectMacbook from "@/assets/images/inspectmacbook.png";
-import InspectIphone from "@/assets/images/inspectiphone.png";
+import inspectLogo from "@/assets/images/inspectlogo.png";
+import inspectMacbook from "@/assets/images/inspectmacbook.png";
+import inspectIphone from "@/assets/images/inspectiphone.png";
 
-import QuickIcon from "@/assets/images/quickicon.png";
-import QuickInspectIphone from "@/assets/images/quickinspectiphone.png";
+import quickInspectIphone from "@/assets/images/quickinspectiphone.png";
+import quickIcon from "@/assets/images/quickicon.png";
 
-import AiroflairDataLogo from "@/assets/images/Airoflairdatalogo.png";
-import DataImage from "@/assets/images/data.png";
+import airoflairDataLogo from "@/assets/images/Airoflairdatalogo.png";
+import dataShot from "@/assets/images/data.png";
 
-import SplitBillLogo from "@/assets/images/splitbilllogo.png";
-import SplitBillImage from "@/assets/images/splitbill.png";
+import splitBillLogo from "@/assets/images/splitbilllogo.png";
+import splitBillShot from "@/assets/images/splitbill.png";
 
-// Footer / icons (svg)
-import GooglePlayBadge from "@/assets/images/google-play.svg";
-import AppleStoreBadge from "@/assets/images/apple-store.svg";
-import FacebookIcon from "@/assets/images/facebook.svg";
-import InstagramIcon from "@/assets/images/instagram.svg";
-import LinkedinIcon from "@/assets/images/linkedin.svg";
-import XIcon from "@/assets/images/X.svg";
-import WhatsappIcon from "@/assets/images/whatsapp.svg";
+import appleStore from "@/assets/images/apple-store.svg";
+import googlePlay from "@/assets/images/google-play.svg";
 
-const LINKS = {
-  inspectLogin: "https://inspect.airoflair.com",
-  quickInspectGoogle:
-    "https://play.google.com/store/apps/details?id=com.airoflair.quickinspect",
-  quickInspectApple:
-    "https://apps.apple.com/us/app/airoflair-quick-inspect/id6751975606",
-  dataGoogle: "https://play.google.com/store/apps/details?id=com.airoflair.data",
-  dataApple: "https://apps.apple.com/us/app/airoflair-data/id6749357700",
-  splitBill: "https://splitbill.airoflair.com",
-  facebook: "https://www.facebook.com/airoflair",
-  instagram: "https://www.instagram.com/airoflair/",
-  x: "https://twitter.com/airoflair",
-  linkedin: "https://www.linkedin.com/company/airoflair",
-};
+import whatsappIcon from "@/assets/images/whatsapp.svg";
+import mailIcon from "@/assets/images/mail.svg";
 
-function cx(...classes: Array<string | false | undefined | null>) {
-  return classes.filter(Boolean).join(" ");
-}
-
-function Section({
-  id,
-  className,
-  children,
-}: {
-  id?: string;
-  className?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <section
-      id={id}
-      className={cx(
-        "w-full border-t border-zinc-200/70 bg-white",
-        className
-      )}
-    >
-      <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">{children}</div>
-    </section>
-  );
-}
-
-function PrimaryButton({
-  href,
-  children,
-  className,
-}: {
-  href: string;
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <Link
-      href={href}
-      className={cx(
-        "inline-flex items-center justify-center rounded-xl bg-[#1f2a8a] px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-[#1f2a8a]/30",
-        className
-      )}
-    >
-      {children}
-    </Link>
-  );
-}
-
-function SecondaryButton({
-  href,
-  children,
-  className,
-}: {
-  href: string;
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <Link
-      href={href}
-      className={cx(
-        "inline-flex items-center justify-center rounded-xl border border-zinc-300 bg-white px-5 py-3 text-sm font-semibold text-zinc-900 shadow-sm transition hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-zinc-400/20",
-        className
-      )}
-    >
-      {children}
-    </Link>
-  );
-}
+type Status = "idle" | "sending" | "success" | "error";
 
 export default function HomePage() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-
-  // Contact form
-  const [submitting, setSubmitting] = useState(false);
-  const [status, setStatus] = useState<
-    | { type: "idle" }
-    | { type: "success"; message: string }
-    | { type: "error"; message: string }
-  >({ type: "idle" });
+  const [status, setStatus] = useState<Status>("idle");
+  const [errorMsg, setErrorMsg] = useState<string>("");
 
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
-    contactNumber: "",
+    phone: "",
     email: "",
     message: "",
   });
 
-  const jsonLd = useMemo(
+  const quickInspectLinks = useMemo(
     () => ({
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      name: "Airoflair",
-      url: "https://airoflair.com/",
-      sameAs: [LINKS.facebook, LINKS.instagram, LINKS.x, LINKS.linkedin],
+      apple: "https://apps.apple.com/us/app/airoflair-quick-inspect/id6751975606",
+      google:
+        "https://play.google.com/store/apps/details?id=com.airoflair.quickinspect",
+    }),
+    []
+  );
+
+  const dataLinks = useMemo(
+    () => ({
+      apple: "https://apps.apple.com/us/app/airoflair-data/id6749357700",
+      google: "https://play.google.com/store/apps/details?id=com.airoflair.data",
     }),
     []
   );
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setSubmitting(true);
-    setStatus({ type: "idle" });
+    setStatus("sending");
+    setErrorMsg("");
 
     try {
       const res = await fetch("/api/contact", {
@@ -158,636 +68,926 @@ export default function HomePage() {
         body: JSON.stringify(form),
       });
 
-      const data = await res.json().catch(() => null);
-
       if (!res.ok) {
-        const msg =
-          data?.error ||
-          data?.message ||
-          "Something went wrong sending your message. Please try again.";
-        setStatus({ type: "error", message: msg });
-        setSubmitting(false);
-        return;
+        const text = await res.text();
+        throw new Error(text || "Failed to send message.");
       }
 
-      setStatus({
-        type: "success",
-        message: "Message sent successfully. We will get back to you shortly.",
-      });
-      setForm({
-        firstName: "",
-        lastName: "",
-        contactNumber: "",
-        email: "",
-        message: "",
-      });
-    } catch {
-      setStatus({
-        type: "error",
-        message: "Network error. Please try again.",
-      });
-    } finally {
-      setSubmitting(false);
+      setStatus("success");
+      setForm({ firstName: "", lastName: "", phone: "", email: "", message: "" });
+    } catch (err: any) {
+      setStatus("error");
+      setErrorMsg(err?.message || "Failed to send message.");
     }
   }
 
   return (
-    <div className="min-h-screen bg-white text-zinc-900">
-      {/* JSON-LD */}
-      <script
-        type="application/ld+json"
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-
-      {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b border-zinc-200/70 bg-white/90 backdrop-blur">
-        <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
-          <Link href="/" className="flex items-center gap-3">
-            <div className="relative h-8 w-[150px] sm:h-9 sm:w-[170px]">
-              <Image
-                src={Logo}
-                alt="Airoflair"
-                fill
-                priority
-                className="object-contain"
-              />
-            </div>
-          </Link>
-
-          {/* Desktop Nav */}
-          <nav className="hidden items-center gap-7 md:flex">
-            <a
-              href="#products"
-              className="text-xs font-semibold tracking-wide text-zinc-700 hover:text-zinc-950"
-            >
-              PRODUCTS
-            </a>
-            <a
-              href="#services"
-              className="text-xs font-semibold tracking-wide text-zinc-700 hover:text-zinc-950"
-            >
-              SERVICES
-            </a>
-            <a
-              href="#contact"
-              className="text-xs font-semibold tracking-wide text-zinc-700 hover:text-zinc-950"
-            >
-              CONTACT
-            </a>
-            <PrimaryButton href={LINKS.inspectLogin} className="h-9 px-4 py-0">
-              Inspect Login
-            </PrimaryButton>
-          </nav>
-
-          {/* Mobile burger */}
-          <button
-            type="button"
-            className="inline-flex items-center justify-center rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm font-semibold text-zinc-900 shadow-sm md:hidden"
-            onClick={() => setMobileOpen((v) => !v)}
-            aria-label="Open menu"
-            aria-expanded={mobileOpen}
-          >
-            <span className="mr-2">Menu</span>
-            <span className="grid gap-1">
-              <span className="h-0.5 w-5 bg-zinc-900" />
-              <span className="h-0.5 w-5 bg-zinc-900" />
-              <span className="h-0.5 w-5 bg-zinc-900" />
-            </span>
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        <div className={cx("md:hidden", mobileOpen ? "block" : "hidden")}>
-          <div className="mx-auto w-full max-w-6xl px-5 pb-4 sm:px-8">
-            <div className="rounded-2xl border border-zinc-200 bg-white p-3 shadow-sm">
-              <a
-                href="#products"
-                className="block rounded-xl px-4 py-3 text-sm font-semibold text-zinc-800 hover:bg-zinc-50"
-                onClick={() => setMobileOpen(false)}
-              >
-                Products
-              </a>
-              <a
-                href="#services"
-                className="block rounded-xl px-4 py-3 text-sm font-semibold text-zinc-800 hover:bg-zinc-50"
-                onClick={() => setMobileOpen(false)}
-              >
-                Services
-              </a>
-              <a
-                href="#contact"
-                className="block rounded-xl px-4 py-3 text-sm font-semibold text-zinc-800 hover:bg-zinc-50"
-                onClick={() => setMobileOpen(false)}
-              >
-                Contact
-              </a>
-              <div className="px-2 pt-2">
-                <PrimaryButton
-                  href={LINKS.inspectLogin}
-                  className="w-full"
-                >
-                  Inspect Login
-                </PrimaryButton>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      {/* Hero */}
-      <section className="w-full bg-white">
-        <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-10 px-5 py-14 sm:px-8 sm:py-16 lg:grid-cols-2 lg:py-20">
-          <div className="max-w-xl">
-            <h1 className="text-4xl font-extrabold leading-[1.05] tracking-tight text-zinc-950 sm:text-5xl">
-              All your inspection{" "}
-              <span className="block">
-                <span className="bg-gradient-to-r from-[#1f2a8a] to-[#159ad7] bg-clip-text text-transparent">
-                  reporting &amp; data
-                </span>
-              </span>
-              <span className="block">ready to use</span>
+    <main className="page">
+      {/* HERO */}
+      <section className="hero">
+        <div className="container heroGrid">
+          <div className="heroCopy">
+            <h1 className="heroTitle">
+              All your inspection
+              <br />
+              <span className="heroAccent">reporting &amp; data</span>
+              <br />
+              ready to use
             </h1>
 
-            <p className="mt-5 max-w-lg text-base leading-relaxed text-zinc-600">
-              Transform the way your team captures, compiles and completes
-              inspection reports faster than ever.
+            <p className="heroSub">
+              Transform the way your team captures, compiles and completes inspection
+              reports faster than ever.
               <br />
               Available on iOS and Android
             </p>
 
-            <div className="mt-7 flex flex-wrap items-center gap-3">
-              <SecondaryButton href="#contact">Contact Us</SecondaryButton>
+            <div className="heroActions">
+              <a className="btnPrimary" href="#contact">
+                Contact Us
+              </a>
             </div>
           </div>
 
-          <div className="relative mx-auto w-full max-w-[720px]">
+          <div className="heroVisual">
             <Image
-              src={MacbookMain}
+              src={macbookMain}
               alt="Airoflair platform preview"
               priority
-              className="h-auto w-full object-contain"
+              className="heroImage"
             />
           </div>
         </div>
       </section>
 
-      {/* Products */}
-      <Section id="products" className="bg-[#f6f7fb]">
-        <div className="py-14 sm:py-16">
-          {/* Inspect */}
-          <div className="w-full py-12 sm:py-14">
-            <div className="mx-auto w-full max-w-6xl">
-              <div className="grid w-full grid-cols-1 items-center gap-10 lg:grid-cols-[1.1fr_2fr_.9fr]">
-                <div className="text-center lg:text-left">
-                  <h2 className="text-4xl font-extrabold tracking-tight text-zinc-950">
-                    Inspect
-                  </h2>
-                  <p className="mt-3 max-w-md text-base text-zinc-600 lg:mx-0">
-                    Use powerful, flexible templates to create and deliver
-                    inspection reports faster than ever
-                  </p>
-                </div>
+      {/* INSPECT (FULL-WIDTH STRIP, NO ROUNDED EDGES) */}
+      <section id="products" className="strip stripTint">
+        <div className="container">
+          <div className="stripTop">
+            <div className="stripLeft">
+              <h2 className="stripTitle centerOnMobile">Inspect</h2>
+              <p className="stripDesc centerOnMobile">
+                Use powerful, flexible templates to create and deliver inspection reports faster
+                than ever
+              </p>
+            </div>
 
-                <div className="relative mx-auto w-full max-w-[760px]">
-                  <div className="grid items-center gap-6 sm:grid-cols-2">
-                    <div className="relative w-full">
-                      <Image
-                        src={InspectLogo}
-                        alt="Airoflair Inspect"
-                        className="h-auto w-full object-contain"
-                      />
-                    </div>
-                    <div className="relative w-full">
-                      <Image
-                        src={InspectMacbook}
-                        alt="Inspect on desktop"
-                        className="h-auto w-full object-contain"
-                      />
-                    </div>
-                  </div>
-                </div>
+            <div className="stripRight">
+              <a
+                className="btnPrimary"
+                href="https://inspect.airoflair.com"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Inspect Login
+              </a>
+            </div>
+          </div>
 
-                <div className="flex justify-center lg:justify-end">
-                  <div className="flex w-full max-w-xs flex-col items-center gap-5">
-                    <div className="relative w-full max-w-[210px]">
-                      <Image
-                        src={InspectIphone}
-                        alt="Inspect on mobile"
-                        className="h-auto w-full object-contain"
-                      />
-                    </div>
-                    <PrimaryButton href={LINKS.inspectLogin} className="w-full">
-                      Go to Inspect
-                    </PrimaryButton>
-                  </div>
-                </div>
+          <div className="media3">
+            <div className="media3Item media3Logo">
+              <Image
+                src={inspectLogo}
+                alt="Airoflair Inspect"
+                className="imgContain imgMax"
+              />
+            </div>
+
+            <div className="media3Item media3Mac">
+              <Image
+                src={inspectMacbook}
+                alt="Inspect web preview"
+                className="imgContain imgMax"
+              />
+            </div>
+
+            <div className="media3Item media3Phone">
+              <Image
+                src={inspectIphone}
+                alt="Inspect mobile preview"
+                className="imgContain imgMax"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* QUICK INSPECT (FULL-WIDTH STRIP, NO ROUNDED EDGES) */}
+      <section className="strip stripWhite">
+        <div className="container">
+          <div className="stripTop">
+            <div className="stripLeft">
+              <h2 className="stripTitle centerOnMobile">Quick Inspect</h2>
+              <p className="stripDesc centerOnMobile">
+                A fast, offline-ready inspection app for quick visual surveys and photo-rich
+                reports
+              </p>
+            </div>
+
+            <div className="stripRight">
+              <div className="badgeRow">
+                <a
+                  href={quickInspectLinks.apple}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Quick Inspect on App Store"
+                >
+                  <Image
+                    src={appleStore}
+                    alt="App Store"
+                    width={132}
+                    height={40}
+                    className="storeBadge"
+                  />
+                </a>
+                <a
+                  href={quickInspectLinks.google}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Quick Inspect on Google Play"
+                >
+                  <Image
+                    src={googlePlay}
+                    alt="Google Play"
+                    width={132}
+                    height={40}
+                    className="storeBadge"
+                  />
+                </a>
               </div>
             </div>
           </div>
 
-          {/* Quick Inspect */}
-          <div className="w-full border-t border-zinc-200/70 bg-white py-12 sm:py-14">
-            <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.2fr_2fr_1fr]">
-              <div className="text-center lg:text-left">
-                <h2 className="text-4xl font-extrabold tracking-tight text-zinc-950">
-                  Quick Inspect
-                </h2>
-                <p className="mt-3 max-w-md text-base text-zinc-600 lg:mx-0">
-                  A fast, offline-ready inspection app for quick visual surveys
-                  and photo-rich reports
+          <div className="media2">
+            <div className="media2Left">
+              <Image
+                src={quickInspectIphone}
+                alt="Airoflair Quick Inspect"
+                className="imgContain imgMax"
+              />
+            </div>
+            <div className="media2Right">
+              <Image
+                src={quickIcon}
+                alt="Quick Inspect icon"
+                className="imgContain imgMax"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* DATA (FULL-WIDTH STRIP, NO ROUNDED EDGES) */}
+      <section className="strip stripTint">
+        <div className="container">
+          <div className="stripTop">
+            <div className="stripLeft">
+              <div className="dataHeading centerOnMobile">
+                <Image
+                  src={airoflairDataLogo}
+                  alt="Airoflair Data"
+                  className="dataLogo"
+                />
+                <div>
+                  <div className="dataKicker">AIROFLAIR</div>
+                  <h2 className="stripTitle" style={{ margin: 0 }}>
+                    DATA
+                  </h2>
+                  <p className="stripDesc" style={{ marginTop: 6 }}>
+                    Engineering calculators &amp; reference tools
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="stripRight">
+              <div className="badgeRow">
+                <a
+                  href={dataLinks.apple}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Airoflair Data on App Store"
+                >
+                  <Image
+                    src={appleStore}
+                    alt="App Store"
+                    width={132}
+                    height={40}
+                    className="storeBadge"
+                  />
+                </a>
+                <a
+                  href={dataLinks.google}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Airoflair Data on Google Play"
+                >
+                  <Image
+                    src={googlePlay}
+                    alt="Google Play"
+                    width={132}
+                    height={40}
+                    className="storeBadge"
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="mediaCenter">
+            <Image
+              src={dataShot}
+              alt="Airoflair Data screens"
+              className="imgContain imgMax"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* SPLITBILL (FULL-WIDTH STRIP, NO ROUNDED EDGES) */}
+      <section className="strip stripWhite">
+        <div className="container">
+          <div className="stripTop splitTop">
+            <div className="stripLeft">
+              <Image
+                src={splitBillLogo}
+                alt="SplitBill"
+                className="splitLogo"
+              />
+              <p className="stripDesc centerOnMobile" style={{ marginTop: 10 }}>
+                Smart bill splitting for group events, trips and shared expenses
+              </p>
+            </div>
+
+            <div className="stripRight">
+              <a
+                className="btnPrimary"
+                href="https://splitbill.airoflair.com"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Go to Split Bill
+              </a>
+            </div>
+          </div>
+
+          <div className="mediaCenter">
+            <Image
+              src={splitBillShot}
+              alt="SplitBill preview"
+              className="imgContain imgMax"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICES / FEATURES */}
+      <section id="services" className="strip stripTint">
+        <div className="container">
+          <div className="features">
+            <h2 className="featuresTitle">
+              Transform your inspections into impactful reports.
+            </h2>
+            <p className="featuresSub">
+              Airoflair Inspect turns field capture into clear, secure, and client-ready reporting — in real
+              time. Designed to adapt to your workflow, not the other way around.
+            </p>
+
+            <div className="featuresGrid">
+              <div className="featureCard">
+                <h3>Inspection reporting, streamlined</h3>
+                <p>
+                  Capture observations, photos and findings fast — then generate professional reports with
+                  consistent formatting across teams and projects.
                 </p>
               </div>
 
-              <div className="relative mx-auto w-full max-w-[820px]">
-                <div className="grid items-center gap-10 lg:grid-cols-2">
-                  <div className="relative w-full">
-                    <Image
-                      src={QuickInspectIphone}
-                      alt="Airoflair Quick Inspect"
-                      className="h-auto w-full object-contain"
-                    />
-                  </div>
-                  <div className="relative mx-auto w-full max-w-[420px]">
-                    <Image
-                      src={QuickIcon}
-                      alt="Quick Inspect icon"
-                      className="h-auto w-full object-contain"
-                    />
-                  </div>
-                </div>
+              <div className="featureCard">
+                <h3>White-labeled portals &amp; apps</h3>
+                <p>
+                  Rebrand the portal and mobile apps with your business name, logo and colours for a seamless,
+                  professional experience.
+                </p>
               </div>
 
-              <div className="flex justify-center lg:justify-end">
-                <div className="flex w-full max-w-xs flex-col items-center gap-4">
-                  <Link href={LINKS.quickInspectApple} className="relative block">
-                    <Image
-                      src={AppleStoreBadge}
-                      alt="Download on the App Store"
-                      className="h-auto w-[175px] object-contain"
-                    />
-                  </Link>
-                  <Link
-                    href={LINKS.quickInspectGoogle}
-                    className="relative block"
-                  >
-                    <Image
-                      src={GooglePlayBadge}
-                      alt="Get it on Google Play"
-                      className="h-auto w-[175px] object-contain"
-                    />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Data */}
-          <div className="w-full border-t border-zinc-200/70 bg-[#f6f7fb] py-12 sm:py-14">
-            <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.1fr_2.2fr_1fr]">
-              <div className="flex items-center justify-center lg:justify-start">
-                <div className="flex items-center gap-4">
-                  <div className="relative h-14 w-14">
-                    <Image
-                      src={AiroflairDataLogo}
-                      alt="Airoflair Data"
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
-                  <div>
-                    <div className="text-xs font-semibold tracking-[0.2em] text-zinc-600">
-                      AIROFLAIR
-                    </div>
-                    <div className="text-4xl font-extrabold tracking-tight text-zinc-950">
-                      DATA
-                    </div>
-                    <div className="mt-1 text-sm text-zinc-600">
-                      Engineering calculators &amp; reference tools
-                    </div>
-                  </div>
-                </div>
+              <div className="featureCard">
+                <h3>Custom workflows &amp; features</h3>
+                <p>
+                  Tailor forms, templates and data fields to suit your operations — from walkdowns to full
+                  campaign reporting.
+                </p>
               </div>
 
-              <div className="relative mx-auto w-full max-w-[900px]">
-                <Image
-                  src={DataImage}
-                  alt="Airoflair Data preview"
-                  className="h-auto w-full object-contain"
-                />
-              </div>
-
-              <div className="flex justify-center lg:justify-end">
-                <div className="flex w-full max-w-xs flex-col items-center gap-4">
-                  <Link href={LINKS.dataApple} className="relative block">
-                    <Image
-                      src={AppleStoreBadge}
-                      alt="Download on the App Store"
-                      className="h-auto w-[175px] object-contain"
-                    />
-                  </Link>
-                  <Link href={LINKS.dataGoogle} className="relative block">
-                    <Image
-                      src={GooglePlayBadge}
-                      alt="Get it on Google Play"
-                      className="h-auto w-[175px] object-contain"
-                    />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* SplitBill */}
-          <div className="w-full border-t border-zinc-200/70 bg-white py-12 sm:py-14">
-            <div className="text-center">
-              <div className="relative mx-auto h-14 w-[220px]">
-                <Image
-                  src={SplitBillLogo}
-                  alt="SplitBill"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-              <p className="mt-3 text-base text-zinc-600">
-                Smart bill splitting for group events, trips and shared expenses
-              </p>
-
-              <div className="mt-8 flex justify-center">
-                <div className="relative w-full max-w-[760px]">
-                  <Image
-                    src={SplitBillImage}
-                    alt="SplitBill preview"
-                    className="h-auto w-full object-contain"
-                  />
-                </div>
-              </div>
-
-              <div className="mt-8 flex justify-center">
-                <PrimaryButton href={LINKS.splitBill}>Go to Split Bill</PrimaryButton>
+              <div className="featureCard">
+                <h3>Hosted &amp; managed</h3>
+                <p>
+                  Focus on inspections while we handle hosting, security and support. Built for reliability and
+                  scale.
+                </p>
               </div>
             </div>
           </div>
         </div>
-      </Section>
+      </section>
 
-      {/* Services */}
-      <Section id="services" className="bg-[#f6f7fb]">
-        <div className="py-14 sm:py-16">
-          <div className="mx-auto w-full max-w-6xl">
-            <h2 className="text-4xl font-extrabold tracking-tight text-zinc-950">
-              Transform your inspections into impactful reports.
-            </h2>
-            <p className="mt-4 max-w-3xl text-base leading-relaxed text-zinc-600">
-              Airoflair Inspect turns field capture into clear, secure, and
-              client-ready reporting — in real time. Designed to adapt to your
-              workflow, not the other way around.
-            </p>
-
-            <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
-              {[
-                {
-                  title: "Inspection reporting, streamlined",
-                  body: "Capture observations, photos and findings fast — then generate professional reports with consistent formatting across teams and projects.",
-                },
-                {
-                  title: "White-labeled portals & apps",
-                  body: "Rebrand the portal and mobile apps with your business name, logo and colours for a seamless, professional experience.",
-                },
-                {
-                  title: "Custom workflows & features",
-                  body: "Tailor forms, templates and data fields to suit your operations — from walkdowns to full campaign reporting.",
-                },
-                {
-                  title: "Hosted & managed",
-                  body: "Focus on inspections while we handle hosting, security and support. Built for reliability and scale.",
-                },
-              ].map((c) => (
-                <div
-                  key={c.title}
-                  className="rounded-2xl border border-zinc-200 bg-white p-7 shadow-sm"
-                >
-                  <h3 className="text-lg font-bold text-zinc-950">{c.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-zinc-600">
-                    {c.body}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* Contact */}
-      <Section id="contact" className="bg-white">
-        <div className="py-14 sm:py-16">
-          <div className="mx-auto w-full max-w-6xl">
-            <div className="mb-8">
-              <h2 className="text-4xl font-extrabold tracking-tight text-zinc-950">
-                Contact Us
-              </h2>
-              <p className="mt-3 text-base text-zinc-600">
-                Please fill in the form below and we will get back to you.
-              </p>
+      {/* CONTACT */}
+      <section id="contact" className="strip stripWhite">
+        <div className="container">
+          <div className="contactPanel">
+            <div className="contactHeader">
+              <h2>Contact Us</h2>
+              <p>Please fill in the form below and we will get back to you.</p>
             </div>
 
-            <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.4fr_1fr] lg:gap-14">
-              <form
-                onSubmit={onSubmit}
-                className="w-full rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm sm:p-8"
-              >
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div className="contactGrid">
+              <form onSubmit={onSubmit} className="contactForm">
+                <div className="formGrid">
                   <input
-                    value={form.firstName}
-                    onChange={(e) =>
-                      setForm((s) => ({ ...s, firstName: e.target.value }))
-                    }
+                    className="input"
                     placeholder="First Name"
-                    className="h-12 w-full rounded-xl border border-zinc-300 px-4 text-sm outline-none focus:border-[#1f2a8a]"
+                    value={form.firstName}
+                    onChange={(e) => setForm({ ...form, firstName: e.target.value })}
                     required
                   />
                   <input
-                    value={form.lastName}
-                    onChange={(e) =>
-                      setForm((s) => ({ ...s, lastName: e.target.value }))
-                    }
+                    className="input"
                     placeholder="Last Name"
-                    className="h-12 w-full rounded-xl border border-zinc-300 px-4 text-sm outline-none focus:border-[#1f2a8a]"
+                    value={form.lastName}
+                    onChange={(e) => setForm({ ...form, lastName: e.target.value })}
+                    required
+                  />
+
+                  <input
+                    className="input"
+                    placeholder="Contact No."
+                    value={form.phone}
+                    onChange={(e) => setForm({ ...form, phone: e.target.value })}
                     required
                   />
                   <input
-                    value={form.contactNumber}
-                    onChange={(e) =>
-                      setForm((s) => ({ ...s, contactNumber: e.target.value }))
-                    }
-                    placeholder="Contact No."
-                    className="h-12 w-full rounded-xl border border-zinc-300 px-4 text-sm outline-none focus:border-[#1f2a8a]"
-                  />
-                  <input
-                    value={form.email}
-                    onChange={(e) =>
-                      setForm((s) => ({ ...s, email: e.target.value }))
-                    }
+                    className="input"
                     placeholder="Email"
                     type="email"
-                    className="h-12 w-full rounded-xl border border-zinc-300 px-4 text-sm outline-none focus:border-[#1f2a8a]"
+                    value={form.email}
+                    onChange={(e) => setForm({ ...form, email: e.target.value })}
                     required
                   />
-                </div>
 
-                <div className="mt-4">
                   <textarea
+                    className="textarea"
+                    placeholder="Message"
                     value={form.message}
-                    onChange={(e) =>
-                      setForm((s) => ({ ...s, message: e.target.value }))
-                    }
-                    placeholder="Send Mail"
-                    className="min-h-[110px] w-full resize-none rounded-xl border border-zinc-300 px-4 py-3 text-sm outline-none focus:border-[#1f2a8a]"
+                    onChange={(e) => setForm({ ...form, message: e.target.value })}
                     required
                   />
-                </div>
 
-                <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                  <button
-                    type="submit"
-                    disabled={submitting}
-                    className={cx(
-                      "inline-flex h-11 items-center justify-center rounded-xl bg-[#1f2a8a] px-8 text-sm font-semibold text-white shadow-sm transition hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-[#1f2a8a]/30",
-                      submitting && "opacity-60"
+                  <div className="formBottom">
+                    <button
+                      type="submit"
+                      className="btnPrimary"
+                      disabled={status === "sending"}
+                    >
+                      {status === "sending" ? "Sending..." : "SEND MESSAGE"}
+                    </button>
+
+                    {status === "success" && (
+                      <span className="statusOk">Message sent successfully.</span>
                     )}
-                  >
-                    {submitting ? "SENDING..." : "SEND MESSAGE"}
-                  </button>
 
-                  {status.type === "success" && (
-                    <p className="text-sm font-semibold text-emerald-700">
-                      {status.message}
-                    </p>
-                  )}
-                  {status.type === "error" && (
-                    <p className="text-sm font-semibold text-red-600">
-                      {status.message}
-                    </p>
-                  )}
+                    {status === "error" && (
+                      <span className="statusErr">
+                        {errorMsg || "Failed to send. Please try again."}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </form>
 
-              <div className="w-full rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm sm:p-8">
-                <div className="flex items-start gap-4">
-                  <div className="relative mt-1 h-6 w-6">
-                    <Image
-                      src={WhatsappIcon}
-                      alt="WhatsApp"
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
-                  <div className="text-sm font-semibold text-zinc-900">
-                    +27 64 762 7501
-                  </div>
+              <aside className="contactInfo">
+                <div className="infoRow">
+                  <Image
+                    src={whatsappIcon}
+                    alt="WhatsApp"
+                    width={22}
+                    height={22}
+                    className="infoIcon"
+                  />
+                  <span className="infoText">+27 64 762 7501</span>
                 </div>
 
-                <div className="mt-6 flex items-start gap-4">
-                  {/* Email icon between the two email lines */}
-                  <div className="relative mt-[18px] h-6 w-6">
-                    <svg
-                      viewBox="0 0 24 24"
-                      className="h-6 w-6 text-zinc-900"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M4 6h16v12H4V6z"
-                        stroke="currentColor"
-                        strokeWidth="1.7"
-                        strokeLinejoin="round"
+                <div className="infoRow">
+                  <div className="emailStack">
+                    <span className="infoText">info@airoflair.com</span>
+                    <div className="mailMid">
+                      <Image
+                        src={mailIcon}
+                        alt="Email"
+                        width={22}
+                        height={22}
+                        className="infoIcon"
                       />
-                      <path
-                        d="M4 7l8 6 8-6"
-                        stroke="currentColor"
-                        strokeWidth="1.7"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </div>
-
-                  <div className="text-sm font-semibold text-zinc-900">
-                    <div>info@airoflair.com</div>
-                    <div className="mt-2">support@airoflair.com</div>
+                    </div>
+                    <span className="infoText">support@airoflair.com</span>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            {/* subtle spacing */}
-            <div className="mt-10" />
-          </div>
-        </div>
-      </Section>
-
-      {/* Footer */}
-      <footer className="w-full border-t border-zinc-200/70 bg-white">
-        <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-5 py-8 sm:px-8 md:flex-row md:items-center md:justify-between">
-          <div className="flex flex-wrap items-center gap-3 text-sm text-zinc-700">
-            <span className="font-semibold text-zinc-900">© 2025 Airoflair</span>
-            <span className="text-zinc-400">•</span>
-            <Link
-              href="/terms-of-service"
-              className="font-semibold text-zinc-800 hover:text-zinc-950"
-            >
-              Terms of Service
-            </Link>
-            <span className="text-zinc-400">•</span>
-            <Link
-              href="/privacy-policy"
-              className="font-semibold text-zinc-800 hover:text-zinc-950"
-            >
-              Privacy Policy
-            </Link>
-          </div>
-
-          <div className="flex items-center gap-4">
-            {/* Store badges smaller */}
-            <Link href={LINKS.dataGoogle} className="relative">
-              <Image
-                src={GooglePlayBadge}
-                alt="Google Play"
-                className="h-auto w-[140px] object-contain"
-              />
-            </Link>
-            <Link href={LINKS.dataApple} className="relative">
-              <Image
-                src={AppleStoreBadge}
-                alt="App Store"
-                className="h-auto w-[140px] object-contain"
-              />
-            </Link>
-
-            <div className="ml-2 flex items-center gap-4">
-              {/* Social icons slightly bigger + same size */}
-              {[
-                { href: LINKS.facebook, icon: FacebookIcon, label: "Facebook" },
-                { href: LINKS.x, icon: XIcon, label: "X" },
-                { href: LINKS.linkedin, icon: LinkedinIcon, label: "LinkedIn" },
-                {
-                  href: LINKS.instagram,
-                  icon: InstagramIcon,
-                  label: "Instagram",
-                },
-              ].map((s) => (
-                <Link
-                  key={s.label}
-                  href={s.href}
-                  aria-label={s.label}
-                  className="relative block h-6 w-6 opacity-90 hover:opacity-100"
-                >
-                  <Image src={s.icon} alt={s.label} fill className="object-contain" />
-                </Link>
-              ))}
+              </aside>
             </div>
           </div>
         </div>
-      </footer>
-    </div>
+      </section>
+
+      {/* PAGE-LOCAL STYLES (keeps layout stable even if global CSS gets messy) */}
+      <style jsx>{`
+        .page {
+          background: #ffffff;
+          color: #0b1220;
+        }
+
+        .container {
+          width: 100%;
+          max-width: 1180px;
+          margin: 0 auto;
+          padding: 0 20px;
+        }
+
+        /* HERO */
+        .hero {
+          padding: 72px 0 56px;
+          background: #ffffff;
+        }
+
+        .heroGrid {
+          display: grid;
+          grid-template-columns: 1.05fr 0.95fr;
+          gap: 40px;
+          align-items: center;
+        }
+
+        .heroTitle {
+          margin: 0;
+          font-size: 52px;
+          line-height: 1.06;
+          font-weight: 900;
+          letter-spacing: -0.02em;
+        }
+
+        .heroAccent {
+          background: linear-gradient(90deg, #2a2f8f 0%, #1a6bff 45%, #00b3ff 100%);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+          display: inline-block;
+          padding-bottom: 4px; /* prevents “cut off” look */
+        }
+
+        .heroSub {
+          margin: 18px 0 0;
+          max-width: 540px;
+          color: #3b4557;
+          font-size: 15px;
+          line-height: 1.65;
+        }
+
+        .heroActions {
+          margin-top: 22px;
+          display: flex;
+          gap: 12px;
+          flex-wrap: wrap;
+        }
+
+        .btnPrimary {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          height: 44px;
+          padding: 0 18px;
+          border-radius: 10px;
+          border: 1px solid rgba(42, 47, 143, 0.25);
+          background: #2a2f8f;
+          color: #ffffff;
+          font-weight: 800;
+          font-size: 14px;
+          text-decoration: none;
+          box-shadow: 0 10px 24px rgba(42, 47, 143, 0.22);
+          cursor: pointer;
+        }
+
+        .btnPrimary:disabled {
+          opacity: 0.65;
+          cursor: not-allowed;
+          box-shadow: none;
+        }
+
+        .heroVisual {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .heroImage {
+          width: 100%;
+          height: auto;
+          max-width: 640px;
+        }
+
+        /* STRIPS */
+        .strip {
+          padding: 56px 0;
+          width: 100%;
+        }
+
+        .stripTint {
+          background: #f7f9ff;
+        }
+
+        .stripWhite {
+          background: #ffffff;
+        }
+
+        .stripTop {
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          gap: 18px;
+          margin-bottom: 26px;
+        }
+
+        .stripLeft {
+          min-width: 0;
+        }
+
+        .stripRight {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          gap: 10px;
+          flex-wrap: wrap;
+        }
+
+        .stripTitle {
+          margin: 0;
+          font-size: 34px;
+          font-weight: 900;
+          letter-spacing: -0.02em;
+        }
+
+        .stripDesc {
+          margin: 10px 0 0;
+          color: #3b4557;
+          font-size: 14px;
+          line-height: 1.6;
+          max-width: 640px;
+        }
+
+        /* MEDIA LAYOUTS */
+        .imgContain {
+          width: 100%;
+          height: auto;
+        }
+        .imgMax {
+          max-width: 100%;
+        }
+
+        .media3 {
+          display: grid;
+          grid-template-columns: 1fr 1.4fr 0.9fr;
+          gap: 26px;
+          align-items: center;
+        }
+
+        .media3Logo :global(img) {
+          max-width: 360px;
+          margin: 0 auto;
+        }
+
+        .media3Mac :global(img) {
+          max-width: 760px;
+          margin: 0 auto;
+        }
+
+        .media3Phone :global(img) {
+          max-width: 320px;
+          margin: 0 auto;
+        }
+
+        .media2 {
+          display: grid;
+          grid-template-columns: 1.35fr 0.65fr;
+          gap: 26px;
+          align-items: center;
+        }
+
+        .media2Left :global(img) {
+          max-width: 700px;
+          margin: 0 auto;
+        }
+
+        .media2Right :global(img) {
+          max-width: 320px;
+          margin: 0 auto;
+        }
+
+        .mediaCenter {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .mediaCenter :global(img) {
+          max-width: 980px;
+          width: 100%;
+          height: auto;
+        }
+
+        /* DATA HEADING */
+        .dataHeading {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+        }
+
+        .dataLogo {
+          width: 64px;
+          height: auto;
+        }
+
+        .dataKicker {
+          font-size: 12px;
+          letter-spacing: 0.16em;
+          font-weight: 900;
+          color: #4b5565;
+        }
+
+        /* SPLITBILL */
+        .splitTop {
+          align-items: center;
+        }
+
+        .splitLogo {
+          width: 170px;
+          height: auto;
+          display: block;
+        }
+
+        /* STORE BADGES + ROW */
+        .badgeRow {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          flex-wrap: wrap;
+        }
+
+        .storeBadge {
+          height: 40px;
+          width: auto;
+          display: block;
+        }
+
+        /* FEATURES */
+        .features {
+          background: rgba(255, 255, 255, 0.6);
+          border: 1px solid rgba(15, 23, 42, 0.06);
+          border-radius: 18px;
+          padding: 34px 28px;
+        }
+
+        .featuresTitle {
+          margin: 0;
+          font-size: 34px;
+          font-weight: 900;
+          letter-spacing: -0.02em;
+          text-align: left;
+        }
+
+        .featuresSub {
+          margin: 12px 0 0;
+          color: #3b4557;
+          line-height: 1.7;
+          max-width: 980px;
+        }
+
+        .featuresGrid {
+          margin-top: 22px;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+        }
+
+        .featureCard {
+          background: #f7f9ff;
+          border: 1px solid rgba(42, 47, 143, 0.08);
+          border-radius: 14px;
+          padding: 18px 18px;
+        }
+
+        .featureCard h3 {
+          margin: 0;
+          font-size: 15px;
+          font-weight: 900;
+        }
+
+        .featureCard p {
+          margin: 8px 0 0;
+          color: #3b4557;
+          line-height: 1.6;
+          font-size: 13px;
+        }
+
+        /* CONTACT */
+        .contactPanel {
+          border: 1px solid rgba(15, 23, 42, 0.08);
+          border-radius: 18px;
+          padding: 28px 24px;
+          background: #ffffff;
+        }
+
+        .contactHeader h2 {
+          margin: 0;
+          font-size: 26px;
+          font-weight: 900;
+          text-align: left; /* requested left aligned */
+        }
+
+        .contactHeader p {
+          margin: 8px 0 0;
+          color: #3b4557;
+          text-align: left; /* requested left aligned */
+        }
+
+        .contactGrid {
+          margin-top: 18px;
+          display: grid;
+          grid-template-columns: 1.2fr 0.8fr;
+          gap: 18px;
+          align-items: start;
+        }
+
+        .contactForm {
+          min-width: 0;
+        }
+
+        .formGrid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+        }
+
+        .input {
+          height: 44px;
+          padding: 0 14px;
+          border-radius: 10px;
+          border: 1px solid rgba(15, 23, 42, 0.16);
+          outline: none;
+          font-size: 14px;
+          width: 100%;
+        }
+
+        .textarea {
+          grid-column: 1 / -1;
+          height: 120px; /* shortened as requested */
+          padding: 12px 14px;
+          border-radius: 10px;
+          border: 1px solid rgba(15, 23, 42, 0.16);
+          outline: none;
+          font-size: 14px;
+          width: 100%;
+          resize: vertical;
+        }
+
+        .formBottom {
+          grid-column: 1 / -1;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          flex-wrap: wrap;
+          margin-top: 2px;
+        }
+
+        .statusOk {
+          font-weight: 800;
+          color: #1f7a3b;
+          font-size: 13px;
+        }
+
+        .statusErr {
+          font-weight: 800;
+          color: #b42318;
+          font-size: 13px;
+        }
+
+        .contactInfo {
+          border-left: 1px solid rgba(15, 23, 42, 0.08);
+          padding-left: 18px;
+          display: grid;
+          gap: 14px;
+        }
+
+        .infoRow {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+
+        .infoIcon {
+          display: block;
+        }
+
+        .infoText {
+          font-weight: 900;
+          color: #0b1220;
+        }
+
+        .emailStack {
+          display: grid;
+          justify-items: start;
+          gap: 6px;
+        }
+
+        .mailMid {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          height: 22px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 980px) {
+          .heroGrid {
+            grid-template-columns: 1fr;
+            gap: 22px;
+          }
+
+          .hero {
+            padding: 56px 0 44px;
+          }
+
+          .heroTitle {
+            font-size: 44px;
+          }
+
+          .stripTop {
+            flex-direction: column;
+            align-items: flex-start;
+          }
+
+          .stripRight {
+            justify-content: flex-start;
+          }
+
+          .media3 {
+            grid-template-columns: 1fr;
+            gap: 18px;
+          }
+
+          .media2 {
+            grid-template-columns: 1fr;
+            gap: 18px;
+          }
+
+          .featuresGrid {
+            grid-template-columns: 1fr;
+          }
+
+          .contactGrid {
+            grid-template-columns: 1fr;
+          }
+
+          .contactInfo {
+            border-left: none;
+            padding-left: 0;
+            border-top: 1px solid rgba(15, 23, 42, 0.08);
+            padding-top: 14px;
+          }
+
+          .centerOnMobile {
+            text-align: center;
+          }
+
+          .dataHeading.centerOnMobile {
+            justify-content: center;
+          }
+
+          .stripLeft .stripDesc.centerOnMobile {
+            margin-left: auto;
+            margin-right: auto;
+          }
+        }
+
+        @media (max-width: 560px) {
+          .heroTitle {
+            font-size: 38px;
+          }
+
+          .formGrid {
+            grid-template-columns: 1fr;
+          }
+
+          .storeBadge {
+            height: 36px;
+          }
+        }
+      `}</style>
+    </main>
   );
 }
