@@ -1,5 +1,3 @@
-// src/components/Footer.tsx
-
 import Image from "next/image";
 import Link from "next/link";
 
@@ -14,12 +12,13 @@ import linkedin from "@/assets/images/linkedin.svg";
 export default function Footer() {
   const year = new Date().getFullYear();
 
-  // Badge sizing (smaller than before)
+  // Store badge sizing
   const badgeHeight = 32;
   const badgeWidth = 120;
 
-  // Social sizing (bigger + consistent)
+  // Social icon sizing
   const socialSize = 22;
+  const xSize = 26; // X icon needs optical compensation
 
   return (
     <footer
@@ -45,7 +44,7 @@ export default function Footer() {
             flexWrap: "wrap",
           }}
         >
-          {/* Left: copyright + legal links */}
+          {/* LEFT — Legal */}
           <div
             style={{
               display: "flex",
@@ -58,7 +57,7 @@ export default function Footer() {
             }}
           >
             <span>© {year} Airoflair</span>
-            <span style={{ opacity: 0.65 }}>•</span>
+            <span style={{ opacity: 0.6 }}>•</span>
 
             <Link
               href="/terms-of-service"
@@ -71,7 +70,7 @@ export default function Footer() {
               Terms of Service
             </Link>
 
-            <span style={{ opacity: 0.65 }}>•</span>
+            <span style={{ opacity: 0.6 }}>•</span>
 
             <Link
               href="/privacy-policy"
@@ -85,7 +84,7 @@ export default function Footer() {
             </Link>
           </div>
 
-          {/* Right: store badges + social icons */}
+          {/* RIGHT — Stores + Social */}
           <div
             style={{
               display: "flex",
@@ -94,14 +93,13 @@ export default function Footer() {
               flexWrap: "wrap",
             }}
           >
-            {/* Store badges (smaller) */}
+            {/* Store badges */}
             <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
               <a
                 href="https://play.google.com/store/apps/details?id=com.airoflair.quickinspect"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Get it on Google Play"
-                style={{ display: "inline-flex" }}
               >
                 <Image
                   src={googlePlay}
@@ -117,7 +115,6 @@ export default function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Download on the App Store"
-                style={{ display: "inline-flex" }}
               >
                 <Image
                   src={appleStore}
@@ -129,69 +126,41 @@ export default function Footer() {
               </a>
             </div>
 
-            {/* Social icons (bigger + same size) */}
+            {/* Social icons */}
             <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-              <a
-                href="https://www.facebook.com/"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Facebook"
-                style={{ display: "inline-flex" }}
-              >
+              <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
                 <Image
                   src={facebook}
                   alt="Facebook"
                   width={socialSize}
                   height={socialSize}
-                  style={{ width: socialSize, height: socialSize }}
                 />
               </a>
 
-              <a
-                href="https://x.com/"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="X"
-                style={{ display: "inline-flex" }}
-              >
+              <a href="https://x.com/" target="_blank" rel="noreferrer">
                 <Image
                   src={xIcon}
                   alt="X"
-                  width={socialSize}
-                  height={socialSize}
-                  style={{ width: socialSize, height: socialSize }}
+                  width={xSize}
+                  height={xSize}
                 />
               </a>
 
-              <a
-                href="https://www.linkedin.com/"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="LinkedIn"
-                style={{ display: "inline-flex" }}
-              >
+              <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
                 <Image
                   src={linkedin}
                   alt="LinkedIn"
                   width={socialSize}
                   height={socialSize}
-                  style={{ width: socialSize, height: socialSize }}
                 />
               </a>
 
-              <a
-                href="https://www.instagram.com/"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Instagram"
-                style={{ display: "inline-flex" }}
-              >
+              <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
                 <Image
                   src={instagram}
                   alt="Instagram"
                   width={socialSize}
                   height={socialSize}
-                  style={{ width: socialSize, height: socialSize }}
                 />
               </a>
             </div>
