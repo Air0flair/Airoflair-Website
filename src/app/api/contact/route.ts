@@ -1,77 +1,95 @@
-import { NextResponse } from "next/server";
+// src/app/api/contact/route.ts
 
-type Payload = {
+import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
+
+export const runtime = "nodejs";
+
+type Body = {
   firstName?: string;
   lastName?: string;
-  contactNo?: string;
+  phone?: string;
   email?: string;
   message?: string;
-  company?: string; // honeypot
 };
 
-function isEmail(email: string) {
-  return /^\S+@\S+\.\S+$/.test(email);
+function required(value: string | undefined, name: string) {
+  if (!value || !value.trim()) throw new Error(`Missing ${name}`);
+  return value.trim();
 }
 
 export async function POST(req: Request) {
   try {
-    const body = (await req.json()) as Payload;
+    const body = (await req.json()) as Body;
 
-    // Honeypot: if filled, treat as success but do nothing
-    if (body.company && body.company.trim().length > 0) {
-      return NextResponse.json({ ok: true }, { status: 200 });
-    }
+    const firstName = required(body.firstName, "firstName");
+    const lastName = required(body.lastName, "lastName");
+    const phone = required(body.phone, "phone");
+    const email = required(body.email, "email");
+    const message = required(body.message, "message");
 
-    const firstName = (body.firstName ?? "").trim();
-    const lastName = (body.lastName ?? "").trim();
-    const contactNo = (body.contactNo ?? "").trim();
-    const email = (body.email ?? "").trim();
-    const message = (body.message ?? "").trim();
+    const smtpUser = process.env.M365_SMTP_USER;
+    const smtpPass = process.env.M365_SMTP_PASS;
 
-    if (!firstName || !lastName || !email || !message) {
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
-    }
-    if (!isEmail(email)) {
-      return NextResponse.json({ error: "Invalid email" }, { status: 400 });
-    }
-    if (message.length < 10) {
-      return NextResponse.json({ error: "Message too short" }, { status: 400 });
-    }
-
-    // Your Azure Logic App HTTP endpoint (set in Azure Static Web Apps env vars)
-    const AZURE_CONTACT_WEBHOOK_URL = process.env.AZURE_CONTACT_WEBHOOK_URL;
-    if (!AZURE_CONTACT_WEBHOOK_URL) {
-      return NextResponse.json(
-        { error: "Email service not configured (missing AZURE_CONTACT_WEBHOOK_URL)" },
+    if (!smtpUser || !smtpPass) {
+      return new NextResponse(
+        "Server is missing email configuration (M365_SMTP_USER / M365_SMTP_PASS).",
         { status: 500 }
       );
     }
 
-    // Forward to Logic App
-    const res = await fetch(AZURE_CONTACT_WEBHOOK_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      // You can add a simple shared secret header if you want
-      // headers: { "Content-Type": "application/json", "x-airoflair-key": process.env.AZURE_CONTACT_WEBHOOK_KEY ?? "" },
-      body: JSON.stringify({
-        source: "airoflair.com",
-        submittedAt: new Date().toISOString(),
-        firstName,
-        lastName,
-        contactNo,
-        email,
-        message,
-      }),
+    const transporter = nodemailer.createTransport({
+      host: process.env.M365_SMTP_HOST || "smtp.office365.com",
+      port: Number(process.env.M365_SMTP_PORT || 587),
+      secure: false,
+      auth: {
+        user: smtpUser,
+        pass: smtpPass,
+      },
     });
 
-    if (!res.ok) {
-      // optional: log response text for debugging
-      const txt = await res.text().catch(() => "");
-      return NextResponse.json({ error: "Failed to send", detail: txt }, { status: 502 });
-    }
+    const to = process.env.CONTACT_TO || "info@airoflair.com";
 
-    return NextResponse.json({ ok: true }, { status: 200 });
-  } catch {
-    return NextResponse.json({ error: "Failed to send" }, { status: 500 });
+    const subject = `Airoflair Website Contact: ${firstName} ${lastName}`;
+
+    const text = [
+      `New website enquiry`,
+      ``,
+      `Name: ${firstName} ${lastName}`,
+      `Phone: ${phone}`,
+      `Email: ${email}`,
+      ``,
+      `Message:`,
+      `${message}`,
+      ``,
+      `Sent from: airoflair.com`,
+    ].join("\n");
+
+    const html = `
+      <div style="font-family: Arial, sans-serif; line-height: 1.5;">
+        <h2 style="margin:0 0 10px;">New website enquiry</h2>
+        <p style="margin:0 0 6px;"><strong>Name:</strong> ${firstName} ${lastName}</p>
+        <p style="margin:0 0 6px;"><strong>Phone:</strong> ${phone}</p>
+        <p style="margin:0 0 12px;"><strong>Email:</strong> ${email}</p>
+        <p style="margin:0 0 6px;"><strong>Message:</strong></p>
+        <div style="white-space: pre-wrap; padding: 12px; border: 1px solid #e6eaf2; border-radius: 10px; background: #f6f8fc;">
+          ${message.replace(/</g, "&lt;").replace(/>/g, "&gt;")}
+        </div>
+        <p style="margin:14px 0 0; color:#667085; font-size:12px;">Sent from: airoflair.com</p>
+      </div>
+    `;
+
+    await transporter.sendMail({
+      from: smtpUser,
+      to,
+      replyTo: email,
+      subject,
+      text,
+      html,
+    });
+
+    return NextResponse.json({ ok: true });
+  } catch (e: any) {
+    return new NextResponse(e?.message || "Failed to send", { status: 400 });
   }
 }
