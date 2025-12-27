@@ -1,542 +1,425 @@
-"use client";
-
-import { useState } from "react";
-import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
+
+// Images
 import Logo from "@/assets/images/logo.png";
 
-const navItems = [
-  { label: "Solutions", href: "#solutions" },
-  { label: "Products", href: "#products" },
-  { label: "Why Airoflair", href: "#why" },
-  { label: "Contact", href: "#contact" },
+import InspectMacbook from "@/assets/images/inspectmacbook.png";
+import InspectIPhone from "@/assets/images/inspectiphone.png";
+import InspectLogo from "@/assets/images/inspectlogo.png";
+
+// Watermark X
+import InspectIcon from "@/assets/images/inspecticon.png";
+
+import QuickInspectIPhone from "@/assets/images/quickinspectiphone.png";
+import QuickIcon from "@/assets/images/quickicon.png";
+
+import DataLogo from "@/assets/images/Airoflairdatalogo.png";
+import DataImg from "@/assets/images/data.png";
+
+import SplitBillLogo from "@/assets/images/splitbilllogo.png";
+import SplitBillImg from "@/assets/images/splitbill.png";
+
+const BRAND_BLUE = "#2B2F8F";
+
+const SOCIALS = [
+  { name: "Facebook", href: "https://www.facebook.com/airoflair" },
+  { name: "Instagram", href: "https://www.instagram.com/airoflair/" },
+  { name: "Twitter", href: "https://twitter.com/airoflair" },
+  { name: "LinkedIn", href: "https://www.linkedin.com/company/airoflair" },
 ];
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Airoflair",
-  url: "https://airoflair.com/",
-  logo: "https://airoflair.com/logo.png",
-  description:
-    "Airoflair provides inspection reporting software, mobile apps and engineering tools.",
+const STORES = {
+  googlePlayDev: "https://play.google.com/store/apps/dev?id=5533742350655574841",
+  appleDev: "https://apps.apple.com/us/developer/airoflair-pty-ltd/id1650534656",
 };
 
-export default function Home() {
-  const [mobileOpen, setMobileOpen] = useState(false);
+function Header() {
+  return (
+    <header className="w-full bg-white">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6">
+        <Link href="/" className="flex items-center gap-3">
+          <div className="relative h-10 w-48">
+            <Image src={Logo} alt="Airoflair" fill className="object-contain" priority />
+          </div>
+        </Link>
 
-  const handleNavClick = (href: string) => {
-    setMobileOpen(false);
-    if (href.startsWith("#")) {
-      const el = document.querySelector(href);
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
+        <nav className="hidden items-center gap-7 md:flex">
+          <a href="#products" className="text-xs font-medium tracking-wide text-zinc-600 hover:text-black">
+            PRODUCTS
+          </a>
+          <a href="#services" className="text-xs font-medium tracking-wide text-zinc-600 hover:text-black">
+            SERVICES
+          </a>
+          <a href="#contact" className="text-xs font-medium tracking-wide text-zinc-600 hover:text-black">
+            CONTACT
+          </a>
+
+          <Link
+            href="https://inspect.airoflair.com"
+            target="_blank"
+            className="ml-2 inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-semibold text-white shadow-sm"
+            style={{ backgroundColor: BRAND_BLUE }}
+          >
+            inspect
+          </Link>
+        </nav>
+      </div>
+    </header>
+  );
+}
+
+function StoreButtons({ compact = false }: { compact?: boolean }) {
+  const base =
+    "inline-flex items-center justify-center rounded-md border border-zinc-200 bg-white font-semibold text-zinc-700 hover:bg-zinc-50";
+  const size = compact ? "h-9 px-3 text-xs" : "h-10 px-4 text-xs";
 
   return (
-    <>
-      <Head>
-        <title>
-          Airoflair – Inspection Reporting Software, Mobile Apps &amp; Data Tools
-        </title>
-        <meta
-          name="description"
-          content="Airoflair provides fast mobile inspection apps, full web platform for professional reporting and data tools."
-        />
-        {/* Explicit robots meta */}
-        <meta name="robots" content="index,follow" />
+    <div className="flex items-center gap-3">
+      <Link href={STORES.appleDev} target="_blank" className={`${base} ${size}`}>
+        App Store
+      </Link>
+      <Link href={STORES.googlePlayDev} target="_blank" className={`${base} ${size}`}>
+        Google Play
+      </Link>
+    </div>
+  );
+}
 
-        {/* Canonical URL pointing to main site (with trailing slash) */}
-        <link rel="canonical" href="https://airoflair.com/" />
+function SocialLinks() {
+  return (
+    <div className="flex flex-wrap items-center gap-4">
+      {SOCIALS.map((s) => (
+        <Link
+          key={s.name}
+          href={s.href}
+          target="_blank"
+          className="text-sm font-semibold text-zinc-600 hover:text-black"
+        >
+          {s.name}
+        </Link>
+      ))}
+    </div>
+  );
+}
 
-        {/* Open Graph */}
-        <meta
-          property="og:title"
-          content="Airoflair – Inspection Reporting Software, Mobile Apps &amp; Data Tools"
-        />
-        <meta
-          property="og:description"
-          content="Airoflair connects inspection reporting, engineering tools, and data workflows into one ecosystem – from powerful mobile apps to a full web platform."
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://airoflair.com/" />
-        <meta property="og:site_name" content="Airoflair" />
-        <meta property="og:image" content="https://airoflair.com/og-image.png" />
+function SiteFooter() {
+  return (
+    <footer className="bg-zinc-50">
+      <div className="mx-auto max-w-7xl px-6 py-10">
+        <div className="flex flex-col gap-6 border-t border-zinc-200 pt-8 md:flex-row md:items-center md:justify-between">
+          <div className="text-xs text-zinc-500">© {new Date().getFullYear()} AIROFLAIR</div>
 
-        {/* JSON-LD */}
-        <script
-          type="application/ld+json"
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-      </Head>
+          <div className="flex items-center gap-6 text-xs font-semibold text-zinc-600">
+            <Link href="/terms-of-service" className="hover:text-black">
+              Terms of Service
+            </Link>
+            <Link href="/privacy-policy" className="hover:text-black">
+              Privacy Policy
+            </Link>
+          </div>
 
-      <div className="min-h-screen bg-zinc-950 text-zinc-50">
-        {/* Background gradient */}
-        <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-zinc-900 via-zinc-950 to-black" />
-
-        <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-4 sm:px-6 lg:px-8">
-          {/* NAVBAR */}
-          <header
-            className="flex items-center justify-between py-6"
-            aria-label="Main navigation"
-          >
-            <div className="flex items-center gap-3">
-              <Link href="/" className="flex items-center gap-3">
-                <div className="relative h-11 w-40 sm:h-12 sm:w-48">
-                  <Image
-                    src={Logo}
-                    alt="Airoflair logo"
-                    fill
-                    className="object-contain"
-                    priority
-                  />
-                </div>
-              </Link>
-              <span className="hidden rounded-full border border-zinc-800 px-3 py-1 text-xs font-medium text-zinc-300 sm:inline-block">
-                Inspection • Data • Workflow
-              </span>
-            </div>
-
-            <div className="flex items-center gap-3">
-              {/* Desktop nav */}
-              <nav className="hidden items-center gap-6 text-sm text-zinc-300 md:flex">
-                {navItems.map((item) => (
-                  <a
-                    key={item.href}
-                    href={item.href}
-                    className="transition-colors hover:text-white"
-                  >
-                    {item.label}
-                  </a>
-                ))}
-                <Link
-                  href="https://inspect.airoflair.com"
-                  target="_blank"
-                  className="rounded-full bg-zinc-50 px-4 py-2 text-sm font-semibold text-zinc-950 shadow-sm transition hover:bg-zinc-200"
-                >
-                  Open Inspect
-                </Link>
-              </nav>
-
-              {/* Mobile menu toggle */}
-              <button
-                type="button"
-                aria-label={mobileOpen ? "Close menu" : "Open menu"}
-                onClick={() => setMobileOpen((open) => !open)}
-                className="inline-flex items-center justify-center rounded-full border border-zinc-800/80 bg-zinc-900/80 p-2 text-zinc-200 transition hover:border-zinc-500 hover:bg-zinc-900 md:hidden"
-              >
-                {mobileOpen ? (
-                  <svg className="h-5 w-5" viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M6 6l12 12M18 6L6 18"
-                      stroke="currentColor"
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                ) : (
-                  <svg className="h-5 w-5" viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M4 7h16M4 12h16M4 17h10"
-                      stroke="currentColor"
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                )}
-              </button>
-            </div>
-          </header>
-
-          {/* MOBILE NAV */}
-          {mobileOpen && (
-            <div className="mb-4 md:hidden">
-              <div className="rounded-3xl border border-zinc-800 bg-zinc-950/95 px-4 py-3 shadow-lg backdrop-blur">
-                <nav
-                  className="flex flex-col gap-2 text-sm"
-                  aria-label="Mobile navigation"
-                >
-                  {navItems.map((item) => (
-                    <button
-                      key={item.href}
-                      type="button"
-                      onClick={() => handleNavClick(item.href)}
-                      className="w-full rounded-xl px-2 py-2 text-left text-zinc-200 hover:bg-zinc-900"
-                    >
-                      {item.label}
-                    </button>
-                  ))}
-                  <Link
-                    href="https://inspect.airoflair.com"
-                    target="_blank"
-                    onClick={() => setMobileOpen(false)}
-                    className="mt-2 inline-flex items-center justify-center rounded-2xl bg-zinc-50 px-3 py-2 text-sm font-semibold text-zinc-950 shadow-sm hover:bg-zinc-200"
-                  >
-                    Open Inspect
-                  </Link>
-                </nav>
-              </div>
-            </div>
-          )}
-
-          {/* MAIN */}
-          <main className="flex flex-1 flex-col justify-center gap-16 py-6">
-            {/* HERO */}
-            <section className="grid gap-12 md:grid-cols-[minmax(0,3fr)_minmax(0,2.5fr)] md:items-center">
-              <div>
-                <div className="inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/60 px-3 py-1 text-xs text-zinc-300">
-                  <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                  Quick professional inspection reports
-                </div>
-
-                {/* H1 – 3 lines on all sizes, gradient only on “reporting & data” */}
-                <h1 className="mt-5 max-w-3xl text-balance text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl md:text-6xl">
-                  <span className="block">All your inspection</span>
-                  <span className="block bg-gradient-to-r from-indigo-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                    reporting &amp; data
-                  </span>
-                  <span className="block">ready to use.</span>
-                </h1>
-
-                <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-300 sm:text-lg">
-                  Airoflair connects your inspection reporting, engineering tools
-                  and data workflows. From fast mobile apps to a full web platform,
-                  streamlining your entire inspection process.
-                </p>
-
-                <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-                  <Link
-                    href="https://inspect.airoflair.com"
-                    target="_blank"
-                    className="inline-flex items-center justify-center rounded-full bg-sky-500 px-6 py-3 text-sm font-semibold text-zinc-950 shadow-lg shadow-sky-500/30 transition hover:bg-sky-400"
-                  >
-                    Explore Inspect platform
-                  </Link>
-                  <a
-                    href="#products"
-                    className="inline-flex items-center justify-center rounded-full border border-zinc-700 px-6 py-3 text-sm font-medium text-zinc-200 transition hover:border-zinc-500 hover:bg-zinc-900"
-                  >
-                    View all Airoflair products
-                  </a>
-                </div>
-              </div>
-
-              {/* PRODUCT STACK CARD */}
-              <div className="rounded-3xl border border-zinc-800 bg-zinc-950/70 p-5 shadow-[0_0_0_1px_rgba(255,255,255,0.02)] backdrop-blur">
-                <h2 className="text-sm font-semibold text-zinc-200">
-                  Airoflair product stack
-                </h2>
-                <p className="mt-2 text-xs text-zinc-400">
-                  Inspection reporting and data tools.
-                </p>
-
-                <div className="mt-5 space-y-4">
-                  {/* Inspect */}
-                  <div className="flex items-start gap-3 rounded-2xl border border-zinc-800 bg-zinc-900/70 p-4">
-                    <div className="mt-1 flex h-8 w-8 items-center justify-center rounded-full bg-sky-500/10 text-xs font-semibold text-sky-400">
-                      IN
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className="text-sm font-semibold text-zinc-50">
-                          Inspect
-                        </span>
-                        <span className="rounded-full bg-sky-500/15 px-2 py-0.5 text-[10px] uppercase tracking-wide text-sky-300">
-                          Web
-                        </span>
-                        <span className="rounded-full bg-emerald-500/15 px-2 py-0.5 text-[10px] uppercase tracking-wide text-emerald-300">
-                          Mobile
-                        </span>
-                      </div>
-                      <p className="mt-1 text-xs text-zinc-400">
-                        Fully customisable inspection and reporting portal.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Quick Inspect */}
-                  <div className="flex items-start gap-3 rounded-2xl border border-zinc-800 bg-zinc-900/40 p-4">
-                    <div className="mt-1 flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/10 text-xs font-semibold text-emerald-400">
-                      QI
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className="text-sm font-semibold text-zinc-50">
-                          Quick Inspect
-                        </span>
-                        <span className="rounded-full bg-emerald-500/15 px-2 py-0.5 text-[10px] uppercase tracking-wide text-emerald-300">
-                          Mobile
-                        </span>
-                      </div>
-                      <p className="mt-1 text-xs text-zinc-400">
-                        Fast, offline-ready inspections for iOS &amp; Android.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Data */}
-                  <div className="flex items-start gap-3 rounded-2xl border border-zinc-800 bg-zinc-900/40 p-4">
-                    <div className="mt-1 flex h-8 w-8 items-center justify-center rounded-full bg-indigo-500/10 text-xs font-semibold text-indigo-300">
-                      DA
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className="text-sm font-semibold text-zinc-50">
-                          Data
-                        </span>
-                        <span className="rounded-full bg-indigo-500/15 px-2 py-0.5 text-[10px] uppercase tracking-wide text-indigo-300">
-                          Mobile
-                        </span>
-                      </div>
-                      <p className="mt-1 text-xs text-zinc-400">
-                        Engineering calculators &amp; tools.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Split Bill */}
-                  <div className="flex items-start gap-3 rounded-2xl border border-zinc-800 bg-zinc-900/40 p-4">
-                    <div className="mt-1 flex h-8 w-8 items-center justify-center rounded-full bg-fuchsia-500/10 text-xs font-semibold text-fuchsia-300">
-                      SB
-                    </div>
-                    <div className="flex-1">
-                      <span className="text-sm font-semibold text-zinc-50">
-                        Split Bill
-                      </span>
-                      <p className="mt-1 text-xs text-zinc-400">
-                        Smart bill splitting for groups.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* SOLUTIONS */}
-            <section id="solutions" className="mt-4 space-y-6">
-              <h2 className="text-xl font-semibold text-white sm:text-2xl">
-                Streamline your inspection workflow
-              </h2>
-              <p className="max-w-2xl text-sm text-zinc-400 sm:text-base">
-                Collect data efficiently, stay organised and produce clean, consistent reports.
-              </p>
-            </section>
-
-            {/* PRODUCTS GRID */}
-            <section id="products" className="mt-10 space-y-6">
-              <h2 className="text-xl font-semibold text-white sm:text-2xl">
-                Airoflair products
-              </h2>
-
-              <div className="grid gap-6 md:grid-cols-2">
-                {/* Inspect */}
-                <div className="flex flex-col justify-between rounded-3xl border border-sky-700/50 bg-gradient-to-br from-sky-950/70 via-zinc-950 to-black p-6">
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm font-semibold text-white">
-                        Inspect
-                      </span>
-                      <span className="rounded-full bg-sky-500/20 px-2 py-0.5 text-[11px] text-sky-200">
-                        Web platform
-                      </span>
-                    </div>
-                    <p className="mt-3 text-sm text-zinc-200">
-                      A fully customisable inspection reporting platform.
-                    </p>
-                  </div>
-
-                  <div className="mt-5 flex gap-3">
-                    <Link
-                      href="https://inspect.airoflair.com"
-                      target="_blank"
-                      className="rounded-full bg-sky-500 px-4 py-2 text-[11px] font-semibold text-zinc-950 hover:bg-sky-400"
-                    >
-                      Go to Inspect
-                    </Link>
-                  </div>
-                </div>
-
-                {/* Quick Inspect */}
-                <div className="flex flex-col justify-between rounded-3xl border border-emerald-700/50 bg-gradient-to-br from-emerald-950/70 via-zinc-950 to-black p-6">
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm font-semibold text-white">
-                        Quick Inspect
-                      </span>
-                      <span className="rounded-full bg-emerald-500/20 px-2 py-0.5 text-[11px] text-emerald-200">
-                        Mobile
-                      </span>
-                    </div>
-                    <p className="mt-3 text-sm text-zinc-200">
-                      A fast, offline-ready inspection app for quick visual surveys and
-                      photo-rich reports.
-                    </p>
-                  </div>
-
-                  <div className="mt-5 flex flex-wrap gap-3">
-                    <Link
-                      href="https://apps.apple.com/us/app/airoflair-quick-inspect/id6751975606"
-                      target="_blank"
-                      className="rounded-full bg-zinc-50 px-4 py-2 text-[11px] font-semibold text-zinc-950 hover:bg-zinc-200"
-                    >
-                      App Store
-                    </Link>
-                    <Link
-                      href="https://play.google.com/store/apps/details?id=com.airoflair.quickinspect&pcampaignid=web_share"
-                      target="_blank"
-                      className="rounded-full border border-zinc-400/60 bg-zinc-900 px-4 py-2 text-[11px] font-semibold text-zinc-50 hover:border-zinc-200"
-                    >
-                      Google Play
-                    </Link>
-                  </div>
-                </div>
-
-                {/* Data */}
-                <div className="flex flex-col justify-between rounded-3xl border border-indigo-700/50 bg-gradient-to-br from-indigo-950/70 via-zinc-950 to-black p-6">
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm font-semibold text-white">
-                        Data
-                      </span>
-                      <span className="rounded-full bg-indigo-500/20 px-2 py-0.5 text-[11px] text-indigo-200">
-                        Mobile
-                      </span>
-                    </div>
-                    <p className="mt-3 text-sm text-zinc-200">
-                      Engineering calculators &amp; reference tools for inspection,
-                      mechanical, electrical and HVAC work.
-                    </p>
-                  </div>
-
-                  <div className="mt-5 flex flex-wrap gap-3">
-                    <Link
-                      href="https://apps.apple.com/us/app/airoflair-data/id6749357700"
-                      target="_blank"
-                      className="rounded-full bg-zinc-50 px-4 py-2 text-[11px] font-semibold text-zinc-950 hover:bg-zinc-200"
-                    >
-                      App Store
-                    </Link>
-                    <Link
-                      href="https://play.google.com/store/apps/details?id=com.airoflair.data&pcampaignid=web_share"
-                      target="_blank"
-                      className="rounded-full border border-zinc-400/60 bg-zinc-900 px-4 py-2 text-[11px] font-semibold text-zinc-50 hover:border-zinc-200"
-                    >
-                      Google Play
-                    </Link>
-                  </div>
-                </div>
-
-                {/* Split Bill */}
-                <div className="flex flex-col justify-between rounded-3xl border border-fuchsia-700/50 bg-gradient-to-br from-fuchsia-950/70 via-zinc-950 to-black p-6">
-                  <div>
-                    <span className="text-sm font-semibold text-white">
-                      Split Bill
-                    </span>
-                    <p className="mt-3 text-sm text-zinc-200">
-                      Smart bill splitting for group events, trips and shared expenses.
-                    </p>
-                  </div>
-
-                  <div className="mt-5">
-                    <Link
-                      href="https://splitbill.airoflair.com"
-                      target="_blank"
-                      className="rounded-full bg-fuchsia-500 px-4 py-2 text-[11px] font-semibold text-zinc-50 hover:bg-fuchsia-400"
-                    >
-                      Open Split Bill
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* WHY AIROFLAIR */}
-            <section
-              id="why"
-              className="mt-10 space-y-6 border-t border-zinc-800 pt-10"
-            >
-              <h2 className="text-xl font-semibold text-white sm:text-2xl">
-                Why Airoflair?
-              </h2>
-
-              <div className="grid gap-6 md:grid-cols-3">
-                <div className="rounded-2xl border border-zinc-800 bg-zinc-950/70 p-5">
-                  <h3 className="text-sm font-semibold text-white">
-                    Built to inspect.
-                  </h3>
-                  <p className="mt-2 text-sm text-zinc-400">
-                    Data collection made faster and easier with tools designed for
-                    real-world inspection work. Quick – Efficient – Useful.
-                  </p>
-                </div>
-
-                <div className="rounded-2xl border border-zinc-800 bg-zinc-950/70 p-5">
-                  <h3 className="text-sm font-semibold text-white">
-                    Start and scale later.
-                  </h3>
-                  <p className="mt-2 text-sm text-zinc-400">
-                    Begin with Quick Inspect for simple jobs and grow into the full
-                    management system with Airoflair Inspect.
-                  </p>
-                </div>
-
-                <div className="rounded-2xl border border-zinc-800 bg-zinc-950/70 p-5">
-                  <h3 className="text-sm font-semibold text-white">
-                    Brand-quality reports.
-                  </h3>
-                  <p className="mt-2 text-sm text-zinc-400">
-                    Clean, professional PDF inspection reports that carry your
-                    company logo, layout and photo detail.
-                  </p>
-                </div>
-              </div>
-            </section>
-
-            {/* CONTACT / FOOTER */}
-            <section
-              id="contact"
-              className="mt-12 border-t border-zinc-800 pb-10 pt-8 text-sm text-zinc-400"
-            >
-              <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                <div>
-                  <p className="text-xs font-medium uppercase tracking-wide text-zinc-500">
-                    Get in touch
-                  </p>
-                  <p className="mt-1 max-w-xl text-sm text-zinc-300">
-                    Ready to modernise your reporting and data workflow?
-                  </p>
-                </div>
-
-                <a
-                  href="mailto:info@airoflair.com"
-                  className="rounded-full border border-zinc-600 px-5 py-2 text-sm font-medium text-zinc-100 hover:border-zinc-300 hover:bg-zinc-900"
-                >
-                  Email Airoflair
-                </a>
-              </div>
-
-              <div className="mt-6 flex flex-col gap-2 border-t border-zinc-900 pt-4 text-xs text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
-                <p>© {new Date().getFullYear()} Airoflair. All rights reserved.</p>
-                <div className="flex flex-wrap items-center gap-3">
-                  <Link href="/privacy-policy" className="hover:text-zinc-300">
-                    Privacy Policy
-                  </Link>
-                  <span className="text-zinc-700">|</span>
-                  <Link href="/terms-of-service" className="hover:text-zinc-300">
-                    Terms of Service
-                  </Link>
-                  <span className="text-zinc-700">|</span>
-                  <span className="text-zinc-500">
-                    Powered by Airoflair inspection &amp; data tools.
-                  </span>
-                </div>
-              </div>
-            </section>
-          </main>
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:gap-6">
+            <StoreButtons compact />
+            <SocialLinks />
+          </div>
         </div>
       </div>
-    </>
+    </footer>
+  );
+}
+
+export default function HomePage() {
+  return (
+    <div className="min-h-screen bg-white text-zinc-900">
+      <Header />
+
+      {/* HERO */}
+      <section className="mx-auto max-w-7xl px-6 pt-10 pb-14">
+        <div className="grid items-center gap-10 lg:grid-cols-2">
+          <div>
+            <h1 className="text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
+              All your inspection
+              <br />
+              reporting &amp; data
+              <br />
+              ready to use
+            </h1>
+
+            <p className="mt-6 max-w-xl text-sm leading-relaxed text-zinc-600 sm:text-base">
+              Transform the way your team captures, compiles and completes inspection reports faster than ever.
+              <br />
+              <span className="text-zinc-700">Available on iOS and Android</span>
+            </p>
+          </div>
+
+          <div className="relative">
+            <div className="relative mx-auto aspect-[16/10] w-full overflow-hidden rounded-2xl bg-white">
+              <Image
+                src={InspectMacbook}
+                alt="Airoflair Inspect platform"
+                fill
+                className="object-contain"
+                priority
+              />
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(0,0,0,0.05),transparent_55%),radial-gradient(circle_at_70%_60%,rgba(0,0,0,0.04),transparent_55%)]" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PRODUCTS */}
+      <section id="products" className="bg-zinc-50 py-10">
+        {/* Inspect */}
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm">
+            <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
+              <div className="text-center md:text-left">
+                <h2 className="text-3xl font-semibold text-zinc-800">Inspect</h2>
+                <p className="mt-2 max-w-xl text-sm text-zinc-600">
+                  Use powerful, flexible templates to create and deliver inspection reports faster than ever
+                </p>
+              </div>
+
+              <Link
+                href="https://inspect.airoflair.com"
+                target="_blank"
+                className="inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-semibold text-white shadow-sm"
+                style={{ backgroundColor: BRAND_BLUE }}
+              >
+                Go to Inspect
+              </Link>
+            </div>
+
+            <div className="mt-8 grid items-center gap-8 md:grid-cols-3">
+              <div className="relative h-20 w-full">
+                <Image src={InspectLogo} alt="Airoflair Inspect logo" fill className="object-contain" />
+              </div>
+
+              <div className="relative aspect-[16/9] w-full">
+                <Image src={InspectMacbook} alt="Inspect on web" fill className="object-contain" />
+              </div>
+
+              <div className="relative aspect-[16/9] w-full">
+                <Image src={InspectIPhone} alt="Inspect on mobile" fill className="object-contain" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Quick Inspect */}
+        <div className="mx-auto mt-10 max-w-7xl px-6">
+          <div className="rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm">
+            <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
+              <div className="text-center md:text-left">
+                <h2 className="text-3xl font-semibold text-zinc-800">Quick Inspect</h2>
+                <p className="mt-2 max-w-xl text-sm text-zinc-600">
+                  A fast, offline-ready inspection app for quick visual surveys and photo-rich reports
+                </p>
+              </div>
+
+              <StoreButtons compact />
+            </div>
+
+            <div className="mt-8 grid items-center gap-8 md:grid-cols-2">
+              <div className="relative aspect-[16/9] w-full">
+                <Image src={QuickInspectIPhone} alt="Quick Inspect on iPhone" fill className="object-contain" />
+              </div>
+
+              <div className="relative mx-auto aspect-square w-64">
+                <Image src={QuickIcon} alt="Quick Inspect icon" fill className="object-contain" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* DATA */}
+        <div className="mx-auto mt-10 max-w-7xl px-6">
+          <div className="rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm">
+            <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
+              <div className="flex items-center gap-4">
+                <div className="relative h-14 w-14">
+                  <Image src={DataLogo} alt="Airoflair Data logo" fill className="object-contain" />
+                </div>
+
+                <div>
+                  <h2 className="text-3xl font-semibold text-zinc-800">DATA</h2>
+                  <p className="mt-1 text-sm text-zinc-600">Engineering calculators &amp; reference tools</p>
+                </div>
+              </div>
+
+              <StoreButtons compact />
+            </div>
+
+            <div className="mt-8 relative aspect-[16/9] w-full">
+              <Image src={DataImg} alt="Airoflair Data screenshots" fill className="object-contain" />
+            </div>
+          </div>
+        </div>
+
+        {/* Split Bill */}
+        <div className="mx-auto mt-10 max-w-7xl px-6 pb-10">
+          <div className="rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm">
+            <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
+              <div className="text-center md:text-left">
+                <div className="relative mx-auto h-12 w-44 md:mx-0">
+                  <Image src={SplitBillLogo} alt="Split Bill" fill className="object-contain" />
+                </div>
+                <p className="mt-3 max-w-xl text-sm text-zinc-600">
+                  Smart bill splitting for group events, trips and shared expenses
+                </p>
+              </div>
+
+              <Link
+                href="#contact"
+                className="inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-semibold text-white shadow-sm"
+                style={{ backgroundColor: BRAND_BLUE }}
+              >
+                Go to Split Bill
+              </Link>
+            </div>
+
+            <div className="mt-8 relative aspect-[16/9] w-full overflow-hidden rounded-xl bg-white">
+              <Image src={SplitBillImg} alt="Split Bill screenshot" fill className="object-contain" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICES with watermark */}
+      <section id="services" className="relative bg-white py-16">
+        <div className="pointer-events-none absolute inset-0 opacity-[0.06]">
+          <div className="mx-auto max-w-7xl px-6">
+            <div className="relative mx-auto mt-2 aspect-[16/6] w-full">
+              <Image src={InspectIcon} alt="" fill className="object-contain" />
+            </div>
+          </div>
+        </div>
+
+        <div className="relative mx-auto max-w-7xl px-6">
+          <h2 className="text-2xl font-semibold text-zinc-800">
+            Transform your inspections into impactful reports.
+          </h2>
+
+          <div className="mt-10 space-y-10 text-sm text-zinc-600">
+            <div>
+              <h3 className="font-semibold text-zinc-800">Airoflair Inspect</h3>
+              <p className="mt-2 max-w-3xl">
+                Airoflair Inspect is built to turn your inspection data into clear, secure,
+                and fully accessible reports all in real time.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-semibold text-zinc-800">Whatever you&apos;re managing</h3>
+              <p className="mt-2 max-w-3xl">
+                Whether you&apos;re managing safety checks, compliance inspections, or asset assessments,
+                our platform is fully adaptable to your workflow.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-semibold text-zinc-800">White-Labeled Portals &amp; Apps</h3>
+              <p className="mt-2 max-w-3xl">
+                Rebrand the Inspect portal and mobile apps with your business name, logo and colours,
+                delivering a seamless, professional experience for your clients and teams.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-semibold text-zinc-800">Custom Features &amp; Design</h3>
+              <p className="mt-2 max-w-3xl">
+                Tailor forms, workflows, and dashboards to fit your operational needs.
+                From data capture to automated report generation — adapting to your industry,
+                not the other way around.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="font-semibold text-zinc-800">Hosted &amp; Managed by Airoflair</h3>
+              <p className="mt-2 max-w-3xl">
+                Focus on your inspections while we take care of the infrastructure.
+                Fully cloud-hosted, secure, and backed by expert support.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CONTACT */}
+      <section id="contact" className="bg-zinc-50 py-16">
+        <div className="mx-auto max-w-7xl px-6">
+          <h2 className="text-2xl font-semibold text-zinc-800 text-center">Contact Us</h2>
+          <p className="mt-2 text-center text-sm text-zinc-600">
+            Please fill in the form below and we will get back to you.
+          </p>
+
+          <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_320px]">
+            <div className="rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm">
+              <form className="grid gap-4">
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <input
+                    className="h-11 rounded-md border border-zinc-200 px-4 text-sm outline-none focus:border-zinc-400"
+                    placeholder="First Name"
+                    type="text"
+                  />
+                  <input
+                    className="h-11 rounded-md border border-zinc-200 px-4 text-sm outline-none focus:border-zinc-400"
+                    placeholder="Last Name"
+                    type="text"
+                  />
+                </div>
+
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <input
+                    className="h-11 rounded-md border border-zinc-200 px-4 text-sm outline-none focus:border-zinc-400"
+                    placeholder="Email"
+                    type="email"
+                  />
+                  <input
+                    className="h-11 rounded-md border border-zinc-200 px-4 text-sm outline-none focus:border-zinc-400"
+                    placeholder="Contact No."
+                    type="tel"
+                  />
+                </div>
+
+                <textarea
+                  className="min-h-[120px] resize-none rounded-md border border-zinc-200 px-4 py-3 text-sm outline-none focus:border-zinc-400"
+                  placeholder="Type here"
+                />
+
+                <button
+                  type="button"
+                  className="mt-2 inline-flex h-11 items-center justify-center rounded-md px-6 text-sm font-semibold text-white shadow-sm"
+                  style={{ backgroundColor: BRAND_BLUE }}
+                >
+                  Send Message
+                </button>
+              </form>
+            </div>
+
+            <div className="rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm">
+              <div className="space-y-5 text-sm text-zinc-700">
+                <div className="font-semibold">+27 64 762 7501</div>
+                <div className="space-y-1">
+                  <div>info@airoflair.com</div>
+                  <div>support@airoflair.com</div>
+                </div>
+
+                <div className="pt-2">
+                  <StoreButtons />
+                </div>
+
+                <div className="pt-2">
+                  <SocialLinks />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <SiteFooter />
+    </div>
   );
 }
