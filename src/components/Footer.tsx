@@ -14,109 +14,189 @@ import linkedin from "@/assets/images/linkedin.svg";
 export default function Footer() {
   const year = new Date().getFullYear();
 
-  return (
-    <footer className="footerWrap">
-      <div className="container">
-        <div className="hr" />
-        <div style={{ height: 14 }} />
+  // Badge sizing (smaller than before)
+  const badgeHeight = 32;
+  const badgeWidth = 120;
 
-        <div className="footerRow">
-          {/* LEFT */}
-          <div className="footerLeft">
+  // Social sizing (bigger + consistent)
+  const socialSize = 22;
+
+  return (
+    <footer
+      style={{
+        width: "100%",
+        borderTop: "1px solid rgba(15, 23, 42, 0.12)",
+        background: "#fff",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: 1180,
+          margin: "0 auto",
+          padding: "18px 20px",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: 18,
+            flexWrap: "wrap",
+          }}
+        >
+          {/* Left: copyright + legal links */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+              flexWrap: "wrap",
+              fontSize: 14,
+              color: "rgba(11, 18, 32, 0.85)",
+              fontWeight: 600,
+            }}
+          >
             <span>© {year} Airoflair</span>
-            <span className="footerDot">•</span>
-            <div className="footerLinks">
-              <Link href="/terms-of-service">Terms of Service</Link>
-              <span className="footerDot">•</span>
-              <Link href="/privacy-policy">Privacy Policy</Link>
-            </div>
+            <span style={{ opacity: 0.65 }}>•</span>
+
+            <Link
+              href="/terms-of-service"
+              style={{
+                color: "rgba(11, 18, 32, 0.85)",
+                textDecoration: "none",
+                fontWeight: 700,
+              }}
+            >
+              Terms of Service
+            </Link>
+
+            <span style={{ opacity: 0.65 }}>•</span>
+
+            <Link
+              href="/privacy-policy"
+              style={{
+                color: "rgba(11, 18, 32, 0.85)",
+                textDecoration: "none",
+                fontWeight: 700,
+              }}
+            >
+              Privacy Policy
+            </Link>
           </div>
 
-          {/* RIGHT */}
-          <div className="footerRight">
-            {/* App store badges – slightly smaller */}
-            <div className="badgeRow" aria-label="App stores">
+          {/* Right: store badges + social icons */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 16,
+              flexWrap: "wrap",
+            }}
+          >
+            {/* Store badges (smaller) */}
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
               <a
-                href="https://play.google.com/store/apps/dev?id=5533742350655574841"
+                href="https://play.google.com/store/apps/details?id=com.airoflair.quickinspect"
                 target="_blank"
                 rel="noreferrer"
-                aria-label="Airoflair on Google Play"
+                aria-label="Get it on Google Play"
+                style={{ display: "inline-flex" }}
               >
                 <Image
                   src={googlePlay}
-                  alt="Get it on Google Play"
-                  width={120}
-                  height={36}
-                  style={{ height: 36, width: "auto" }}
+                  alt="Google Play"
+                  width={badgeWidth}
+                  height={badgeHeight}
+                  style={{ width: "auto", height: badgeHeight }}
                 />
               </a>
 
               <a
-                href="https://apps.apple.com/us/developer/airoflair-pty-ltd/id1650534656"
+                href="https://apps.apple.com/us/app/airoflair-quick-inspect/id6751975606"
                 target="_blank"
                 rel="noreferrer"
-                aria-label="Airoflair on the App Store"
+                aria-label="Download on the App Store"
+                style={{ display: "inline-flex" }}
               >
                 <Image
                   src={appleStore}
-                  alt="Download on the App Store"
-                  width={120}
-                  height={36}
-                  style={{ height: 36, width: "auto" }}
+                  alt="App Store"
+                  width={badgeWidth}
+                  height={badgeHeight}
+                  style={{ width: "auto", height: badgeHeight }}
                 />
               </a>
             </div>
 
-            {/* Social icons – bigger & consistent */}
-            <div className="socialRow" aria-label="Social links">
-              {[
-                {
-                  href: "https://www.facebook.com/airoflair",
-                  src: facebook,
-                  label: "Facebook",
-                },
-                {
-                  href: "https://twitter.com/airoflair",
-                  src: xIcon,
-                  label: "X",
-                },
-                {
-                  href: "https://www.linkedin.com/company/airoflair",
-                  src: linkedin,
-                  label: "LinkedIn",
-                },
-                {
-                  href: "https://www.instagram.com/airoflair/",
-                  src: instagram,
-                  label: "Instagram",
-                },
-              ].map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={item.label}
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Image
-                    src={item.src}
-                    alt={item.label}
-                    width={22}
-                    height={22}
-                    style={{ width: 22, height: 22 }}
-                  />
-                </a>
-              ))}
+            {/* Social icons (bigger + same size) */}
+            <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+              <a
+                href="https://www.facebook.com/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Facebook"
+                style={{ display: "inline-flex" }}
+              >
+                <Image
+                  src={facebook}
+                  alt="Facebook"
+                  width={socialSize}
+                  height={socialSize}
+                  style={{ width: socialSize, height: socialSize }}
+                />
+              </a>
+
+              <a
+                href="https://x.com/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="X"
+                style={{ display: "inline-flex" }}
+              >
+                <Image
+                  src={xIcon}
+                  alt="X"
+                  width={socialSize}
+                  height={socialSize}
+                  style={{ width: socialSize, height: socialSize }}
+                />
+              </a>
+
+              <a
+                href="https://www.linkedin.com/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn"
+                style={{ display: "inline-flex" }}
+              >
+                <Image
+                  src={linkedin}
+                  alt="LinkedIn"
+                  width={socialSize}
+                  height={socialSize}
+                  style={{ width: socialSize, height: socialSize }}
+                />
+              </a>
+
+              <a
+                href="https://www.instagram.com/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Instagram"
+                style={{ display: "inline-flex" }}
+              >
+                <Image
+                  src={instagram}
+                  alt="Instagram"
+                  width={socialSize}
+                  height={socialSize}
+                  style={{ width: socialSize, height: socialSize }}
+                />
+              </a>
             </div>
           </div>
         </div>
-
-        <div style={{ height: 10 }} />
       </div>
     </footer>
   );
