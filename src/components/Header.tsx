@@ -24,7 +24,11 @@ export default function Header() {
     <header className="headerWrap">
       <div className="container">
         <div className="headerRow">
-          <Link href="/" aria-label="Airoflair Home" onClick={() => setOpen(false)}>
+          <Link
+            href="/"
+            aria-label="Airoflair Home"
+            onClick={() => setOpen(false)}
+          >
             <Image
               src={logo}
               alt="Airoflair"
@@ -39,13 +43,22 @@ export default function Header() {
                 {n.label}
               </a>
             ))}
+
             <a
               className="inspectBtn"
               href="https://inspect.airoflair.com"
               target="_blank"
               rel="noreferrer"
+              // Force perfect centering regardless of existing CSS
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                textAlign: "center",
+                whiteSpace: "nowrap",
+              }}
             >
-              inspect
+              Inspect Login
             </a>
           </nav>
 
@@ -83,8 +96,16 @@ export default function Header() {
                 target="_blank"
                 rel="noreferrer"
                 onClick={() => setOpen(false)}
+                // Force perfect centering regardless of existing CSS
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  textAlign: "center",
+                  whiteSpace: "nowrap",
+                }}
               >
-                inspect
+                Inspect Login
               </a>
             </div>
           </div>

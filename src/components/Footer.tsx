@@ -21,6 +21,7 @@ export default function Footer() {
         <div style={{ height: 14 }} />
 
         <div className="footerRow">
+          {/* LEFT */}
           <div className="footerLeft">
             <span>© {year} Airoflair</span>
             <span className="footerDot">•</span>
@@ -31,7 +32,9 @@ export default function Footer() {
             </div>
           </div>
 
+          {/* RIGHT */}
           <div className="footerRight">
+            {/* App store badges – slightly smaller */}
             <div className="badgeRow" aria-label="App stores">
               <a
                 href="https://play.google.com/store/apps/dev?id=5533742350655574841"
@@ -42,11 +45,12 @@ export default function Footer() {
                 <Image
                   src={googlePlay}
                   alt="Get it on Google Play"
-                  width={135}
-                  height={40}
-                  style={{ height: 40, width: "auto" }}
+                  width={120}
+                  height={36}
+                  style={{ height: 36, width: "auto" }}
                 />
               </a>
+
               <a
                 href="https://apps.apple.com/us/developer/airoflair-pty-ltd/id1650534656"
                 target="_blank"
@@ -56,46 +60,58 @@ export default function Footer() {
                 <Image
                   src={appleStore}
                   alt="Download on the App Store"
-                  width={135}
-                  height={40}
-                  style={{ height: 40, width: "auto" }}
+                  width={120}
+                  height={36}
+                  style={{ height: 36, width: "auto" }}
                 />
               </a>
             </div>
 
+            {/* Social icons – bigger & consistent */}
             <div className="socialRow" aria-label="Social links">
-              <a
-                href="https://www.facebook.com/airoflair"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Facebook"
-              >
-                <Image src={facebook} alt="Facebook" width={18} height={18} />
-              </a>
-              <a
-                href="https://twitter.com/airoflair"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="X"
-              >
-                <Image src={xIcon} alt="X" width={18} height={18} />
-              </a>
-              <a
-                href="https://www.linkedin.com/company/airoflair"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="LinkedIn"
-              >
-                <Image src={linkedin} alt="LinkedIn" width={18} height={18} />
-              </a>
-              <a
-                href="https://www.instagram.com/airoflair/"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Instagram"
-              >
-                <Image src={instagram} alt="Instagram" width={18} height={18} />
-              </a>
+              {[
+                {
+                  href: "https://www.facebook.com/airoflair",
+                  src: facebook,
+                  label: "Facebook",
+                },
+                {
+                  href: "https://twitter.com/airoflair",
+                  src: xIcon,
+                  label: "X",
+                },
+                {
+                  href: "https://www.linkedin.com/company/airoflair",
+                  src: linkedin,
+                  label: "LinkedIn",
+                },
+                {
+                  href: "https://www.instagram.com/airoflair/",
+                  src: instagram,
+                  label: "Instagram",
+                },
+              ].map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={item.label}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Image
+                    src={item.src}
+                    alt={item.label}
+                    width={22}
+                    height={22}
+                    style={{ width: 22, height: 22 }}
+                  />
+                </a>
+              ))}
             </div>
           </div>
         </div>
