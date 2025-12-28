@@ -25,17 +25,34 @@ import googlePlay from "@/assets/images/google-play.svg";
 import whatsappIcon from "@/assets/images/whatsapp.svg";
 
 function IconMail({ size = 18 }: { size?: number }) {
+  // Designed to visually match the WhatsApp icon size/weight at 18x18
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+      style={{ display: "block" }}
+    >
+      {/* Outer rounded square for consistent icon presence */}
       <path
-        d="M4 6.8c0-1 0.8-1.8 1.8-1.8h12.4C19.2 5 20 5.8 20 6.8v10.4c0 1-.8 1.8-1.8 1.8H5.8c-1 0-1.8-.8-1.8-1.8V6.8Z"
+        d="M4.25 7.25c0-1.66 1.34-3 3-3h9.5c1.66 0 3 1.34 3 3v9.5c0 1.66-1.34 3-3 3h-9.5c-1.66 0-3-1.34-3-3v-9.5Z"
         stroke="#0B1220"
-        strokeWidth="1.6"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      {/* Envelope */}
+      <path
+        d="M7.1 8.2h9.8c.6 0 1.1.5 1.1 1.1v.25c0 .36-.18.7-.48.9L12.6 13.8a1.05 1.05 0 0 1-1.2 0L6.48 10.45A1.1 1.1 0 0 1 6 9.55V9.3c0-.6.5-1.1 1.1-1.1Z"
+        stroke="#2A2F8F"
+        strokeWidth="2"
+        strokeLinejoin="round"
       />
       <path
-        d="M5.5 7.5 12 12l6.5-4.5"
+        d="M6.4 10.2 10.9 13.4c.7.5 1.6.5 2.3 0l4.5-3.2"
         stroke="#2A2F8F"
-        strokeWidth="1.6"
+        strokeWidth="2"
         strokeLinejoin="round"
       />
     </svg>
@@ -488,18 +505,12 @@ export default function HomePage() {
                 <aside className="contactRight">
                   <div className="contactRightInner">
                     <div className="infoRow">
-                      <Image
-                        src={whatsappIcon}
-                        alt="WhatsApp"
-                        width={18}
-                        height={18}
-                        style={{ display: "block" }}
-                      />
+                      <Image src={whatsappIcon} alt="WhatsApp" width={18} height={18} style={{ display: "block" }} />
                       <span style={{ color: "#0b1220", fontWeight: 800 }}>+27 64 762 7501</span>
                     </div>
 
                     <div className="infoRow">
-                      <IconMail />
+                      <IconMail size={18} />
                       <div style={{ display: "grid", gap: 2 }}>
                         <span style={{ color: "#0b1220", fontWeight: 800 }}>info@airoflair.com</span>
                         <span style={{ color: "#0b1220", fontWeight: 800 }}>support@airoflair.com</span>
