@@ -22,26 +22,7 @@ import splitBillShot from "@/assets/images/splitbill.png";
 import appleStore from "@/assets/images/apple-store.svg";
 import googlePlay from "@/assets/images/google-play.svg";
 
-function IconWhatsApp({ size = 18 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 32 32" fill="none" aria-hidden="true">
-      <path
-        d="M16 3C9.1 3 3.5 8.5 3.5 15.3c0 2.6.8 5 2.2 7.1L4 29l6.9-1.8c2 1.1 4.3 1.7 6.8 1.7 6.9 0 12.5-5.5 12.5-12.3C30.2 8.5 22.9 3 16 3Z"
-        fill="#EAF2FF"
-      />
-      <path
-        d="M16 5.5c5.6 0 10.2 4.5 10.2 10.1 0 5.6-4.6 10.1-10.2 10.1-2.2 0-4.3-.7-6-1.8l-3.9 1 1-3.7c-1.2-1.7-1.9-3.8-1.9-6 0-5.6 4.6-10.1 10.2-10.1Z"
-        fill="#2A2F8F"
-        opacity="0.10"
-      />
-      <path
-        d="M13.4 11.7c.2-.4.4-.4.7-.4h.6c.2 0 .4.1.5.4l1.1 2.6c.1.3.1.5-.1.7l-.8 1c-.1.2-.1.4 0 .6.7 1.2 1.8 2.3 3.1 3 .2.1.4.1.6 0l1-.7c.2-.1.5-.2.8-.1l2.7 1c.3.1.4.3.4.5 0 .7-.3 1.6-.9 2-.7.5-1.6.7-2.4.5-1.6-.4-3.3-1.3-5-2.9-1.6-1.5-2.8-3.4-3.2-4.9-.2-.8 0-1.7.5-2.4.4-.6 1.2-.9 1.7-1Z"
-        fill="#0B1220"
-        opacity="0.75"
-      />
-    </svg>
-  );
-}
+import whatsappIcon from "@/assets/images/whatsapp.svg";
 
 function IconMail({ size = 18 }: { size?: number }) {
   return (
@@ -91,8 +72,7 @@ export default function HomePage() {
 
   // This must be set in Azure SWA Configuration:
   // NEXT_PUBLIC_CONTACT_ENDPOINT = <Logic App HTTP trigger URL>
-  const contactEndpoint =
-    (process.env.NEXT_PUBLIC_CONTACT_ENDPOINT || "").trim();
+  const contactEndpoint = (process.env.NEXT_PUBLIC_CONTACT_ENDPOINT || "").trim();
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -148,8 +128,7 @@ export default function HomePage() {
               </h1>
 
               <p className="p" style={{ maxWidth: 520 }}>
-                Transform the way your team captures, compiles and completes inspection reports
-                faster than ever.
+                Transform the way your team captures, compiles and completes inspection reports faster than ever.
                 <br />
                 Available on iOS and Android
               </p>
@@ -195,8 +174,7 @@ export default function HomePage() {
             <div>
               <h2 className="productTitle">Inspect</h2>
               <p className="productDesc">
-                Use powerful, flexible templates to create and deliver inspection reports faster
-                than ever
+                Use powerful, flexible templates to create and deliver inspection reports faster than ever
               </p>
             </div>
 
@@ -209,11 +187,7 @@ export default function HomePage() {
                   alignItems: "center",
                 }}
               >
-                <Image
-                  src={inspectLogo}
-                  alt="Airoflair Inspect"
-                  style={{ width: "100%", height: "auto", maxWidth: 320 }}
-                />
+                <Image src={inspectLogo} alt="Airoflair Inspect" style={{ width: "100%", height: "auto", maxWidth: 320 }} />
                 <Image
                   src={inspectMacbook}
                   alt="Inspect web"
@@ -238,12 +212,7 @@ export default function HomePage() {
             </div>
 
             <div className="productRight">
-              <a
-                className="btn btnPrimary"
-                href="https://inspect.airoflair.com"
-                target="_blank"
-                rel="noreferrer"
-              >
+              <a className="btn btnPrimary" href="https://inspect.airoflair.com" target="_blank" rel="noreferrer">
                 Go to Inspect
               </a>
             </div>
@@ -258,8 +227,7 @@ export default function HomePage() {
             <div>
               <h2 className="productTitle">Quick Inspect</h2>
               <p className="productDesc">
-                A fast, offline-ready inspection app for quick visual surveys and photo-rich
-                reports
+                A fast, offline-ready inspection app for quick visual surveys and photo-rich reports
               </p>
             </div>
 
@@ -296,33 +264,11 @@ export default function HomePage() {
 
             <div className="productRight">
               <div className="badgeRow">
-                <a
-                  href={quickInspectLinks.apple}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Quick Inspect on App Store"
-                >
-                  <Image
-                    src={appleStore}
-                    alt="App Store"
-                    width={140}
-                    height={42}
-                    style={{ height: 42, width: "auto" }}
-                  />
+                <a href={quickInspectLinks.apple} target="_blank" rel="noreferrer" aria-label="Quick Inspect on App Store">
+                  <Image src={appleStore} alt="App Store" width={140} height={42} style={{ height: 42, width: "auto" }} />
                 </a>
-                <a
-                  href={quickInspectLinks.google}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Quick Inspect on Google Play"
-                >
-                  <Image
-                    src={googlePlay}
-                    alt="Google Play"
-                    width={140}
-                    height={42}
-                    style={{ height: 42, width: "auto" }}
-                  />
+                <a href={quickInspectLinks.google} target="_blank" rel="noreferrer" aria-label="Quick Inspect on Google Play">
+                  <Image src={googlePlay} alt="Google Play" width={140} height={42} style={{ height: 42, width: "auto" }} />
                 </a>
               </div>
             </div>
@@ -410,12 +356,10 @@ export default function HomePage() {
           <div className="featuresWrap panel">
             <div className="featuresInner">
               <div className="featuresHeader">
-                <h2 style={{ margin: 0, fontSize: 34, fontWeight: 900 }}>
-                  Transform your inspections into impactful reports.
-                </h2>
+                <h2 style={{ margin: 0, fontSize: 34, fontWeight: 900 }}>Transform your inspections into impactful reports.</h2>
                 <p className="p" style={{ maxWidth: 900, marginTop: 10 }}>
-                  Airoflair turns your inspections into clear, secure reporting in real time.
-                  Data Collection made faster and easier.
+                  Airoflair turns your inspections into clear, secure reporting in real time. Data Collection made faster and
+                  easier.
                 </p>
               </div>
 
@@ -423,33 +367,29 @@ export default function HomePage() {
                 <div className="featureCard">
                   <h3>Inspection reporting, streamlined</h3>
                   <p>
-                    Capture observations, photos and findings fast then generate professional
-                    reports with consistent formatting across teams and projects.
+                    Capture observations, photos and findings fast then generate professional reports with consistent formatting
+                    across teams and projects.
                   </p>
                 </div>
 
                 <div className="featureCard">
                   <h3>White-labeled portals &amp; apps</h3>
                   <p>
-                    Rebrand the portal and mobile apps with your business name, logo and colours
-                    for a seamless, professional experience.
+                    Rebrand the portal and mobile apps with your business name, logo and colours for a seamless, professional
+                    experience.
                   </p>
                 </div>
 
                 <div className="featureCard">
                   <h3>Custom workflows &amp; features</h3>
                   <p>
-                    Tailor forms, templates and data fields to suit your operations from
-                    walkdowns to full campaign reporting.
+                    Tailor forms, templates and data fields to suit your operations from walkdowns to full campaign reporting.
                   </p>
                 </div>
 
                 <div className="featureCard">
                   <h3>Hosted &amp; managed</h3>
-                  <p>
-                    Focus on inspections while we handle hosting, security and support. Built
-                    for reliability and scale.
-                  </p>
+                  <p>Focus on inspections while we handle hosting, security and support. Built for reliability and scale.</p>
                 </div>
               </div>
             </div>
@@ -548,7 +488,13 @@ export default function HomePage() {
                 <aside className="contactRight">
                   <div className="contactRightInner">
                     <div className="infoRow">
-                      <IconWhatsApp />
+                      <Image
+                        src={whatsappIcon}
+                        alt="WhatsApp"
+                        width={18}
+                        height={18}
+                        style={{ display: "block" }}
+                      />
                       <span style={{ color: "#0b1220", fontWeight: 800 }}>+27 64 762 7501</span>
                     </div>
 
