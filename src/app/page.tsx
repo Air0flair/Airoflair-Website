@@ -1,8 +1,7 @@
 // src/app/page.tsx
-
 "use client";
 
-import { useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import Image from "next/image";
 
 import macbookMain from "@/assets/images/macbookmain.png";
@@ -25,13 +24,7 @@ import googlePlay from "@/assets/images/google-play.svg";
 
 function IconWhatsApp({ size = 18 }: { size?: number }) {
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 32 32"
-      fill="none"
-      aria-hidden="true"
-    >
+    <svg width={size} height={size} viewBox="0 0 32 32" fill="none" aria-hidden="true">
       <path
         d="M16 3C9.1 3 3.5 8.5 3.5 15.3c0 2.6.8 5 2.2 7.1L4 29l6.9-1.8c2 1.1 4.3 1.7 6.8 1.7 6.9 0 12.5-5.5 12.5-12.3C30.2 8.5 22.9 3 16 3Z"
         fill="#EAF2FF"
@@ -52,13 +45,7 @@ function IconWhatsApp({ size = 18 }: { size?: number }) {
 
 function IconMail({ size = 18 }: { size?: number }) {
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      aria-hidden="true"
-    >
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path
         d="M4 6.8c0-1 0.8-1.8 1.8-1.8h12.4C19.2 5 20 5.8 20 6.8v10.4c0 1-.8 1.8-1.8 1.8H5.8c-1 0-1.8-.8-1.8-1.8V6.8Z"
         stroke="#0B1220"
@@ -75,9 +62,7 @@ function IconMail({ size = 18 }: { size?: number }) {
 }
 
 export default function HomePage() {
-  const [status, setStatus] = useState<
-    "idle" | "sending" | "success" | "error"
-  >("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState<string>("");
 
   const [form, setForm] = useState({
@@ -91,8 +76,7 @@ export default function HomePage() {
   const quickInspectLinks = useMemo(
     () => ({
       apple: "https://apps.apple.com/us/app/airoflair-quick-inspect/id6751975606",
-      google:
-        "https://play.google.com/store/apps/details?id=com.airoflair.quickinspect",
+      google: "https://play.google.com/store/apps/details?id=com.airoflair.quickinspect",
     }),
     []
   );
@@ -105,21 +89,39 @@ export default function HomePage() {
     []
   );
 
+  // This must be set in Azure SWA Configuration:
+  // NEXT_PUBLIC_CONTACT_ENDPOINT = <Logic App HTTP trigger URL>
+  const contactEndpoint =
+    (process.env.NEXT_PUBLIC_CONTACT_ENDPOINT || "").trim();
+
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     setStatus("sending");
     setErrorMsg("");
 
     try {
-      const res = await fetch("/api/contact", {
+      if (!contactEndpoint) {
+        throw new Error(
+          "Contact endpoint is not configured. Set NEXT_PUBLIC_CONTACT_ENDPOINT in Azure Static Web Apps Configuration."
+        );
+      }
+
+      const res = await fetch(contactEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        // must match the schema you added in the Logic App trigger
+        body: JSON.stringify({
+          firstName: form.firstName,
+          lastName: form.lastName,
+          email: form.email,
+          phone: form.phone,
+          message: form.message,
+        }),
       });
 
       if (!res.ok) {
-        const text = await res.text();
-        throw new Error(text || "Failed to send message.");
+        const text = await res.text().catch(() => "");
+        throw new Error(text || `Failed to send message (HTTP ${res.status}).`);
       }
 
       setStatus("success");
@@ -146,27 +148,41 @@ export default function HomePage() {
               </h1>
 
               <p className="p" style={{ maxWidth: 520 }}>
-                Transform the way your team captures, compiles and completes inspection
-                reports faster than ever.
+                Transform the way your team captures, compiles and completes inspection reports
+                faster than ever.
                 <br />
                 Available on iOS and Android
               </p>
 
               <div className="heroActions">
-                {/* Remove View Products button as requested */}
                 <a className="btn btnPrimary" href="#contact">
                   Contact Us
                 </a>
               </div>
             </div>
 
-            <div className="heroImageWrap">
-              <Image
-                src={macbookMain}
-                alt="Airoflair platform preview"
-                priority
-                style={{ width: "100%", height: "auto" }}
-              />
+            {/* Larger hero image */}
+            <div
+              className="heroImageWrap"
+              style={{
+                justifySelf: "end",
+                width: "100%",
+                maxWidth: 980,
+              }}
+            >
+              <div
+                style={{
+                  width: "115%",
+                  marginLeft: "auto",
+                }}
+              >
+                <Image
+                  src={macbookMain}
+                  alt="Airoflair platform preview"
+                  priority
+                  style={{ width: "100%", height: "auto" }}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -179,8 +195,8 @@ export default function HomePage() {
             <div>
               <h2 className="productTitle">Inspect</h2>
               <p className="productDesc">
-                Use powerful, flexible templates to create and deliver inspection reports
-                faster than ever
+                Use powerful, flexible templates to create and deliver inspection reports faster
+                than ever
               </p>
             </div>
 
@@ -242,8 +258,8 @@ export default function HomePage() {
             <div>
               <h2 className="productTitle">Quick Inspect</h2>
               <p className="productDesc">
-                A fast, offline-ready inspection app for quick visual surveys and
-                photo-rich reports
+                A fast, offline-ready inspection app for quick visual surveys and photo-rich
+                reports
               </p>
             </div>
 
@@ -320,11 +336,7 @@ export default function HomePage() {
           <div className="productGrid">
             <div>
               <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                <Image
-                  src={airoflairDataLogo}
-                  alt="Airoflair Data"
-                  style={{ width: 60, height: "auto" }}
-                />
+                <Image src={airoflairDataLogo} alt="Airoflair Data" style={{ width: 60, height: "auto" }} />
                 <div>
                   <h2 className="productTitle" style={{ marginBottom: 0 }}>
                     DATA
@@ -349,33 +361,11 @@ export default function HomePage() {
 
             <div className="productRight">
               <div className="badgeRow">
-                <a
-                  href={dataLinks.apple}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Airoflair Data on App Store"
-                >
-                  <Image
-                    src={appleStore}
-                    alt="App Store"
-                    width={140}
-                    height={42}
-                    style={{ height: 42, width: "auto" }}
-                  />
+                <a href={dataLinks.apple} target="_blank" rel="noreferrer" aria-label="Airoflair Data on App Store">
+                  <Image src={appleStore} alt="App Store" width={140} height={42} style={{ height: 42, width: "auto" }} />
                 </a>
-                <a
-                  href={dataLinks.google}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Airoflair Data on Google Play"
-                >
-                  <Image
-                    src={googlePlay}
-                    alt="Google Play"
-                    width={140}
-                    height={42}
-                    style={{ height: 42, width: "auto" }}
-                  />
+                <a href={dataLinks.google} target="_blank" rel="noreferrer" aria-label="Airoflair Data on Google Play">
+                  <Image src={googlePlay} alt="Google Play" width={140} height={42} style={{ height: 42, width: "auto" }} />
                 </a>
               </div>
             </div>
@@ -388,14 +378,8 @@ export default function HomePage() {
         <div className="container">
           <div className="productGrid">
             <div>
-              <Image
-                src={splitBillLogo}
-                alt="SplitBill"
-                style={{ width: 170, height: "auto", marginBottom: 10 }}
-              />
-              <p className="productDesc">
-                Smart bill splitting for group events, trips and shared expenses
-              </p>
+              <Image src={splitBillLogo} alt="SplitBill" style={{ width: 170, height: "auto", marginBottom: 10 }} />
+              <p className="productDesc">Smart bill splitting for group events, trips and shared expenses</p>
             </div>
 
             <div style={{ width: "100%" }}>
@@ -412,12 +396,7 @@ export default function HomePage() {
             </div>
 
             <div className="productRight">
-              <a
-                className="btn btnPrimary"
-                href="https://splitbill.airoflair.com"
-                target="_blank"
-                rel="noreferrer"
-              >
+              <a className="btn btnPrimary" href="https://splitbill.airoflair.com" target="_blank" rel="noreferrer">
                 Go to Split Bill
               </a>
             </div>
@@ -570,9 +549,7 @@ export default function HomePage() {
                   <div className="contactRightInner">
                     <div className="infoRow">
                       <IconWhatsApp />
-                      <span style={{ color: "#0b1220", fontWeight: 800 }}>
-                        +27 64 762 7501
-                      </span>
+                      <span style={{ color: "#0b1220", fontWeight: 800 }}>+27 64 762 7501</span>
                     </div>
 
                     <div className="infoRow">
@@ -582,8 +559,6 @@ export default function HomePage() {
                         <span style={{ color: "#0b1220", fontWeight: 800 }}>support@airoflair.com</span>
                       </div>
                     </div>
-
-                    {/* Remove store + social links from contact section as requested */}
                   </div>
                 </aside>
               </div>
