@@ -4,16 +4,25 @@ type ContactPayload = {
   firstName: string;
   lastName: string;
   email: string;
-  phone: string;
+  phone?: string;
   message: string;
 };
 
+function isValidEmail(email: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
 export async function POST(req: Request) {
   try {
-    const body = (await req.json()) as ContactPayload;
+    const body = (await req.json()) as Partial<ContactPayload>;
 
-    const { firstName, lastName, email, phone, message } = body;
+    const firstName = (body.firstName || "").trim();
+    const lastName = (body.lastName || "").trim();
+    const email = (body.email || "").trim();
+    const phone = (body.phone || "").trim();
+    const message = (body.message || "").trim();
 
+    // Basic validation (match your form’s required fields)
     if (!firstName || !lastName || !email || !message) {
       return NextResponse.json(
         { error: "Missing required fields" },
@@ -21,58 +30,43 @@ export async function POST(req: Request) {
       );
     }
 
-    const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
-    const FROM_EMAIL = process.env.SENDGRID_FROM_EMAIL;
-    const TO_EMAIL = process.env.SENDGRID_TO_EMAIL;
+    if (!isValidEmail(email)) {
+      return NextResponse.json({ error: "Invalid email address" }, { status: 400 });
+    }
 
-    if (!SENDGRID_API_KEY || !FROM_EMAIL || !TO_EMAIL) {
+    // Your Logic App HTTP trigger URL (store in Azure SWA Configuration as an app setting)
+    // Example value includes the ?sig=... token (do NOT expose this on the client)
+    const LOGIC_APP_URL = process.env.AZURE_LOGIC_APP_CONTACT_URL;
+
+    if (!LOGIC_APP_URL) {
       return NextResponse.json(
-        { error: "Email service not configured" },
+        { error: "Contact service not configured" },
         { status: 500 }
       );
     }
 
-    const emailPayload = {
-      personalizations: [
-        {
-          to: [{ email: TO_EMAIL }],
-          subject: "New Contact Message – Airoflair Website",
-        },
-      ],
-      from: { email: FROM_EMAIL, name: "Airoflair Website" },
-      reply_to: { email },
-      content: [
-        {
-          type: "text/html",
-          value: `
-            <div style="font-family: Arial, sans-serif; line-height: 1.6">
-              <h2>New Contact Message</h2>
-              <p><strong>Name:</strong> ${firstName} ${lastName}</p>
-              <p><strong>Email:</strong> ${email}</p>
-              <p><strong>Phone:</strong> ${phone || "Not provided"}</p>
-              <hr />
-              <p><strong>Message:</strong></p>
-              <p>${message.replace(/\n/g, "<br/>")}</p>
-            </div>
-          `,
-        },
-      ],
-    };
-
-    const res = await fetch("https://api.sendgrid.com/v3/mail/send", {
+    // Forward to Logic App (server-to-server)
+    const logicRes = await fetch(LOGIC_APP_URL, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${SENDGRID_API_KEY}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(emailPayload),
+      // Keep payload keys EXACTLY as your Logic App JSON schema expects
+      body: JSON.stringify({
+        firstName,
+        lastName,
+        email,
+        phone,
+        message,
+      }),
     });
 
-    if (!res.ok) {
-      const errorText = await res.text();
-      console.error("SendGrid error:", errorText);
+    // Logic Apps commonly returns 202 Accepted on success
+    if (!logicRes.ok) {
+      const text = await logicRes.text().catch(() => "");
+      console.error("Logic App error:", logicRes.status, text);
       return NextResponse.json(
-        { error: "Failed to send email" },
+        { error: "Failed to send message" },
         { status: 500 }
       );
     }
