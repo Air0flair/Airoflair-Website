@@ -1,95 +1,88 @@
-// src/app/api/contact/route.ts
-
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
 
-export const runtime = "nodejs";
-
-type Body = {
-  firstName?: string;
-  lastName?: string;
-  phone?: string;
-  email?: string;
-  message?: string;
+type ContactPayload = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  message: string;
 };
-
-function required(value: string | undefined, name: string) {
-  if (!value || !value.trim()) throw new Error(`Missing ${name}`);
-  return value.trim();
-}
 
 export async function POST(req: Request) {
   try {
-    const body = (await req.json()) as Body;
+    const body = (await req.json()) as ContactPayload;
 
-    const firstName = required(body.firstName, "firstName");
-    const lastName = required(body.lastName, "lastName");
-    const phone = required(body.phone, "phone");
-    const email = required(body.email, "email");
-    const message = required(body.message, "message");
+    const { firstName, lastName, email, phone, message } = body;
 
-    const smtpUser = process.env.M365_SMTP_USER;
-    const smtpPass = process.env.M365_SMTP_PASS;
+    if (!firstName || !lastName || !email || !message) {
+      return NextResponse.json(
+        { error: "Missing required fields" },
+        { status: 400 }
+      );
+    }
 
-    if (!smtpUser || !smtpPass) {
-      return new NextResponse(
-        "Server is missing email configuration (M365_SMTP_USER / M365_SMTP_PASS).",
+    const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
+    const FROM_EMAIL = process.env.SENDGRID_FROM_EMAIL;
+    const TO_EMAIL = process.env.SENDGRID_TO_EMAIL;
+
+    if (!SENDGRID_API_KEY || !FROM_EMAIL || !TO_EMAIL) {
+      return NextResponse.json(
+        { error: "Email service not configured" },
         { status: 500 }
       );
     }
 
-    const transporter = nodemailer.createTransport({
-      host: process.env.M365_SMTP_HOST || "smtp.office365.com",
-      port: Number(process.env.M365_SMTP_PORT || 587),
-      secure: false,
-      auth: {
-        user: smtpUser,
-        pass: smtpPass,
+    const emailPayload = {
+      personalizations: [
+        {
+          to: [{ email: TO_EMAIL }],
+          subject: "New Contact Message – Airoflair Website",
+        },
+      ],
+      from: { email: FROM_EMAIL, name: "Airoflair Website" },
+      reply_to: { email },
+      content: [
+        {
+          type: "text/html",
+          value: `
+            <div style="font-family: Arial, sans-serif; line-height: 1.6">
+              <h2>New Contact Message</h2>
+              <p><strong>Name:</strong> ${firstName} ${lastName}</p>
+              <p><strong>Email:</strong> ${email}</p>
+              <p><strong>Phone:</strong> ${phone || "Not provided"}</p>
+              <hr />
+              <p><strong>Message:</strong></p>
+              <p>${message.replace(/\n/g, "<br/>")}</p>
+            </div>
+          `,
+        },
+      ],
+    };
+
+    const res = await fetch("https://api.sendgrid.com/v3/mail/send", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${SENDGRID_API_KEY}`,
+        "Content-Type": "application/json",
       },
+      body: JSON.stringify(emailPayload),
     });
 
-    const to = process.env.CONTACT_TO || "info@airoflair.com";
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error("SendGrid error:", errorText);
+      return NextResponse.json(
+        { error: "Failed to send email" },
+        { status: 500 }
+      );
+    }
 
-    const subject = `Airoflair Website Contact: ${firstName} ${lastName}`;
-
-    const text = [
-      `New website enquiry`,
-      ``,
-      `Name: ${firstName} ${lastName}`,
-      `Phone: ${phone}`,
-      `Email: ${email}`,
-      ``,
-      `Message:`,
-      `${message}`,
-      ``,
-      `Sent from: airoflair.com`,
-    ].join("\n");
-
-    const html = `
-      <div style="font-family: Arial, sans-serif; line-height: 1.5;">
-        <h2 style="margin:0 0 10px;">New website enquiry</h2>
-        <p style="margin:0 0 6px;"><strong>Name:</strong> ${firstName} ${lastName}</p>
-        <p style="margin:0 0 6px;"><strong>Phone:</strong> ${phone}</p>
-        <p style="margin:0 0 12px;"><strong>Email:</strong> ${email}</p>
-        <p style="margin:0 0 6px;"><strong>Message:</strong></p>
-        <div style="white-space: pre-wrap; padding: 12px; border: 1px solid #e6eaf2; border-radius: 10px; background: #f6f8fc;">
-          ${message.replace(/</g, "&lt;").replace(/>/g, "&gt;")}
-        </div>
-        <p style="margin:14px 0 0; color:#667085; font-size:12px;">Sent from: airoflair.com</p>
-      </div>
-    `;
-
-    await transporter.sendMail({
-      from: smtpUser,
-      to,
-      replyTo: email,
-      subject,
-      text,
-      html,
-    });
-
-    return NextResponse.json({ ok: true });
-  } catch (e: any) {
-    return new NextResponse(e?.message || "Failed to send", { status: 400 });
+    return NextResponse.json({ success: true });
+  } catch (err) {
+    console.error("Contact API error:", err);
+    return NextResponse.json(
+      { error: "Unexpected server error" },
+      { status: 500 }
+    );
   }
 }
