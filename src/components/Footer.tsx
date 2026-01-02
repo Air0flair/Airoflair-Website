@@ -1,6 +1,43 @@
 import Image from "next/image";
 import Link from "next/link";
 
+/* =========================
+   CONFIG — EASY TO EDIT
+   ========================= */
+const FOOTER_CONFIG = {
+  companyName: "Airoflair",
+  copyrightYear: 2026,
+
+  legalLinks: {
+    terms: "/terms-of-service",
+    privacy: "/privacy-policy",
+  },
+
+  appLinks: {
+    googlePlay:
+      "https://play.google.com/store/apps/details?id=com.airoflair.quickinspect",
+    appleStore:
+      "https://apps.apple.com/us/app/airoflair-quick-inspect/id6751975606",
+  },
+
+  socialLinks: {
+    facebook: "https://www.facebook.com/",
+    x: "https://x.com/",
+    linkedin: "https://www.linkedin.com/",
+    instagram: "https://www.instagram.com/",
+  },
+
+  sizing: {
+    badgeHeight: 32,
+    badgeWidth: 120,
+    socialSize: 22,
+    xSize: 26, // optical compensation for X icon
+  },
+};
+
+/* =========================
+   ASSETS
+   ========================= */
 import appleStore from "@/assets/images/apple-store.svg";
 import googlePlay from "@/assets/images/google-play.svg";
 
@@ -10,15 +47,8 @@ import xIcon from "@/assets/images/X.svg";
 import linkedin from "@/assets/images/linkedin.svg";
 
 export default function Footer() {
-  const year = new Date().getFullYear();
-
-  // Store badge sizing
-  const badgeHeight = 32;
-  const badgeWidth = 120;
-
-  // Social icon sizing
-  const socialSize = 22;
-  const xSize = 26; // X icon needs optical compensation
+  const { companyName, copyrightYear, legalLinks, appLinks, socialLinks, sizing } =
+    FOOTER_CONFIG;
 
   return (
     <footer
@@ -56,11 +86,14 @@ export default function Footer() {
               fontWeight: 600,
             }}
           >
-            <span>© {year} Airoflair</span>
+            <span>
+              © {copyrightYear} {companyName}
+            </span>
+
             <span style={{ opacity: 0.6 }}>•</span>
 
             <Link
-              href="/terms-of-service"
+              href={legalLinks.terms}
               style={{
                 color: "rgba(11, 18, 32, 0.85)",
                 textDecoration: "none",
@@ -73,7 +106,7 @@ export default function Footer() {
             <span style={{ opacity: 0.6 }}>•</span>
 
             <Link
-              href="/privacy-policy"
+              href={legalLinks.privacy}
               style={{
                 color: "rgba(11, 18, 32, 0.85)",
                 textDecoration: "none",
@@ -96,7 +129,7 @@ export default function Footer() {
             {/* Store badges */}
             <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
               <a
-                href="https://play.google.com/store/apps/details?id=com.airoflair.quickinspect"
+                href={appLinks.googlePlay}
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Get it on Google Play"
@@ -104,14 +137,14 @@ export default function Footer() {
                 <Image
                   src={googlePlay}
                   alt="Google Play"
-                  width={badgeWidth}
-                  height={badgeHeight}
-                  style={{ width: "auto", height: badgeHeight }}
+                  width={sizing.badgeWidth}
+                  height={sizing.badgeHeight}
+                  style={{ width: "auto", height: sizing.badgeHeight }}
                 />
               </a>
 
               <a
-                href="https://apps.apple.com/us/app/airoflair-quick-inspect/id6751975606"
+                href={appLinks.appleStore}
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Download on the App Store"
@@ -119,48 +152,48 @@ export default function Footer() {
                 <Image
                   src={appleStore}
                   alt="App Store"
-                  width={badgeWidth}
-                  height={badgeHeight}
-                  style={{ width: "auto", height: badgeHeight }}
+                  width={sizing.badgeWidth}
+                  height={sizing.badgeHeight}
+                  style={{ width: "auto", height: sizing.badgeHeight }}
                 />
               </a>
             </div>
 
             {/* Social icons */}
             <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-              <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
+              <a href={socialLinks.facebook} target="_blank" rel="noreferrer">
                 <Image
                   src={facebook}
                   alt="Facebook"
-                  width={socialSize}
-                  height={socialSize}
+                  width={sizing.socialSize}
+                  height={sizing.socialSize}
                 />
               </a>
 
-              <a href="https://x.com/" target="_blank" rel="noreferrer">
+              <a href={socialLinks.x} target="_blank" rel="noreferrer">
                 <Image
                   src={xIcon}
                   alt="X"
-                  width={xSize}
-                  height={xSize}
+                  width={sizing.xSize}
+                  height={sizing.xSize}
                 />
               </a>
 
-              <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
+              <a href={socialLinks.linkedin} target="_blank" rel="noreferrer">
                 <Image
                   src={linkedin}
                   alt="LinkedIn"
-                  width={socialSize}
-                  height={socialSize}
+                  width={sizing.socialSize}
+                  height={sizing.socialSize}
                 />
               </a>
 
-              <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
+              <a href={socialLinks.instagram} target="_blank" rel="noreferrer">
                 <Image
                   src={instagram}
                   alt="Instagram"
-                  width={socialSize}
-                  height={socialSize}
+                  width={sizing.socialSize}
+                  height={sizing.socialSize}
                 />
               </a>
             </div>
