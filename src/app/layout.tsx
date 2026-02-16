@@ -2,6 +2,10 @@ import "./globals.css";
 import { ReactNode } from "react";
 import Script from "next/script";
 
+// Adjust these paths if needed
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+
 export const metadata = {
   title: "Airoflair",
   description: "Engineering tools and inspection solutions",
@@ -29,8 +33,18 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body>
-        {children}
+
+      <body className="min-h-screen flex flex-col">
+        {/* Header */}
+        <Header />
+
+        {/* Page Content */}
+        <main className="flex-grow">
+          {children}
+        </main>
+
+        {/* Footer */}
+        <Footer />
       </body>
     </html>
   );
