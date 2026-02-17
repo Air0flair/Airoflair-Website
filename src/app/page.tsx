@@ -3,6 +3,7 @@
 
 import React, { useMemo, useState } from "react";
 import Image from "next/image";
+import Script from "next/script";
 
 import macbookMain from "@/assets/images/macbookmain.png";
 
@@ -24,6 +25,15 @@ import googlePlay from "@/assets/images/google-play.svg";
 
 import whatsappIcon from "@/assets/images/whatsapp.svg";
 import mailIcon from "@/assets/images/mail.svg";
+
+declare global {
+  interface Window {
+    grecaptcha?: {
+      ready: (cb: () => void) => void;
+      execute: (siteKey: string, opts: { action: string }) => Promise<string>;
+    };
+  }
+}
 
 export default function HomePage() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
@@ -53,9 +63,43 @@ export default function HomePage() {
     []
   );
 
-  // This must be set in Azure SWA Configuration:
+  // Azure SWA Configuration:
   // NEXT_PUBLIC_CONTACT_ENDPOINT = <Logic App HTTP trigger URL>
   const contactEndpoint = (process.env.NEXT_PUBLIC_CONTACT_ENDPOINT || "").trim();
+
+  // Azure SWA Configuration:
+  // NEXT_PUBLIC_RECAPTCHA_SITE_KEY = <reCAPTCHA v3 site key>
+  // (site key is safe to expose; secret key must NEVER be in frontend)
+  const recaptchaSiteKey = (process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "").trim();
+
+  async function getRecaptchaToken(action: string) {
+    if (!recaptchaSiteKey) {
+      throw new Error("reCAPTCHA is not configured. Set NEXT_PUBLIC_RECAPTCHA_SITE_KEY in Azure Static Web Apps Configuration.");
+    }
+
+    const g = window.grecaptcha;
+    if (!g) {
+      throw new Error("reCAPTCHA failed to load. Please refresh and try again.");
+    }
+
+    const token = await new Promise<string>((resolve, reject) => {
+      try {
+        g.ready(() => {
+          g.execute(recaptchaSiteKey, { action })
+            .then(resolve)
+            .catch(reject);
+        });
+      } catch (e) {
+        reject(e);
+      }
+    });
+
+    if (!token) {
+      throw new Error("reCAPTCHA token was empty. Please try again.");
+    }
+
+    return token;
+  }
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -69,6 +113,10 @@ export default function HomePage() {
         );
       }
 
+      // v3 token (invisible) – action name should be verified server-side too
+      const recaptchaAction = "contact";
+      const recaptchaToken = await getRecaptchaToken(recaptchaAction);
+
       const res = await fetch(contactEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -79,6 +127,8 @@ export default function HomePage() {
           email: form.email,
           phone: form.phone,
           message: form.message,
+          recaptchaToken,
+          recaptchaAction,
         }),
       });
 
@@ -97,6 +147,14 @@ export default function HomePage() {
 
   return (
     <main>
+      {/* Load reCAPTCHA v3 (invisible) */}
+      {recaptchaSiteKey ? (
+        <Script
+          src={`https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`}
+          strategy="afterInteractive"
+        />
+      ) : null}
+
       {/* HERO */}
       <section className="section">
         <div className="container">
