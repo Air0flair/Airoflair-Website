@@ -35,6 +35,18 @@ declare global {
   }
 }
 
+function sleep(ms: number) {
+  return new Promise((r) => setTimeout(r, ms));
+}
+
+async function waitForRecaptcha(maxWaitMs = 6000) {
+  const start = Date.now();
+  while (Date.now() - start < maxWaitMs) {
+    if (typeof window !== "undefined" && window.grecaptcha) return;
+    await sleep(150);
+  }
+}
+
 export default function HomePage() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState<string>("");
@@ -68,7 +80,7 @@ export default function HomePage() {
   const contactEndpoint = (process.env.NEXT_PUBLIC_CONTACT_ENDPOINT || "").trim();
 
   function getSiteKeyFromWindow() {
-    return (typeof window !== "undefined" ? (window.__RECAPTCHA_SITE_KEY__ || "") : "").trim();
+    return (typeof window !== "undefined" ? window.__RECAPTCHA_SITE_KEY__ || "" : "").trim();
   }
 
   async function getRecaptchaToken(action: string) {
@@ -78,6 +90,9 @@ export default function HomePage() {
         "reCAPTCHA is not configured. Ensure NEXT_PUBLIC_RECAPTCHA_SITE_KEY is set in Azure Static Web Apps → Environment variables (Production) and redeploy."
       );
     }
+
+    // Wait a bit for the script to load (prevents first-click failures)
+    await waitForRecaptcha();
 
     const g = window.grecaptcha;
     if (!g) {
@@ -147,8 +162,6 @@ export default function HomePage() {
 
   return (
     <main>
-      {/* NOTE: reCAPTCHA v3 is loaded globally in src/app/layout.tsx */}
-
       {/* HERO */}
       <section className="section">
         <div className="container">
@@ -175,73 +188,36 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Larger hero image */}
-            <div
-              className="heroImageWrap"
-              style={{
-                justifySelf: "end",
-                width: "100%",
-                maxWidth: 980,
-              }}
-            >
-              <div
-                style={{
-                  width: "115%",
-                  marginLeft: "auto",
-                }}
-              >
-                <Image
-                  src={macbookMain}
-                  alt="Airoflair platform preview"
-                  priority
-                  style={{ width: "100%", height: "auto" }}
-                />
+            <div className="heroImageWrap" style={{ justifySelf: "end", width: "100%", maxWidth: 980 }}>
+              <div style={{ width: "115%", marginLeft: "auto" }}>
+                <Image src={macbookMain} alt="Airoflair platform preview" priority style={{ width: "100%", height: "auto" }} />
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* INSPECT STRIP - full width, no rounded edges */}
+      {/* INSPECT STRIP */}
       <section id="products" className="strip">
         <div className="container">
           <div className="productGrid">
             <div>
               <h2 className="productTitle">Inspect</h2>
-              <p className="productDesc">
-                Use powerful, flexible templates to create and deliver inspection reports faster than ever
-              </p>
+              <p className="productDesc">Use powerful, flexible templates to create and deliver inspection reports faster than ever</p>
             </div>
 
             <div style={{ width: "100%" }}>
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "0.9fr 1.2fr 0.9fr",
-                  gap: 22,
-                  alignItems: "center",
-                }}
-              >
+              <div style={{ display: "grid", gridTemplateColumns: "0.9fr 1.2fr 0.9fr", gap: 22, alignItems: "center" }}>
                 <Image src={inspectLogo} alt="Airoflair Inspect" style={{ width: "100%", height: "auto", maxWidth: 320 }} />
                 <Image
                   src={inspectMacbook}
                   alt="Inspect web"
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    maxWidth: 520,
-                    justifySelf: "center",
-                  }}
+                  style={{ width: "100%", height: "auto", maxWidth: 520, justifySelf: "center" }}
                 />
                 <Image
                   src={inspectIphone}
                   alt="Inspect mobile"
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    maxWidth: 260,
-                    justifySelf: "end",
-                  }}
+                  style={{ width: "100%", height: "auto", maxWidth: 260, justifySelf: "end" }}
                 />
               </div>
             </div>
@@ -255,45 +231,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* QUICK INSPECT STRIP - full width, no rounded edges */}
+      {/* QUICK INSPECT STRIP */}
       <section className="stripWhite">
         <div className="container">
           <div className="productGrid">
             <div>
               <h2 className="productTitle">Quick Inspect</h2>
-              <p className="productDesc">
-                A fast, offline-ready inspection app for quick visual surveys and photo-rich reports
-              </p>
+              <p className="productDesc">A fast, offline-ready inspection app for quick visual surveys and photo-rich reports</p>
             </div>
 
             <div style={{ width: "100%" }}>
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "1.2fr 0.8fr",
-                  gap: 28,
-                  alignItems: "center",
-                }}
-              >
-                <Image
-                  src={quickInspectIphone}
-                  alt="Airoflair Quick Inspect"
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    maxWidth: 520,
-                  }}
-                />
-                <Image
-                  src={quickIcon}
-                  alt="Quick Inspect icon"
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    maxWidth: 260,
-                    justifySelf: "end",
-                  }}
-                />
+              <div style={{ display: "grid", gridTemplateColumns: "1.2fr 0.8fr", gap: 28, alignItems: "center" }}>
+                <Image src={quickInspectIphone} alt="Airoflair Quick Inspect" style={{ width: "100%", height: "auto", maxWidth: 520 }} />
+                <Image src={quickIcon} alt="Quick Inspect icon" style={{ width: "100%", height: "auto", maxWidth: 260, justifySelf: "end" }} />
               </div>
             </div>
 
@@ -302,12 +252,7 @@ export default function HomePage() {
                 <a href={quickInspectLinks.apple} target="_blank" rel="noreferrer" aria-label="Quick Inspect on App Store">
                   <Image src={appleStore} alt="App Store" width={140} height={42} style={{ height: 42, width: "auto" }} />
                 </a>
-                <a
-                  href={quickInspectLinks.google}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Quick Inspect on Google Play"
-                >
+                <a href={quickInspectLinks.google} target="_blank" rel="noreferrer" aria-label="Quick Inspect on Google Play">
                   <Image src={googlePlay} alt="Google Play" width={140} height={42} style={{ height: 42, width: "auto" }} />
                 </a>
               </div>
@@ -316,7 +261,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* DATA STRIP - full width, no rounded edges */}
+      {/* DATA STRIP */}
       <section className="strip">
         <div className="container">
           <div className="productGrid">
@@ -333,16 +278,7 @@ export default function HomePage() {
             </div>
 
             <div style={{ width: "100%" }}>
-              <Image
-                src={dataShot}
-                alt="Airoflair Data screens"
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  maxWidth: 820,
-                  margin: "0 auto",
-                }}
-              />
+              <Image src={dataShot} alt="Airoflair Data screens" style={{ width: "100%", height: "auto", maxWidth: 820, margin: "0 auto" }} />
             </div>
 
             <div className="productRight">
@@ -359,7 +295,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SPLITBILL STRIP - full width, no rounded edges */}
+      {/* SPLITBILL STRIP */}
       <section className="stripWhite">
         <div className="container">
           <div className="productGrid">
@@ -369,16 +305,7 @@ export default function HomePage() {
             </div>
 
             <div style={{ width: "100%" }}>
-              <Image
-                src={splitBillShot}
-                alt="SplitBill preview"
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  maxWidth: 760,
-                  margin: "0 auto",
-                }}
-              />
+              <Image src={splitBillShot} alt="SplitBill preview" style={{ width: "100%", height: "auto", maxWidth: 760, margin: "0 auto" }} />
             </div>
 
             <div className="productRight">
@@ -398,33 +325,24 @@ export default function HomePage() {
               <div className="featuresHeader">
                 <h2 style={{ margin: 0, fontSize: 34, fontWeight: 900 }}>Transform your inspections into impactful reports.</h2>
                 <p className="p" style={{ maxWidth: 900, marginTop: 10 }}>
-                  Airoflair turns your inspections into clear, secure reporting in real time. Data Collection made faster and
-                  easier.
+                  Airoflair turns your inspections into clear, secure reporting in real time. Data Collection made faster and easier.
                 </p>
               </div>
 
               <div className="featuresGrid">
                 <div className="featureCard">
                   <h3>Inspection reporting, streamlined</h3>
-                  <p>
-                    Capture observations, photos and findings fast then generate professional reports with consistent formatting
-                    across teams and projects.
-                  </p>
+                  <p>Capture observations, photos and findings fast then generate professional reports with consistent formatting across teams and projects.</p>
                 </div>
 
                 <div className="featureCard">
                   <h3>White-labeled portals &amp; apps</h3>
-                  <p>
-                    Rebrand the portal and mobile apps with your business name, logo and colours for a seamless, professional
-                    experience.
-                  </p>
+                  <p>Rebrand the portal and mobile apps with your business name, logo and colours for a seamless, professional experience.</p>
                 </div>
 
                 <div className="featureCard">
                   <h3>Custom workflows &amp; features</h3>
-                  <p>
-                    Tailor forms, templates and data fields to suit your operations from walkdowns to full campaign reporting.
-                  </p>
+                  <p>Tailor forms, templates and data fields to suit your operations from walkdowns to full campaign reporting.</p>
                 </div>
 
                 <div className="featureCard">
@@ -450,63 +368,18 @@ export default function HomePage() {
               <div className="contactGrid">
                 <form onSubmit={onSubmit}>
                   <div className="formGrid">
-                    <input
-                      className="input"
-                      placeholder="First Name"
-                      value={form.firstName}
-                      onChange={(e) => setForm({ ...form, firstName: e.target.value })}
-                      required
-                    />
-                    <input
-                      className="input"
-                      placeholder="Last Name"
-                      value={form.lastName}
-                      onChange={(e) => setForm({ ...form, lastName: e.target.value })}
-                      required
-                    />
+                    <input className="input" placeholder="First Name" value={form.firstName} onChange={(e) => setForm({ ...form, firstName: e.target.value })} required />
+                    <input className="input" placeholder="Last Name" value={form.lastName} onChange={(e) => setForm({ ...form, lastName: e.target.value })} required />
 
-                    <input
-                      className="input"
-                      placeholder="Contact No."
-                      value={form.phone}
-                      onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                      required
-                    />
-                    <input
-                      className="input"
-                      placeholder="Email"
-                      type="email"
-                      value={form.email}
-                      onChange={(e) => setForm({ ...form, email: e.target.value })}
-                      required
-                    />
+                    <input className="input" placeholder="Contact No." value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} required />
+                    <input className="input" placeholder="Email" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required />
 
                     <div className="formGridFull">
-                      <textarea
-                        className="textarea"
-                        placeholder="Message"
-                        value={form.message}
-                        onChange={(e) => setForm({ ...form, message: e.target.value })}
-                        required
-                      />
+                      <textarea className="textarea" placeholder="Message" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} required />
                     </div>
 
-                    <div
-                      className="formGridFull"
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: 12,
-                        flexWrap: "wrap",
-                        marginTop: 4,
-                      }}
-                    >
-                      <button
-                        type="submit"
-                        className="btn btnPrimary"
-                        disabled={status === "sending"}
-                        style={{ minWidth: 260 }}
-                      >
+                    <div className="formGridFull" style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap", marginTop: 4 }}>
+                      <button type="submit" className="btn btnPrimary" disabled={status === "sending"} style={{ minWidth: 260 }}>
                         {status === "sending" ? "Sending..." : "SEND MESSAGE"}
                       </button>
 
