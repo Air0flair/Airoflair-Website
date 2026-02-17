@@ -63,19 +63,19 @@ export default function HomePage() {
     []
   );
 
-  // Azure SWA Configuration:
+  // Azure SWA Environment variables:
   // NEXT_PUBLIC_CONTACT_ENDPOINT = <Logic App HTTP trigger URL>
   const contactEndpoint = (process.env.NEXT_PUBLIC_CONTACT_ENDPOINT || "").trim();
 
-  // reCAPTCHA v3 site key is injected globally from src/app/layout.tsx
-  // (window.__RECAPTCHA_SITE_KEY__), so client code doesn’t rely on process.env at runtime.
-  const getRecaptchaSiteKey = () => (typeof window !== "undefined" ? window.__RECAPTCHA_SITE_KEY__ || "" : "");
+  function getSiteKeyFromWindow() {
+    return (typeof window !== "undefined" ? (window.__RECAPTCHA_SITE_KEY__ || "") : "").trim();
+  }
 
   async function getRecaptchaToken(action: string) {
-    const recaptchaSiteKey = (getRecaptchaSiteKey() || "").trim();
-    if (!recaptchaSiteKey) {
+    const siteKey = getSiteKeyFromWindow();
+    if (!siteKey) {
       throw new Error(
-        "reCAPTCHA is not configured. Add NEXT_PUBLIC_RECAPTCHA_SITE_KEY in Azure Static Web Apps Environment variables and redeploy."
+        "reCAPTCHA is not configured. Ensure NEXT_PUBLIC_RECAPTCHA_SITE_KEY is set in Azure Static Web Apps → Environment variables (Production) and redeploy."
       );
     }
 
@@ -87,7 +87,7 @@ export default function HomePage() {
     const token = await new Promise<string>((resolve, reject) => {
       try {
         g.ready(() => {
-          g.execute(recaptchaSiteKey, { action })
+          g.execute(siteKey, { action })
             .then(resolve)
             .catch(reject);
         });
@@ -111,18 +111,16 @@ export default function HomePage() {
     try {
       if (!contactEndpoint) {
         throw new Error(
-          "Contact endpoint is not configured. Set NEXT_PUBLIC_CONTACT_ENDPOINT in Azure Static Web Apps Configuration."
+          "Contact endpoint is not configured. Set NEXT_PUBLIC_CONTACT_ENDPOINT in Azure Static Web Apps → Environment variables (Production) and redeploy."
         );
       }
 
-      // v3 token (invisible) – action name should be verified server-side too
       const recaptchaAction = "contact";
       const recaptchaToken = await getRecaptchaToken(recaptchaAction);
 
       const res = await fetch(contactEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        // must match the schema you added in the Logic App trigger
         body: JSON.stringify({
           firstName: form.firstName,
           lastName: form.lastName,
@@ -149,7 +147,7 @@ export default function HomePage() {
 
   return (
     <main>
-      {/* reCAPTCHA v3 script is loaded globally in src/app/layout.tsx */}
+      {/* NOTE: reCAPTCHA v3 is loaded globally in src/app/layout.tsx */}
 
       {/* HERO */}
       <section className="section">
