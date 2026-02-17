@@ -1,3 +1,4 @@
+// src/app/layout.tsx
 import "./globals.css";
 import { ReactNode } from "react";
 import Script from "next/script";
@@ -7,7 +8,7 @@ import Footer from "@/components/Footer";
 
 const GA_ID = "G-CB9WEQEB2Y";
 
-// IMPORTANT: this is read at build time (SWA injects env vars during build)
+// NOTE: This is injected at build-time. You MUST redeploy after changing SWA env vars.
 const RECAPTCHA_SITE_KEY = (process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "").trim();
 
 export const metadata = {
@@ -30,14 +31,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           `}
         </Script>
 
-        {/* Expose site key to client code (page.tsx reads this) */}
+        {/* Expose the key to client runtime (page.tsx reads window.__RECAPTCHA_SITE_KEY__) */}
         <Script id="recaptcha-site-key" strategy="beforeInteractive">
-          {`
-            window.__RECAPTCHA_SITE_KEY__ = ${JSON.stringify(RECAPTCHA_SITE_KEY)};
-          `}
+          {`window.__RECAPTCHA_SITE_KEY__ = ${JSON.stringify(RECAPTCHA_SITE_KEY)};`}
         </Script>
 
-        {/* Load reCAPTCHA v3 globally */}
+        {/* Load reCAPTCHA v3 (only if key exists) */}
         {RECAPTCHA_SITE_KEY ? (
           <Script
             src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`}

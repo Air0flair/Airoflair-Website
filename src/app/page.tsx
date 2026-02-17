@@ -35,18 +35,6 @@ declare global {
   }
 }
 
-function sleep(ms: number) {
-  return new Promise((r) => setTimeout(r, ms));
-}
-
-async function waitForRecaptcha(maxWaitMs = 6000) {
-  const start = Date.now();
-  while (Date.now() - start < maxWaitMs) {
-    if (typeof window !== "undefined" && window.grecaptcha) return;
-    await sleep(150);
-  }
-}
-
 export default function HomePage() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState<string>("");
@@ -75,24 +63,23 @@ export default function HomePage() {
     []
   );
 
-  // Azure SWA Environment variables:
+  // Azure SWA Environment variables (available at build-time)
   // NEXT_PUBLIC_CONTACT_ENDPOINT = <Logic App HTTP trigger URL>
   const contactEndpoint = (process.env.NEXT_PUBLIC_CONTACT_ENDPOINT || "").trim();
 
-  function getSiteKeyFromWindow() {
-    return (typeof window !== "undefined" ? window.__RECAPTCHA_SITE_KEY__ || "" : "").trim();
+  function getSiteKey() {
+    // We set window.__RECAPTCHA_SITE_KEY__ in layout.tsx (beforeInteractive),
+    // so we can read it at runtime on the client.
+    return (typeof window !== "undefined" ? (window.__RECAPTCHA_SITE_KEY__ || "") : "").trim();
   }
 
   async function getRecaptchaToken(action: string) {
-    const siteKey = getSiteKeyFromWindow();
+    const siteKey = getSiteKey();
     if (!siteKey) {
       throw new Error(
         "reCAPTCHA is not configured. Ensure NEXT_PUBLIC_RECAPTCHA_SITE_KEY is set in Azure Static Web Apps → Environment variables (Production) and redeploy."
       );
     }
-
-    // Wait a bit for the script to load (prevents first-click failures)
-    await waitForRecaptcha();
 
     const g = window.grecaptcha;
     if (!g) {
@@ -188,9 +175,21 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="heroImageWrap" style={{ justifySelf: "end", width: "100%", maxWidth: 980 }}>
+            <div
+              className="heroImageWrap"
+              style={{
+                justifySelf: "end",
+                width: "100%",
+                maxWidth: 980,
+              }}
+            >
               <div style={{ width: "115%", marginLeft: "auto" }}>
-                <Image src={macbookMain} alt="Airoflair platform preview" priority style={{ width: "100%", height: "auto" }} />
+                <Image
+                  src={macbookMain}
+                  alt="Airoflair platform preview"
+                  priority
+                  style={{ width: "100%", height: "auto" }}
+                />
               </div>
             </div>
           </div>
@@ -203,11 +202,20 @@ export default function HomePage() {
           <div className="productGrid">
             <div>
               <h2 className="productTitle">Inspect</h2>
-              <p className="productDesc">Use powerful, flexible templates to create and deliver inspection reports faster than ever</p>
+              <p className="productDesc">
+                Use powerful, flexible templates to create and deliver inspection reports faster than ever
+              </p>
             </div>
 
             <div style={{ width: "100%" }}>
-              <div style={{ display: "grid", gridTemplateColumns: "0.9fr 1.2fr 0.9fr", gap: 22, alignItems: "center" }}>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "0.9fr 1.2fr 0.9fr",
+                  gap: 22,
+                  alignItems: "center",
+                }}
+              >
                 <Image src={inspectLogo} alt="Airoflair Inspect" style={{ width: "100%", height: "auto", maxWidth: 320 }} />
                 <Image
                   src={inspectMacbook}
@@ -242,8 +250,16 @@ export default function HomePage() {
 
             <div style={{ width: "100%" }}>
               <div style={{ display: "grid", gridTemplateColumns: "1.2fr 0.8fr", gap: 28, alignItems: "center" }}>
-                <Image src={quickInspectIphone} alt="Airoflair Quick Inspect" style={{ width: "100%", height: "auto", maxWidth: 520 }} />
-                <Image src={quickIcon} alt="Quick Inspect icon" style={{ width: "100%", height: "auto", maxWidth: 260, justifySelf: "end" }} />
+                <Image
+                  src={quickInspectIphone}
+                  alt="Airoflair Quick Inspect"
+                  style={{ width: "100%", height: "auto", maxWidth: 520 }}
+                />
+                <Image
+                  src={quickIcon}
+                  alt="Quick Inspect icon"
+                  style={{ width: "100%", height: "auto", maxWidth: 260, justifySelf: "end" }}
+                />
               </div>
             </div>
 
@@ -278,7 +294,11 @@ export default function HomePage() {
             </div>
 
             <div style={{ width: "100%" }}>
-              <Image src={dataShot} alt="Airoflair Data screens" style={{ width: "100%", height: "auto", maxWidth: 820, margin: "0 auto" }} />
+              <Image
+                src={dataShot}
+                alt="Airoflair Data screens"
+                style={{ width: "100%", height: "auto", maxWidth: 820, margin: "0 auto" }}
+              />
             </div>
 
             <div className="productRight">
@@ -305,7 +325,11 @@ export default function HomePage() {
             </div>
 
             <div style={{ width: "100%" }}>
-              <Image src={splitBillShot} alt="SplitBill preview" style={{ width: "100%", height: "auto", maxWidth: 760, margin: "0 auto" }} />
+              <Image
+                src={splitBillShot}
+                alt="SplitBill preview"
+                style={{ width: "100%", height: "auto", maxWidth: 760, margin: "0 auto" }}
+              />
             </div>
 
             <div className="productRight">
@@ -317,7 +341,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SERVICES / FEATURES */}
+      {/* SERVICES */}
       <section id="services" className="strip">
         <div className="container">
           <div className="featuresWrap panel">
@@ -332,17 +356,23 @@ export default function HomePage() {
               <div className="featuresGrid">
                 <div className="featureCard">
                   <h3>Inspection reporting, streamlined</h3>
-                  <p>Capture observations, photos and findings fast then generate professional reports with consistent formatting across teams and projects.</p>
+                  <p>
+                    Capture observations, photos and findings fast then generate professional reports with consistent formatting across teams and projects.
+                  </p>
                 </div>
 
                 <div className="featureCard">
                   <h3>White-labeled portals &amp; apps</h3>
-                  <p>Rebrand the portal and mobile apps with your business name, logo and colours for a seamless, professional experience.</p>
+                  <p>
+                    Rebrand the portal and mobile apps with your business name, logo and colours for a seamless, professional experience.
+                  </p>
                 </div>
 
                 <div className="featureCard">
                   <h3>Custom workflows &amp; features</h3>
-                  <p>Tailor forms, templates and data fields to suit your operations from walkdowns to full campaign reporting.</p>
+                  <p>
+                    Tailor forms, templates and data fields to suit your operations from walkdowns to full campaign reporting.
+                  </p>
                 </div>
 
                 <div className="featureCard">
@@ -368,14 +398,45 @@ export default function HomePage() {
               <div className="contactGrid">
                 <form onSubmit={onSubmit}>
                   <div className="formGrid">
-                    <input className="input" placeholder="First Name" value={form.firstName} onChange={(e) => setForm({ ...form, firstName: e.target.value })} required />
-                    <input className="input" placeholder="Last Name" value={form.lastName} onChange={(e) => setForm({ ...form, lastName: e.target.value })} required />
+                    <input
+                      className="input"
+                      placeholder="First Name"
+                      value={form.firstName}
+                      onChange={(e) => setForm({ ...form, firstName: e.target.value })}
+                      required
+                    />
+                    <input
+                      className="input"
+                      placeholder="Last Name"
+                      value={form.lastName}
+                      onChange={(e) => setForm({ ...form, lastName: e.target.value })}
+                      required
+                    />
 
-                    <input className="input" placeholder="Contact No." value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} required />
-                    <input className="input" placeholder="Email" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required />
+                    <input
+                      className="input"
+                      placeholder="Contact No."
+                      value={form.phone}
+                      onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                      required
+                    />
+                    <input
+                      className="input"
+                      placeholder="Email"
+                      type="email"
+                      value={form.email}
+                      onChange={(e) => setForm({ ...form, email: e.target.value })}
+                      required
+                    />
 
                     <div className="formGridFull">
-                      <textarea className="textarea" placeholder="Message" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} required />
+                      <textarea
+                        className="textarea"
+                        placeholder="Message"
+                        value={form.message}
+                        onChange={(e) => setForm({ ...form, message: e.target.value })}
+                        required
+                      />
                     </div>
 
                     <div className="formGridFull" style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap", marginTop: 4 }}>
@@ -415,6 +476,9 @@ export default function HomePage() {
                   </div>
                 </aside>
               </div>
+
+              {/* This text will show only if site key is missing at runtime */}
+              {/* (You’ll remove it naturally once SWA redeploy picks up the env var) */}
             </div>
           </div>
         </div>
