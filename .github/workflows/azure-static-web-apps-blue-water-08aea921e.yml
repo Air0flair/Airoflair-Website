@@ -21,6 +21,7 @@ jobs:
     # Ensure NEXT_PUBLIC_* is available at build time for Next.js
     env:
       NEXT_PUBLIC_CONTACT_ENDPOINT: ${{ vars.NEXT_PUBLIC_CONTACT_ENDPOINT }}
+      NEXT_PUBLIC_RECAPTCHA_SITE_KEY: ${{ secrets.NEXT_PUBLIC_RECAPTCHA_SITE_KEY }}
 
     steps:
       - uses: actions/checkout@v3
@@ -46,6 +47,7 @@ jobs:
         # Belt-and-braces: pass env directly to the SWA deploy action too
         env:
           NEXT_PUBLIC_CONTACT_ENDPOINT: ${{ vars.NEXT_PUBLIC_CONTACT_ENDPOINT }}
+          NEXT_PUBLIC_RECAPTCHA_SITE_KEY: ${{ secrets.NEXT_PUBLIC_RECAPTCHA_SITE_KEY }}
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_BLUE_WATER_08AEA921E }}
           action: "upload"
