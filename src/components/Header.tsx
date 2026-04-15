@@ -1,5 +1,3 @@
-// src/components/Header.tsx
-
 "use client";
 
 import { useMemo, useState } from "react";
@@ -14,7 +12,7 @@ export default function Header() {
   const nav = useMemo(
     () => [
       { label: "Products", href: "/#products" },
-      { label: "Services", href: "/#services" },
+      { label: "Platform", href: "/#platform" },
       { label: "Contact", href: "/#contact" },
     ],
     []
@@ -28,38 +26,22 @@ export default function Header() {
             href="/"
             aria-label="Airoflair Home"
             onClick={() => setOpen(false)}
+            className="brandLink"
           >
             <Image
               src={logo}
               alt="Airoflair"
               priority
-              style={{ width: 170, height: "auto" }}
+              style={{ width: 178, height: "auto" }}
             />
           </Link>
 
           <nav className="navRow" aria-label="Primary">
-            {nav.map((n) => (
-              <a key={n.href} className="navLink" href={n.href}>
-                {n.label}
+            {nav.map((item) => (
+              <a key={item.href} className="navLink" href={item.href}>
+                {item.label}
               </a>
             ))}
-
-            <a
-              className="inspectBtn"
-              href="https://inspect.airoflair.com"
-              target="_blank"
-              rel="noreferrer"
-              // Force perfect centering regardless of existing CSS
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                textAlign: "center",
-                whiteSpace: "nowrap",
-              }}
-            >
-              Inspect Login
-            </a>
           </nav>
 
           <button
@@ -79,34 +61,16 @@ export default function Header() {
         {open && (
           <div className="mobileMenu">
             <div className="mobileMenuInner">
-              {nav.map((n) => (
+              {nav.map((item) => (
                 <a
-                  key={n.href}
+                  key={item.href}
                   className="btn"
-                  href={n.href}
+                  href={item.href}
                   onClick={() => setOpen(false)}
                 >
-                  {n.label}
+                  {item.label}
                 </a>
               ))}
-
-              <a
-                className="btn btnPrimary"
-                href="https://inspect.airoflair.com"
-                target="_blank"
-                rel="noreferrer"
-                onClick={() => setOpen(false)}
-                // Force perfect centering regardless of existing CSS
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  textAlign: "center",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                Inspect Login
-              </a>
             </div>
           </div>
         )}
