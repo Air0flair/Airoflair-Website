@@ -195,48 +195,35 @@ export default function HomePage() {
               </div>
 
               <div className="heroVisual">
-                <div className="heroVisualBoxes">
-                  <div className="showcaseCard heroBoxTall heroIconBox heroIconBoxTall">
-                    <div className="heroIconImageStage">
-                      <Image
-                        src={inspectIcon}
-                        alt="Airoflair Inspect icon"
-                        className="heroIconImage heroIconImageTall heroIconStatic"
-                        priority
-                      />
-                    </div>
+                <div className="heroAnimationPanel" aria-hidden="true">
+                  <div className="heroAnimationGlow" />
+
+                  <div className="heroShard heroShard1">
+                    <Image src={inspectIcon} alt="" className="heroShardImage" />
+                  </div>
+                  <div className="heroShard heroShard2">
+                    <Image src={inspectIcon} alt="" className="heroShardImage" />
+                  </div>
+                  <div className="heroShard heroShard3">
+                    <Image src={inspectIcon} alt="" className="heroShardImage" />
+                  </div>
+                  <div className="heroShard heroShard4">
+                    <Image src={inspectIcon} alt="" className="heroShardImage" />
+                  </div>
+                  <div className="heroShard heroShard5">
+                    <Image src={inspectIcon} alt="" className="heroShardImage" />
+                  </div>
+                  <div className="heroShard heroShard6">
+                    <Image src={inspectIcon} alt="" className="heroShardImage" />
                   </div>
 
-                  <div className="heroRightAnimator" aria-hidden="true">
-                    <div className="showcaseCard heroBoxSmall heroIconBox heroIconBoxTop motionTopBox">
-                      <div className="heroIconImageStage">
-                        <Image
-                          src={inspectIcon}
-                          alt=""
-                          className="heroIconImage heroIconImageTop"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="showcaseCard heroBoxSmall heroIconBox heroIconBoxBottom motionBottomBox">
-                      <div className="heroIconImageStage">
-                        <Image
-                          src={inspectIcon}
-                          alt=""
-                          className="heroIconImage heroIconImageBottom"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="showcaseCard heroMergedBox heroIconBox">
-                      <div className="heroIconImageStage">
-                        <Image
-                          src={inspectIcon}
-                          alt=""
-                          className="heroIconImage heroIconImageMerged"
-                        />
-                      </div>
-                    </div>
+                  <div className="heroMainIconWrap">
+                    <Image
+                      src={inspectIcon}
+                      alt="Airoflair Inspect icon"
+                      className="heroMainIcon"
+                      priority
+                    />
                   </div>
                 </div>
               </div>
