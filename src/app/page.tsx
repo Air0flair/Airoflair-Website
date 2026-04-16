@@ -196,17 +196,37 @@ export default function HomePage() {
 
               <div className="heroVisual">
                 <div className="heroVisualBoxes">
-                  <div className="showcaseCard showcaseTall heroBoxTall" />
-                  <div className="showcaseCard heroBoxSmall" />
-                  <div className="showcaseCard heroBoxSmall" />
+                  <div className="showcaseCard heroBoxTall heroIconBox heroIconBoxTall">
+                    <div className="heroIconImageStage">
+                      <Image
+                        src={inspectIcon}
+                        alt="Airoflair Inspect icon"
+                        className="heroIconImage heroIconImageTall"
+                        priority
+                      />
+                    </div>
+                  </div>
 
-                  <div className="heroIconOverlay" aria-hidden="true">
-                    <Image
-                      src={inspectIcon}
-                      alt="Airoflair Inspect icon"
-                      className="heroIconOverlayImage"
-                      priority
-                    />
+                  <div className="showcaseCard heroBoxSmall heroIconBox heroIconBoxTop">
+                    <div className="heroIconImageStage">
+                      <Image
+                        src={inspectIcon}
+                        alt=""
+                        aria-hidden="true"
+                        className="heroIconImage heroIconImageTop"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="showcaseCard heroBoxSmall heroIconBox heroIconBoxBottom">
+                    <div className="heroIconImageStage">
+                      <Image
+                        src={inspectIcon}
+                        alt=""
+                        aria-hidden="true"
+                        className="heroIconImage heroIconImageBottom"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>

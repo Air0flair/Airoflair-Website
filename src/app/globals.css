@@ -414,28 +414,81 @@ img {
   overflow: hidden;
   border-radius: 24px;
   border: 1px solid rgba(230, 234, 242, 0.9);
-  background: #f8f9fc;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(244, 247, 252, 0.95) 100%);
   box-shadow: var(--shadow2);
   min-height: 220px;
 }
 
-.heroIconOverlay {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  pointer-events: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 22px;
+.heroIconBox {
+  isolation: isolate;
 }
 
-.heroIconOverlayImage {
-  width: 94%;
-  height: 94%;
-  object-fit: contain;
-  transform: scale(1.18);
-  filter: drop-shadow(0 16px 28px rgba(42, 47, 143, 0.14));
+.heroIconBox::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(27, 108, 255, 0.08), transparent 50%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
+  z-index: 1;
+  pointer-events: none;
+}
+
+.heroIconImageStage {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.heroIconImage {
+  position: absolute;
+  width: 235%;
+  max-width: none;
+  height: auto;
+  left: 50%;
+  top: 50%;
+  transform-origin: center center;
+  animation: heroIconFloat 7s ease-in-out infinite;
+  filter:
+    drop-shadow(0 28px 44px rgba(42, 47, 143, 0.16))
+    drop-shadow(0 10px 18px rgba(0, 163, 255, 0.12));
+  user-select: none;
+  pointer-events: none;
+}
+
+.heroIconImageTall {
+  transform: translate(-26%, -49%) scale(1.08) rotate(-1.5deg);
+}
+
+.heroIconImageTop {
+  transform: translate(-70.5%, -49%) scale(1.08) rotate(-1.5deg);
+}
+
+.heroIconImageBottom {
+  transform: translate(-70.5%, -149.5%) scale(1.08) rotate(-1.5deg);
+}
+
+@keyframes heroIconFloat {
+  0% {
+    margin-top: 0;
+    filter:
+      drop-shadow(0 28px 44px rgba(42, 47, 143, 0.16))
+      drop-shadow(0 10px 18px rgba(0, 163, 255, 0.12));
+  }
+  50% {
+    margin-top: -8px;
+    filter:
+      drop-shadow(0 34px 54px rgba(42, 47, 143, 0.2))
+      drop-shadow(0 12px 22px rgba(0, 163, 255, 0.16));
+  }
+  100% {
+    margin-top: 0;
+    filter:
+      drop-shadow(0 28px 44px rgba(42, 47, 143, 0.16))
+      drop-shadow(0 10px 18px rgba(0, 163, 255, 0.12));
+  }
 }
 
 .showcaseImage,
@@ -687,6 +740,10 @@ img {
   .galleryGridThree {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .heroIconImage {
+    width: 250%;
+  }
 }
 
 @media (max-width: 980px) {
@@ -716,6 +773,10 @@ img {
   .heroBoxTall {
     grid-row: 1 / span 2;
     grid-column: 1;
+  }
+
+  .heroIconImage {
+    width: 235%;
   }
 
   .contactRight {
@@ -781,14 +842,16 @@ img {
     min-height: auto;
   }
 
-  .heroIconOverlay {
-    padding: 16px;
+  .heroIconImage {
+    width: 125%;
+    left: 50%;
+    top: 50%;
   }
 
-  .heroIconOverlayImage {
-    width: 88%;
-    height: auto;
-    transform: scale(1.05);
+  .heroIconImageTall,
+  .heroIconImageTop,
+  .heroIconImageBottom {
+    transform: translate(-50%, -50%) scale(1.05) rotate(-1deg);
   }
 
   .galleryItemLarge,
