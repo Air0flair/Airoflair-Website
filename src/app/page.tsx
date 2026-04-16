@@ -195,8 +195,18 @@ export default function HomePage() {
               </div>
 
               <div className="heroVisual">
-                <div className="heroAnimationPanel" aria-hidden="true">
-                  <div className="heroAnimationGlow" />
+                <div className="heroOpenStage" aria-hidden="true">
+                  <div className="heroAmbientGlow heroAmbientGlowOne" />
+                  <div className="heroAmbientGlow heroAmbientGlowTwo" />
+
+                  <div className="heroMainIconWrap">
+                    <Image
+                      src={inspectIcon}
+                      alt="Airoflair Inspect icon"
+                      className="heroMainIcon"
+                      priority
+                    />
+                  </div>
 
                   <div className="heroShard heroShard1">
                     <Image src={inspectIcon} alt="" className="heroShardImage" />
@@ -216,14 +226,11 @@ export default function HomePage() {
                   <div className="heroShard heroShard6">
                     <Image src={inspectIcon} alt="" className="heroShardImage" />
                   </div>
-
-                  <div className="heroMainIconWrap">
-                    <Image
-                      src={inspectIcon}
-                      alt="Airoflair Inspect icon"
-                      className="heroMainIcon"
-                      priority
-                    />
+                  <div className="heroShard heroShard7">
+                    <Image src={inspectIcon} alt="" className="heroShardImage" />
+                  </div>
+                  <div className="heroShard heroShard8">
+                    <Image src={inspectIcon} alt="" className="heroShardImage" />
                   </div>
                 </div>
               </div>
