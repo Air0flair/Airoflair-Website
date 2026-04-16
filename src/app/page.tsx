@@ -156,14 +156,12 @@ export default function HomePage() {
           <div className="heroShell">
             <div className="heroGrid">
               <div className="heroCopy">
-                <span className="eyebrow heroEyebrow">Engineering Digital Tools</span>
-
-                <h1 className="h1">
-                  Professional digital tools
+                <h1 className="h1 heroMainTitle">
+                  Engineering Data Systems
                   <br />
-                  for inspections,
-                  <br />
-                  reporting and field work
+                  <span className="gradientText">
+                    Making Inspection Reporting Faster, Simpler, and More Organized.
+                  </span>
                 </h1>
 
                 <p className="p heroLead">
@@ -197,19 +195,18 @@ export default function HomePage() {
               </div>
 
               <div className="heroVisual">
-                <div className="heroVisualGrid heroVisualGridCustom">
-                  <div className="showcaseCard showcaseTall showcaseIconPanel">
-                    <div className="inspectIconWrap">
-                      <Image src={inspectIcon} alt="Airoflair Inspect icon" className="inspectHeroIcon" priority />
-                    </div>
-                  </div>
+                <div className="heroVisualBoxes">
+                  <div className="showcaseCard showcaseTall heroBoxTall" />
+                  <div className="showcaseCard heroBoxSmall" />
+                  <div className="showcaseCard heroBoxSmall" />
 
-                  <div className="showcaseCard">
-                    <Image src={inspectShot3} alt="Airoflair Inspect screen" className="showcaseImage" priority />
-                  </div>
-
-                  <div className="showcaseCard">
-                    <Image src={inspectShot4} alt="Airoflair Inspect screen" className="showcaseImage" priority />
+                  <div className="heroIconOverlay" aria-hidden="true">
+                    <Image
+                      src={inspectIcon}
+                      alt="Airoflair Inspect icon"
+                      className="heroIconOverlayImage"
+                      priority
+                    />
                   </div>
                 </div>
               </div>

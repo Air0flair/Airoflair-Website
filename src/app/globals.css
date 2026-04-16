@@ -102,6 +102,10 @@ img {
   font-weight: 900;
 }
 
+.heroMainTitle {
+  max-width: 760px;
+}
+
 .p {
   margin: 0;
   color: var(--muted);
@@ -125,15 +129,6 @@ img {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-bottom: 18px;
-}
-
-.heroEyebrow {
-  padding: 10px 16px;
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  background: linear-gradient(135deg, rgba(42, 47, 143, 0.12), rgba(0, 163, 255, 0.12));
-  border: 1px solid rgba(42, 47, 143, 0.14);
-  box-shadow: 0 8px 24px rgba(42, 47, 143, 0.08);
 }
 
 .productsEyebrow {
@@ -247,7 +242,7 @@ img {
   align-items: center;
 }
 
-.brandLink img {
+.headerLogo {
   width: 267px !important;
   height: auto !important;
 }
@@ -396,15 +391,22 @@ img {
   position: relative;
 }
 
-.heroVisualGrid {
+.heroVisualBoxes {
+  position: relative;
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
-  gap: 16px;
-  align-items: stretch;
+  grid-template-rows: 1fr 1fr;
+  gap: 18px;
+  min-height: 490px;
 }
 
-.heroVisualGridCustom {
-  grid-template-columns: 1.05fr 0.95fr;
+.heroBoxTall {
+  grid-row: 1 / span 2;
+  grid-column: 1;
+}
+
+.heroBoxSmall {
+  grid-column: 2;
 }
 
 .showcaseCard {
@@ -412,33 +414,28 @@ img {
   overflow: hidden;
   border-radius: 24px;
   border: 1px solid rgba(230, 234, 242, 0.9);
-  background: #fff;
+  background: #f8f9fc;
   box-shadow: var(--shadow2);
   min-height: 220px;
 }
 
-.showcaseTall {
-  grid-row: span 2;
-}
-
-.showcaseIconPanel {
-  background: linear-gradient(180deg, #fbfcff 0%, #f4f8ff 100%);
-}
-
-.inspectIconWrap {
+.heroIconOverlay {
   position: absolute;
   inset: 0;
+  z-index: 3;
+  pointer-events: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 28px;
+  padding: 22px;
 }
 
-.inspectHeroIcon {
-  width: 88%;
-  height: auto;
+.heroIconOverlayImage {
+  width: 94%;
+  height: 94%;
   object-fit: contain;
-  filter: drop-shadow(0 18px 28px rgba(42, 47, 143, 0.16));
+  transform: scale(1.18);
+  filter: drop-shadow(0 16px 28px rgba(42, 47, 143, 0.14));
 }
 
 .showcaseImage,
@@ -711,17 +708,14 @@ img {
     padding: 22px 0 24px 0;
   }
 
-  .heroVisualGrid,
-  .heroVisualGridCustom {
+  .heroVisualBoxes {
     grid-template-columns: 1fr 1fr;
+    min-height: 420px;
   }
 
-  .showcaseTall {
-    grid-row: span 1;
-  }
-
-  .galleryGridThree {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .heroBoxTall {
+    grid-row: 1 / span 2;
+    grid-column: 1;
   }
 
   .contactRight {
@@ -756,7 +750,7 @@ img {
     font-size: 30px;
   }
 
-  .brandLink img {
+  .headerLogo {
     width: 220px !important;
   }
 }
@@ -766,17 +760,41 @@ img {
     font-size: 40px;
   }
 
-  .heroVisualGrid,
-  .heroVisualGridCustom,
+  .heroVisualBoxes,
   .galleryGridFour,
   .galleryGridTwo,
   .galleryGridThree {
     grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .heroBoxTall {
+    grid-row: auto;
+    grid-column: auto;
+  }
+
+  .heroBoxSmall {
+    grid-column: auto;
+  }
+
+  .heroVisualBoxes {
+    min-height: auto;
+  }
+
+  .heroIconOverlay {
+    padding: 16px;
+  }
+
+  .heroIconOverlayImage {
+    width: 88%;
+    height: auto;
+    transform: scale(1.05);
   }
 
   .galleryItemLarge,
   .galleryItemWide,
-  .galleryItem {
+  .galleryItem,
+  .showcaseCard {
     min-height: 240px;
   }
 
@@ -786,7 +804,7 @@ img {
     padding: 22px;
   }
 
-  .brandLink img {
+  .headerLogo {
     width: 190px !important;
   }
 }
