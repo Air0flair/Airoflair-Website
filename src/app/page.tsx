@@ -201,31 +201,41 @@ export default function HomePage() {
                       <Image
                         src={inspectIcon}
                         alt="Airoflair Inspect icon"
-                        className="heroIconImage heroIconImageTall"
+                        className="heroIconImage heroIconImageTall heroIconStatic"
                         priority
                       />
                     </div>
                   </div>
 
-                  <div className="showcaseCard heroBoxSmall heroIconBox heroIconBoxTop">
-                    <div className="heroIconImageStage">
-                      <Image
-                        src={inspectIcon}
-                        alt=""
-                        aria-hidden="true"
-                        className="heroIconImage heroIconImageTop"
-                      />
+                  <div className="heroRightAnimator" aria-hidden="true">
+                    <div className="showcaseCard heroBoxSmall heroIconBox heroIconBoxTop motionTopBox">
+                      <div className="heroIconImageStage">
+                        <Image
+                          src={inspectIcon}
+                          alt=""
+                          className="heroIconImage heroIconImageTop"
+                        />
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="showcaseCard heroBoxSmall heroIconBox heroIconBoxBottom">
-                    <div className="heroIconImageStage">
-                      <Image
-                        src={inspectIcon}
-                        alt=""
-                        aria-hidden="true"
-                        className="heroIconImage heroIconImageBottom"
-                      />
+                    <div className="showcaseCard heroBoxSmall heroIconBox heroIconBoxBottom motionBottomBox">
+                      <div className="heroIconImageStage">
+                        <Image
+                          src={inspectIcon}
+                          alt=""
+                          className="heroIconImage heroIconImageBottom"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="showcaseCard heroMergedBox heroIconBox">
+                      <div className="heroIconImageStage">
+                        <Image
+                          src={inspectIcon}
+                          alt=""
+                          className="heroIconImage heroIconImageMerged"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
