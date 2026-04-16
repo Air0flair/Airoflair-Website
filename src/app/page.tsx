@@ -4,6 +4,7 @@ import React, { useMemo, useState } from "react";
 import Image from "next/image";
 
 import inspectLogo from "@/assets/images/inspectlogo.png";
+import inspectIcon from "@/assets/images/inspecticon.png";
 import inspectShot1 from "@/assets/images/Airoflair Inspect 1.png";
 import inspectShot2 from "@/assets/images/Airoflair Inspect 2.png";
 import inspectShot3 from "@/assets/images/Airoflair Inspect 3.png";
@@ -155,18 +156,19 @@ export default function HomePage() {
           <div className="heroShell">
             <div className="heroGrid">
               <div className="heroCopy">
-                <span className="eyebrow">Airoflair digital tools</span>
+                <span className="eyebrow heroEyebrow">Engineering Digital Tools</span>
+
                 <h1 className="h1">
-                  Inspection, reporting
+                  Professional digital tools
                   <br />
-                  and field tools built
+                  for inspections,
                   <br />
-                  <span className="gradientText">to look professional</span>
+                  reporting and field work
                 </h1>
 
                 <p className="p heroLead">
-                  Airoflair brings together professional inspection workflows, fast mobile reporting,
-                  engineering calculators and everyday utility tools in one polished ecosystem.
+                  Airoflair develops clean, practical mobile tools for inspection teams, engineers and
+                  field professionals who need reliable workflows, structured reporting and polished output.
                 </p>
 
                 <div className="heroActions">
@@ -181,32 +183,33 @@ export default function HomePage() {
                 <div className="heroStats">
                   <div className="statCard">
                     <strong>Inspect</strong>
-                    <span>Flexible professional inspection workflows</span>
+                    <span>Advanced inspection workflows for professional reporting and structured field capture.</span>
                   </div>
                   <div className="statCard">
                     <strong>Quick Inspect</strong>
-                    <span>Fast offline visual reporting</span>
+                    <span>Fast offline visual inspections with simple report creation on site.</span>
                   </div>
                   <div className="statCard">
                     <strong>Data &amp; SplitBill</strong>
-                    <span>Engineering tools and simple utilities</span>
+                    <span>Useful engineering tools and practical everyday calculators in one ecosystem.</span>
                   </div>
                 </div>
               </div>
 
               <div className="heroVisual">
-                <div className="heroVisualGrid">
-                  <div className="showcaseCard showcaseTall">
-                    <Image src={inspectShot1} alt="Airoflair Inspect screen" className="showcaseImage" priority />
+                <div className="heroVisualGrid heroVisualGridCustom">
+                  <div className="showcaseCard showcaseTall showcaseIconPanel">
+                    <div className="inspectIconWrap">
+                      <Image src={inspectIcon} alt="Airoflair Inspect icon" className="inspectHeroIcon" priority />
+                    </div>
                   </div>
+
                   <div className="showcaseCard">
-                    <Image src={quickShot1} alt="Airoflair Quick Inspect screen" className="showcaseImage" priority />
+                    <Image src={inspectShot3} alt="Airoflair Inspect screen" className="showcaseImage" priority />
                   </div>
+
                   <div className="showcaseCard">
-                    <Image src={dataShot1} alt="Airoflair Data screen" className="showcaseImage" priority />
-                  </div>
-                  <div className="showcaseCard showcaseWide">
-                    <Image src={splitBillShot} alt="SplitBill preview" className="showcaseImage" priority />
+                    <Image src={inspectShot4} alt="Airoflair Inspect screen" className="showcaseImage" priority />
                   </div>
                 </div>
               </div>
@@ -218,11 +221,11 @@ export default function HomePage() {
       <section id="products" className="section productSection">
         <div className="container sectionStack">
           <div className="sectionIntro centerIntro">
-            <span className="eyebrow">Products</span>
+            <span className="eyebrow productsEyebrow">Products</span>
             <h2 className="sectionTitle">Purpose-built apps for real work in the field</h2>
             <p className="sectionText">
-              Each product has a clear role, consistent branding and a cleaner presentation so the
-              website feels like one professional product family.
+              Airoflair products are designed to solve real workflow needs, from structured inspection
+              reporting to fast offline capture, engineering calculations and simple utility tools.
             </p>
           </div>
 
@@ -235,12 +238,12 @@ export default function HomePage() {
                 <h3 className="productHeading">Airoflair Inspect</h3>
                 <p className="productText">
                   Professional inspection reporting with structured templates, cleaner workflows and a
-                  polished mobile experience for teams that need consistent output.
+                  polished mobile experience for teams that need consistency, speed and professional output.
                 </p>
                 <ul className="productBullets">
                   <li>Structured inspection templates</li>
                   <li>Professional field data capture</li>
-                  <li>Designed for operational teams and reporting consistency</li>
+                  <li>Clear, consistent reporting output</li>
                 </ul>
                 <div className="badgeRow">
                   <a href={appLinks.inspect.apple} target="_blank" rel="noreferrer" aria-label="Airoflair Inspect on the App Store">
@@ -287,13 +290,13 @@ export default function HomePage() {
                 </div>
                 <h3 className="productHeading">Airoflair Quick Inspect</h3>
                 <p className="productText">
-                  A simpler inspection app focused on quick visual reports, photo capture and fast
-                  offline use when you need to get the job done without extra complexity.
+                  A simpler inspection app focused on fast visual reporting, photo capture and efficient
+                  offline use when you need to work quickly without losing professionalism.
                 </p>
                 <ul className="productBullets">
                   <li>Quick offline inspection workflows</li>
-                  <li>Photo-rich reporting for fast site use</li>
-                  <li>Clean mobile-first experience</li>
+                  <li>Photo-rich reporting for site use</li>
+                  <li>Simple, clean mobile-first experience</li>
                 </ul>
                 <div className="badgeRow">
                   <a href={appLinks.quickInspect.apple} target="_blank" rel="noreferrer" aria-label="Airoflair Quick Inspect on the App Store">
@@ -316,8 +319,8 @@ export default function HomePage() {
                 </div>
                 <h3 className="productHeading">Airoflair Data</h3>
                 <p className="productText">
-                  A practical engineering toolkit with calculators, technical reference data and
-                  workflow-friendly utilities across inspection, mechanical, electrical, HVAC and more.
+                  A practical engineering toolkit with calculators, technical reference data and field-friendly
+                  utilities across inspection, mechanical, electrical, HVAC and more.
                 </p>
                 <ul className="productBullets">
                   <li>Engineering calculators and conversions</li>
@@ -362,8 +365,8 @@ export default function HomePage() {
                 </div>
                 <h3 className="productHeading">SplitBill</h3>
                 <p className="productText">
-                  A clean and simple way to split group expenses, manage shared costs and keep bill
-                  calculations easy for trips, events and teams.
+                  A clean and simple way to split shared expenses, manage group costs and make bill
+                  calculations easier for travel, events and everyday use.
                 </p>
                 <ul className="productBullets">
                   <li>Fast shared expense calculation</li>
@@ -386,29 +389,45 @@ export default function HomePage() {
           <div className="platformShell panel">
             <div className="sectionIntro">
               <span className="eyebrow">Why Airoflair</span>
-              <h2 className="sectionTitle">A cleaner, stronger presentation for the full brand</h2>
+              <h2 className="sectionTitle">Built around practical field work, not unnecessary complexity</h2>
               <p className="sectionText">
-                The site now focuses on the active products and presents them as a polished suite,
-                instead of pointing visitors to the old portal workflow.
+                Airoflair focuses on professional digital tools that are useful in real environments.
+                The products are designed to help users work faster, stay organised and create cleaner output
+                whether they are carrying out inspections, managing site information or using technical tools on the go.
               </p>
             </div>
 
             <div className="featuresGrid enhancedFeaturesGrid">
               <div className="featureCard">
-                <h3>Clear product positioning</h3>
-                <p>Each app has its own dedicated section, visuals and call to action.</p>
+                <h3>Designed for real workflows</h3>
+                <p>
+                  Airoflair tools are built around practical use in the field, with clean layouts,
+                  straightforward actions and fast access to the functions that matter.
+                </p>
               </div>
+
               <div className="featureCard">
-                <h3>More premium look</h3>
-                <p>Stronger layout structure, improved spacing and more polished image presentation.</p>
+                <h3>Professional output</h3>
+                <p>
+                  From inspection reporting to technical calculations, the focus is on helping users
+                  produce work that looks clear, organised and professional.
+                </p>
               </div>
+
               <div className="featureCard">
-                <h3>Mobile-first product showcase</h3>
-                <p>The uploaded screenshots are used properly to highlight the apps and tools.</p>
+                <h3>Simple to use</h3>
+                <p>
+                  The experience is designed to feel modern and easy to navigate, without clutter or
+                  overcomplicated workflows getting in the way.
+                </p>
               </div>
+
               <div className="featureCard">
-                <h3>Portal content removed</h3>
-                <p>Inspect Login and the old portal-focused MacBook hero are taken out completely.</p>
+                <h3>Growing product family</h3>
+                <p>
+                  Inspect, Quick Inspect, Data and SplitBill each serve a different purpose while still
+                  feeling part of one consistent Airoflair ecosystem.
+                </p>
               </div>
             </div>
           </div>
@@ -468,7 +487,16 @@ export default function HomePage() {
                       />
                     </div>
 
-                    <div className="formGridFull" style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap", marginTop: 4 }}>
+                    <div
+                      className="formGridFull"
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 12,
+                        flexWrap: "wrap",
+                        marginTop: 4,
+                      }}
+                    >
                       <button type="submit" className="btn btnPrimary" disabled={status === "sending"} style={{ minWidth: 260 }}>
                         {status === "sending" ? "Sending..." : "SEND MESSAGE"}
                       </button>

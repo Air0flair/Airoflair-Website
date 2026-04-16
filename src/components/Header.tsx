@@ -32,7 +32,7 @@ export default function Header() {
               src={logo}
               alt="Airoflair"
               priority
-              style={{ width: 178, height: "auto" }}
+              className="headerLogo"
             />
           </Link>
 
