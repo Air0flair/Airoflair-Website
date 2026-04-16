@@ -342,8 +342,8 @@ img {
 
 .heroGrid {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-  gap: 32px;
+  grid-template-columns: minmax(0, 0.98fr) minmax(0, 1.02fr);
+  gap: 36px;
   align-items: center;
 }
 
@@ -394,25 +394,25 @@ img {
 .heroVisualBoxes {
   position: relative;
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.04fr);
   gap: 18px;
-  min-height: 490px;
+  min-height: 540px;
   align-items: stretch;
 }
 
 .heroBoxTall {
-  min-height: 490px;
+  min-height: 540px;
 }
 
 .heroRightAnimator {
   position: relative;
-  min-height: 490px;
+  min-height: 540px;
 }
 
 .showcaseCard {
   position: relative;
   overflow: hidden;
-  border-radius: 24px;
+  border-radius: 26px;
   border: 1px solid rgba(230, 234, 242, 0.9);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(244, 247, 252, 0.95) 100%);
@@ -428,8 +428,8 @@ img {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 50% 50%, rgba(27, 108, 255, 0.08), transparent 50%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
+    radial-gradient(circle at 50% 50%, rgba(27, 108, 255, 0.08), transparent 52%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0));
   z-index: 1;
   pointer-events: none;
 }
@@ -443,7 +443,7 @@ img {
 
 .heroIconImage {
   position: absolute;
-  width: 235%;
+  width: 245%;
   max-width: none;
   height: auto;
   left: 50%;
@@ -460,20 +460,20 @@ img {
 }
 
 .heroIconImageTall {
-  transform: translate(-26%, -49%) scale(1.08) rotate(-1.5deg);
+  transform: translate(-24.7%, -50%) scale(1.12) rotate(-1.4deg);
 }
 
 .heroIconImageTop {
-  transform: translate(-70.5%, -49%) scale(1.08) rotate(-1.5deg);
+  transform: translate(-66.4%, -48.7%) scale(1.1) rotate(-1.4deg);
 }
 
 .heroIconImageBottom {
-  transform: translate(-70.5%, -149.5%) scale(1.08) rotate(-1.5deg);
+  transform: translate(-66.4%, -151.2%) scale(1.1) rotate(-1.4deg);
 }
 
 .heroIconImageMerged {
-  width: 235%;
-  transform: translate(-70.5%, -98.5%) scale(1.08) rotate(-1.5deg);
+  width: 245%;
+  transform: translate(-45.55%, -49.8%) scale(1.14) rotate(-1.4deg);
 }
 
 .motionTopBox,
@@ -531,17 +531,17 @@ img {
   38% {
     top: calc(50% + 9px);
     opacity: 1;
-    transform: scale(0.98);
+    transform: scale(0.985);
   }
   48% {
     top: calc(50% + 9px);
     opacity: 0;
-    transform: scale(0.96);
+    transform: scale(0.965);
   }
   100% {
     top: 0;
     opacity: 0;
-    transform: scale(0.96);
+    transform: scale(0.965);
   }
 }
 
@@ -560,12 +560,12 @@ img {
   52% {
     bottom: 0;
     opacity: 0;
-    transform: scale(0.96);
+    transform: scale(0.965);
   }
   100% {
     bottom: 0;
     opacity: 0;
-    transform: scale(0.96);
+    transform: scale(0.965);
   }
 }
 
@@ -577,19 +577,16 @@ img {
   }
   58% {
     opacity: 1;
-    transform: scale(1.015);
+    transform: scale(1.018);
   }
-  75% {
-    opacity: 1;
-    transform: scale(1);
-  }
+  75%,
   92% {
     opacity: 1;
     transform: scale(1);
   }
   100% {
     opacity: 0;
-    transform: scale(0.96);
+    transform: scale(0.97);
   }
 }
 
@@ -855,7 +852,12 @@ img {
   }
 
   .heroIconImage {
-    width: 250%;
+    width: 255%;
+  }
+
+  .heroIconImageMerged {
+    width: 255%;
+    transform: translate(-45.7%, -49.8%) scale(1.12) rotate(-1.4deg);
   }
 }
 
@@ -880,16 +882,25 @@ img {
 
   .heroVisualBoxes {
     grid-template-columns: 1fr 1fr;
-    min-height: 420px;
+    min-height: 460px;
   }
 
   .heroBoxTall,
   .heroRightAnimator {
-    min-height: 420px;
+    min-height: 460px;
   }
 
   .heroIconImage {
-    width: 235%;
+    width: 240%;
+  }
+
+  .heroIconImageTall {
+    transform: translate(-25.2%, -50%) scale(1.08) rotate(-1.4deg);
+  }
+
+  .heroIconImageMerged {
+    width: 240%;
+    transform: translate(-46.2%, -49.8%) scale(1.1) rotate(-1.4deg);
   }
 
   .contactRight {
