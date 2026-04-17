@@ -232,6 +232,18 @@ export default function HomePage() {
                   <div className="heroShard heroShard8">
                     <Image src={inspectIcon} alt="" className="heroShardImage" />
                   </div>
+                  <div className="heroShard heroShard9">
+                    <Image src={inspectIcon} alt="" className="heroShardImage" />
+                  </div>
+                  <div className="heroShard heroShard10">
+                    <Image src={inspectIcon} alt="" className="heroShardImage" />
+                  </div>
+                  <div className="heroShard heroShard11">
+                    <Image src={inspectIcon} alt="" className="heroShardImage" />
+                  </div>
+                  <div className="heroShard heroShard12">
+                    <Image src={inspectIcon} alt="" className="heroShardImage" />
+                  </div>
                 </div>
               </div>
             </div>
