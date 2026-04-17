@@ -409,7 +409,7 @@ img {
 .heroAmbientGlowOne {
   width: 62%;
   height: 42%;
-  left: 26%;
+  left: 30%;
   top: 14%;
   background: radial-gradient(circle, rgba(27, 108, 255, 0.18), transparent 70%);
   animation: heroGlowDriftOne 10s ease-in-out infinite;
@@ -418,113 +418,31 @@ img {
 .heroAmbientGlowTwo {
   width: 60%;
   height: 38%;
-  right: -2%;
+  right: -4%;
   bottom: 16%;
   background: radial-gradient(circle, rgba(42, 47, 143, 0.14), transparent 72%);
   animation: heroGlowDriftTwo 10s ease-in-out infinite;
 }
 
-.heroMainIconWrap,
-.heroShard {
+.heroMainIconWrap {
   position: absolute;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.heroMainIconWrap {
   z-index: 3;
-  animation: heroMainLifecycle 10s ease-in-out infinite;
 }
 
 .heroMainIcon {
-  width: 122%;
+  width: 126%;
   max-width: none;
   height: auto;
   object-fit: contain;
   transform-origin: 50% 50%;
-  transform: translateX(10%);
   filter:
     drop-shadow(0 34px 56px rgba(42, 47, 143, 0.16))
     drop-shadow(0 12px 22px rgba(0, 163, 255, 0.14));
-  animation: heroSpin 10s linear infinite;
-}
-
-.heroShard {
-  z-index: 4;
-  opacity: 0;
-}
-
-.heroShardImage {
-  width: 122%;
-  max-width: none;
-  height: auto;
-  object-fit: contain;
-  transform: translateX(10%);
-  filter:
-    drop-shadow(0 24px 36px rgba(42, 47, 143, 0.14))
-    drop-shadow(0 8px 18px rgba(0, 163, 255, 0.1));
-}
-
-.heroShard1 {
-  clip-path: polygon(0 0, 18% 0, 20% 18%, 0 20%);
-  animation: shardOne 10s ease-in-out infinite;
-}
-
-.heroShard2 {
-  clip-path: polygon(18% 0, 34% 0, 32% 20%, 20% 18%);
-  animation: shardTwo 10s ease-in-out infinite;
-}
-
-.heroShard3 {
-  clip-path: polygon(34% 0, 54% 0, 48% 24%, 32% 20%);
-  animation: shardThree 10s ease-in-out infinite;
-}
-
-.heroShard4 {
-  clip-path: polygon(54% 0, 76% 0, 68% 24%, 48% 24%);
-  animation: shardFour 10s ease-in-out infinite;
-}
-
-.heroShard5 {
-  clip-path: polygon(76% 0, 100% 0, 100% 18%, 84% 22%, 68% 24%);
-  animation: shardFive 10s ease-in-out infinite;
-}
-
-.heroShard6 {
-  clip-path: polygon(0 20%, 20% 18%, 22% 40%, 0 44%);
-  animation: shardSix 10s ease-in-out infinite;
-}
-
-.heroShard7 {
-  clip-path: polygon(22% 40%, 32% 20%, 48% 24%, 42% 46%, 24% 50%);
-  animation: shardSeven 10s ease-in-out infinite;
-}
-
-.heroShard8 {
-  clip-path: polygon(48% 24%, 68% 24%, 64% 48%, 42% 46%);
-  animation: shardEight 10s ease-in-out infinite;
-}
-
-.heroShard9 {
-  clip-path: polygon(68% 24%, 84% 22%, 100% 18%, 100% 48%, 64% 48%);
-  animation: shardNine 10s ease-in-out infinite;
-}
-
-.heroShard10 {
-  clip-path: polygon(0 44%, 24% 50%, 22% 72%, 0 100%);
-  animation: shardTen 10s ease-in-out infinite;
-}
-
-.heroShard11 {
-  clip-path: polygon(24% 50%, 42% 46%, 64% 48%, 58% 78%, 28% 100%, 22% 72%);
-  animation: shardEleven 10s ease-in-out infinite;
-}
-
-.heroShard12 {
-  clip-path: polygon(64% 48%, 100% 48%, 100% 100%, 28% 100%, 58% 78%);
-  animation: shardTwelve 10s ease-in-out infinite;
+  animation: heroSpin 18s linear infinite;
 }
 
 @keyframes heroGlowDriftOne {
@@ -551,111 +469,13 @@ img {
   }
 }
 
-@keyframes heroMainLifecycle {
-  0%,
-  60% {
-    opacity: 1;
-  }
-  66%,
-  100% {
-    opacity: 0;
-  }
-}
-
 @keyframes heroSpin {
   0% {
-    transform: translateX(10%) rotate(0deg) scale(1);
-  }
-  60% {
-    transform: translateX(10%) rotate(28deg) scale(1.02);
+    transform: translateX(14%) rotate(0deg) scale(1);
   }
   100% {
-    transform: translateX(10%) rotate(28deg) scale(1.02);
+    transform: translateX(14%) rotate(360deg) scale(1);
   }
-}
-
-@keyframes shardOne {
-  0%, 60% { opacity: 0; transform: translate(10%, 0) rotate(0deg) scale(1); }
-  66% { opacity: 1; transform: translate(6%, -8px) rotate(6deg) scale(1); }
-  82% { opacity: 1; transform: translate(-180px, -220px) rotate(-22deg) scale(0.86); }
-  100% { opacity: 0; transform: translate(-300px, -380px) rotate(-34deg) scale(0.72); }
-}
-
-@keyframes shardTwo {
-  0%, 60% { opacity: 0; transform: translate(10%, 0) rotate(0deg) scale(1); }
-  66% { opacity: 1; transform: translate(10%, -12px) rotate(8deg) scale(1); }
-  82% { opacity: 1; transform: translate(-70px, -260px) rotate(28deg) scale(0.84); }
-  100% { opacity: 0; transform: translate(-120px, -430px) rotate(40deg) scale(0.7); }
-}
-
-@keyframes shardThree {
-  0%, 60% { opacity: 0; transform: translate(10%, 0) rotate(0deg) scale(1); }
-  66% { opacity: 1; transform: translate(12%, -10px) rotate(9deg) scale(1); }
-  82% { opacity: 1; transform: translate(30px, -290px) rotate(34deg) scale(0.84); }
-  100% { opacity: 0; transform: translate(60px, -470px) rotate(50deg) scale(0.68); }
-}
-
-@keyframes shardFour {
-  0%, 60% { opacity: 0; transform: translate(10%, 0) rotate(0deg) scale(1); }
-  66% { opacity: 1; transform: translate(16%, -8px) rotate(10deg) scale(1); }
-  82% { opacity: 1; transform: translate(180px, -240px) rotate(36deg) scale(0.84); }
-  100% { opacity: 0; transform: translate(300px, -390px) rotate(52deg) scale(0.68); }
-}
-
-@keyframes shardFive {
-  0%, 60% { opacity: 0; transform: translate(10%, 0) rotate(0deg) scale(1); }
-  66% { opacity: 1; transform: translate(18%, -6px) rotate(10deg) scale(1); }
-  82% { opacity: 1; transform: translate(320px, -180px) rotate(28deg) scale(0.84); }
-  100% { opacity: 0; transform: translate(470px, -300px) rotate(40deg) scale(0.66); }
-}
-
-@keyframes shardSix {
-  0%, 60% { opacity: 0; transform: translate(10%, 0) rotate(0deg) scale(1); }
-  66% { opacity: 1; transform: translate(4%, 4px) rotate(-4deg) scale(1); }
-  82% { opacity: 1; transform: translate(-240px, -40px) rotate(-24deg) scale(0.86); }
-  100% { opacity: 0; transform: translate(-390px, -90px) rotate(-36deg) scale(0.7); }
-}
-
-@keyframes shardSeven {
-  0%, 60% { opacity: 0; transform: translate(10%, 0) rotate(0deg) scale(1); }
-  66% { opacity: 1; transform: translate(8%, 2px) rotate(4deg) scale(1); }
-  82% { opacity: 1; transform: translate(-120px, -120px) rotate(-18deg) scale(0.84); }
-  100% { opacity: 0; transform: translate(-210px, -210px) rotate(-28deg) scale(0.68); }
-}
-
-@keyframes shardEight {
-  0%, 60% { opacity: 0; transform: translate(10%, 0) rotate(0deg) scale(1); }
-  66% { opacity: 1; transform: translate(12%, 0) rotate(4deg) scale(1); }
-  82% { opacity: 1; transform: translate(90px, -150px) rotate(18deg) scale(0.84); }
-  100% { opacity: 0; transform: translate(160px, -250px) rotate(28deg) scale(0.68); }
-}
-
-@keyframes shardNine {
-  0%, 60% { opacity: 0; transform: translate(10%, 0) rotate(0deg) scale(1); }
-  66% { opacity: 1; transform: translate(16%, 2px) rotate(5deg) scale(1); }
-  82% { opacity: 1; transform: translate(270px, -70px) rotate(20deg) scale(0.84); }
-  100% { opacity: 0; transform: translate(410px, -130px) rotate(32deg) scale(0.66); }
-}
-
-@keyframes shardTen {
-  0%, 60% { opacity: 0; transform: translate(10%, 0) rotate(0deg) scale(1); }
-  66% { opacity: 1; transform: translate(4%, 10px) rotate(-5deg) scale(1); }
-  82% { opacity: 1; transform: translate(-220px, 90px) rotate(-18deg) scale(0.84); }
-  100% { opacity: 0; transform: translate(-360px, 150px) rotate(-28deg) scale(0.68); }
-}
-
-@keyframes shardEleven {
-  0%, 60% { opacity: 0; transform: translate(10%, 0) rotate(0deg) scale(1); }
-  66% { opacity: 1; transform: translate(10%, 12px) rotate(4deg) scale(1); }
-  82% { opacity: 1; transform: translate(20px, 120px) rotate(16deg) scale(0.82); }
-  100% { opacity: 0; transform: translate(40px, 210px) rotate(26deg) scale(0.66); }
-}
-
-@keyframes shardTwelve {
-  0%, 60% { opacity: 0; transform: translate(10%, 0) rotate(0deg) scale(1); }
-  66% { opacity: 1; transform: translate(16%, 12px) rotate(5deg) scale(1); }
-  82% { opacity: 1; transform: translate(260px, 100px) rotate(18deg) scale(0.82); }
-  100% { opacity: 0; transform: translate(420px, 170px) rotate(30deg) scale(0.64); }
 }
 
 .showcaseImage,
@@ -908,9 +728,17 @@ img {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .heroMainIcon,
-  .heroShardImage {
-    width: 112%;
+  .heroMainIcon {
+    width: 116%;
+  }
+
+  @keyframes heroSpin {
+    0% {
+      transform: translateX(10%) rotate(0deg) scale(1);
+    }
+    100% {
+      transform: translateX(10%) rotate(360deg) scale(1);
+    }
   }
 }
 
@@ -937,21 +765,16 @@ img {
     min-height: 470px;
   }
 
-  .heroMainIcon,
-  .heroShardImage {
+  .heroMainIcon {
     width: 112%;
-    transform: translateX(6%);
   }
 
   @keyframes heroSpin {
     0% {
-      transform: translateX(6%) rotate(0deg) scale(1);
-    }
-    60% {
-      transform: translateX(6%) rotate(28deg) scale(1.02);
+      transform: translateX(8%) rotate(0deg) scale(1);
     }
     100% {
-      transform: translateX(6%) rotate(28deg) scale(1.02);
+      transform: translateX(8%) rotate(360deg) scale(1);
     }
   }
 
@@ -1001,21 +824,16 @@ img {
     min-height: 360px;
   }
 
-  .heroMainIcon,
-  .heroShardImage {
-    width: 108%;
-    transform: translateX(2%);
+  .heroMainIcon {
+    width: 106%;
   }
 
   @keyframes heroSpin {
     0% {
-      transform: translateX(2%) rotate(0deg) scale(1);
-    }
-    60% {
-      transform: translateX(2%) rotate(28deg) scale(1.02);
+      transform: translateX(4%) rotate(0deg) scale(1);
     }
     100% {
-      transform: translateX(2%) rotate(28deg) scale(1.02);
+      transform: translateX(4%) rotate(360deg) scale(1);
     }
   }
 

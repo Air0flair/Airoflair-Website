@@ -207,43 +207,6 @@ export default function HomePage() {
                       priority
                     />
                   </div>
-
-                  <div className="heroShard heroShard1">
-                    <Image src={inspectIcon} alt="" className="heroShardImage" />
-                  </div>
-                  <div className="heroShard heroShard2">
-                    <Image src={inspectIcon} alt="" className="heroShardImage" />
-                  </div>
-                  <div className="heroShard heroShard3">
-                    <Image src={inspectIcon} alt="" className="heroShardImage" />
-                  </div>
-                  <div className="heroShard heroShard4">
-                    <Image src={inspectIcon} alt="" className="heroShardImage" />
-                  </div>
-                  <div className="heroShard heroShard5">
-                    <Image src={inspectIcon} alt="" className="heroShardImage" />
-                  </div>
-                  <div className="heroShard heroShard6">
-                    <Image src={inspectIcon} alt="" className="heroShardImage" />
-                  </div>
-                  <div className="heroShard heroShard7">
-                    <Image src={inspectIcon} alt="" className="heroShardImage" />
-                  </div>
-                  <div className="heroShard heroShard8">
-                    <Image src={inspectIcon} alt="" className="heroShardImage" />
-                  </div>
-                  <div className="heroShard heroShard9">
-                    <Image src={inspectIcon} alt="" className="heroShardImage" />
-                  </div>
-                  <div className="heroShard heroShard10">
-                    <Image src={inspectIcon} alt="" className="heroShardImage" />
-                  </div>
-                  <div className="heroShard heroShard11">
-                    <Image src={inspectIcon} alt="" className="heroShardImage" />
-                  </div>
-                  <div className="heroShard heroShard12">
-                    <Image src={inspectIcon} alt="" className="heroShardImage" />
-                  </div>
                 </div>
               </div>
             </div>
