@@ -14,7 +14,7 @@
   --shadow2: 0 18px 50px rgba(13, 23, 41, 0.12);
 
   --radius: 18px;
-  --max: 1180px;
+  --max: 1440px;
 }
 
 * {
@@ -30,6 +30,9 @@ body {
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   line-height: 1.45;
   scroll-behavior: smooth;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -50,7 +53,7 @@ img {
   width: 100%;
   max-width: var(--max);
   margin: 0 auto;
-  padding: 0 22px;
+  padding: 0 28px;
 }
 
 .panel {
@@ -65,7 +68,7 @@ img {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  height: 46px;
+  min-height: 46px;
   padding: 0 20px;
   border-radius: 12px;
   border: 1px solid var(--border);
@@ -75,6 +78,7 @@ img {
   font-size: 14px;
   cursor: pointer;
   transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  text-align: center;
 }
 
 .btn:hover {
@@ -95,15 +99,15 @@ img {
 }
 
 .h1 {
-  font-size: 58px;
-  line-height: 1.03;
-  letter-spacing: -0.035em;
+  font-size: 64px;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
   margin: 0 0 18px 0;
   font-weight: 900;
 }
 
 .heroMainTitle {
-  max-width: 760px;
+  max-width: 820px;
 }
 
 .p {
@@ -149,13 +153,13 @@ img {
 
 .section {
   width: 100%;
-  padding: 80px 0;
+  padding: 88px 0;
 }
 
 .stripWhite {
   width: 100%;
   background: #fff;
-  padding: 56px 0;
+  padding: 60px 0;
 }
 
 .sectionStack {
@@ -176,7 +180,7 @@ img {
 
 .sectionTitle {
   margin: 0;
-  font-size: 40px;
+  font-size: 42px;
   line-height: 1.08;
   letter-spacing: -0.03em;
   font-weight: 900;
@@ -184,7 +188,7 @@ img {
 
 .sectionText {
   margin: 0;
-  max-width: 760px;
+  max-width: 820px;
   color: var(--muted);
   font-size: 16px;
 }
@@ -201,7 +205,7 @@ img {
   width: 100%;
   border: 1px solid #cfd7ea;
   border-radius: 10px;
-  height: 44px;
+  min-height: 44px;
   padding: 0 12px;
   outline: none;
   font-size: 14px;
@@ -209,7 +213,7 @@ img {
 }
 
 .textarea {
-  height: 120px;
+  min-height: 120px;
   padding: 10px 12px;
   resize: vertical;
 }
@@ -224,13 +228,14 @@ img {
   position: sticky;
   top: 0;
   z-index: 50;
+  width: 100%;
   background: rgba(255, 255, 255, 0.84);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(230, 234, 242, 0.8);
 }
 
 .headerRow {
-  height: 88px;
+  min-height: 88px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -240,6 +245,7 @@ img {
 .brandLink {
   display: inline-flex;
   align-items: center;
+  min-width: 0;
 }
 
 .headerLogo {
@@ -259,6 +265,7 @@ img {
   font-weight: 900;
   color: #4a5568;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .navLink:hover {
@@ -273,6 +280,7 @@ img {
   border: 1px solid var(--border);
   background: #fff;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .burgerLines {
@@ -322,6 +330,7 @@ img {
 .heroSection {
   position: relative;
   overflow: hidden;
+  width: 100%;
   background:
     radial-gradient(circle at top left, rgba(0, 163, 255, 0.14), transparent 30%),
     radial-gradient(circle at bottom right, rgba(42, 47, 143, 0.12), transparent 28%),
@@ -337,18 +346,18 @@ img {
 }
 
 .heroShell {
-  padding: 40px 0 32px 0;
+  padding: 52px 0 38px 0;
 }
 
 .heroGrid {
   display: grid;
-  grid-template-columns: minmax(0, 0.98fr) minmax(0, 1.02fr);
-  gap: 36px;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: 44px;
   align-items: center;
 }
 
 .heroLead {
-  max-width: 620px;
+  max-width: 680px;
   font-size: 17px;
 }
 
@@ -367,11 +376,12 @@ img {
 }
 
 .statCard {
-  padding: 16px;
+  padding: 18px;
   border: 1px solid rgba(230, 234, 242, 0.95);
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.88);
   box-shadow: var(--shadow);
+  min-width: 0;
 }
 
 .statCard strong {
@@ -389,11 +399,13 @@ img {
 
 .heroVisual {
   position: relative;
+  min-width: 0;
 }
 
 .heroOpenStage {
   position: relative;
-  min-height: 580px;
+  min-height: 620px;
+  width: 100%;
   overflow: visible;
   isolation: isolate;
 }
@@ -490,6 +502,7 @@ img {
 }
 
 .productPanel {
+  width: 100%;
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(230, 234, 242, 0.95);
   border-radius: 28px;
@@ -503,21 +516,23 @@ img {
 
 .productPanelGrid {
   display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
-  gap: 26px;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 30px;
   align-items: center;
-  padding: 28px;
+  padding: 32px;
 }
 
 .productContent {
   display: grid;
   gap: 14px;
+  min-width: 0;
 }
 
 .productBrandRow {
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .compactBrandRow {
@@ -533,6 +548,7 @@ img {
   width: 54px;
   height: 54px;
   border-radius: 14px;
+  flex-shrink: 0;
 }
 
 .brandLabel {
@@ -575,6 +591,7 @@ img {
 .galleryGrid {
   display: grid;
   gap: 14px;
+  min-width: 0;
 }
 
 .galleryGridFour {
@@ -599,15 +616,15 @@ img {
   border: 1px solid rgba(230, 234, 242, 0.95);
   background: linear-gradient(180deg, #ffffff 0%, #f7f9fc 100%);
   box-shadow: var(--shadow);
-  min-height: 220px;
+  min-height: 240px;
 }
 
 .galleryItemLarge {
-  min-height: 360px;
+  min-height: 380px;
 }
 
 .galleryItemWide {
-  min-height: 420px;
+  min-height: 440px;
 }
 
 .platformSection {
@@ -615,7 +632,7 @@ img {
 }
 
 .platformShell {
-  padding: 34px;
+  padding: 36px;
 }
 
 .enhancedFeaturesGrid {
@@ -627,6 +644,7 @@ img {
   border: 1px solid var(--border);
   border-radius: 18px;
   padding: 20px;
+  min-width: 0;
 }
 
 .featureCard h3 {
@@ -648,11 +666,11 @@ img {
 }
 
 .contactWrap {
-  padding: 52px 0 68px 0;
+  padding: 56px 0 72px 0;
 }
 
 .contactPanel {
-  padding: 28px;
+  padding: 30px;
 }
 
 .contactHeader {
@@ -673,14 +691,14 @@ img {
 
 .contactGrid {
   display: grid;
-  grid-template-columns: 1.25fr 0.75fr;
-  gap: 18px;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  gap: 20px;
   align-items: stretch;
 }
 
 .formGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
 }
 
@@ -693,6 +711,7 @@ img {
   padding-left: 18px;
   display: flex;
   align-items: center;
+  min-width: 0;
 }
 
 .contactRightInner {
@@ -708,6 +727,8 @@ img {
   gap: 10px;
   color: #0b1220;
   font-weight: 700;
+  min-width: 0;
+  word-break: break-word;
 }
 
 .infoRow span {
@@ -715,9 +736,23 @@ img {
   font-weight: 600;
 }
 
+@media (max-width: 1280px) {
+  .container {
+    padding: 0 24px;
+  }
+
+  .heroGrid {
+    gap: 34px;
+  }
+
+  .productPanelGrid {
+    gap: 24px;
+  }
+}
+
 @media (max-width: 1100px) {
   .h1 {
-    font-size: 50px;
+    font-size: 54px;
   }
 
   .heroStats {
@@ -758,11 +793,11 @@ img {
   }
 
   .heroShell {
-    padding: 22px 0 24px 0;
+    padding: 24px 0 26px 0;
   }
 
   .heroOpenStage {
-    min-height: 470px;
+    min-height: 460px;
   }
 
   .heroMainIcon {
@@ -782,7 +817,7 @@ img {
     border-left: none;
     border-top: 1px solid var(--border);
     padding-left: 0;
-    padding-top: 16px;
+    padding-top: 18px;
   }
 }
 
@@ -813,15 +848,38 @@ img {
   .headerLogo {
     width: 220px !important;
   }
+
+  .heroGrid {
+    gap: 28px;
+  }
+
+  .productPanelGrid,
+  .platformShell,
+  .contactPanel {
+    padding: 24px;
+  }
 }
 
 @media (max-width: 720px) {
+  .container {
+    padding: 0 18px;
+  }
+
   .h1 {
     font-size: 40px;
+    line-height: 1.05;
+  }
+
+  .section {
+    padding: 72px 0;
+  }
+
+  .stripWhite {
+    padding: 52px 0;
   }
 
   .heroOpenStage {
-    min-height: 360px;
+    min-height: 320px;
   }
 
   .heroMainIcon {
@@ -849,10 +907,13 @@ img {
     min-height: 240px;
   }
 
-  .platformShell,
-  .productPanelGrid,
-  .contactPanel {
-    padding: 22px;
+  .heroActions,
+  .badgeRow {
+    width: 100%;
+  }
+
+  .heroActions .btn {
+    width: 100%;
   }
 
   .headerLogo {
@@ -861,15 +922,61 @@ img {
 }
 
 @media (max-width: 620px) {
+  .container {
+    padding: 0 16px;
+  }
+
   .formGrid {
     grid-template-columns: 1fr;
   }
 
-  .section {
-    padding: 68px 0;
+  .headerRow {
+    min-height: 80px;
   }
 
-  .container {
+  .productPanelGrid,
+  .platformShell,
+  .contactPanel {
+    padding: 20px;
+  }
+
+  .sectionTitle {
+    font-size: 28px;
+  }
+
+  .productHeading {
+    font-size: 28px;
+  }
+
+  .heroLead,
+  .sectionText,
+  .productText {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .h1 {
+    font-size: 34px;
+  }
+
+  .headerLogo {
+    width: 168px !important;
+  }
+
+  .btn {
+    min-height: 44px;
+    font-size: 13px;
     padding: 0 16px;
+  }
+
+  .statCard {
+    padding: 16px;
+  }
+
+  .galleryItem,
+  .galleryItemLarge,
+  .galleryItemWide {
+    min-height: 220px;
   }
 }
