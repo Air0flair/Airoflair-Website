@@ -4,11 +4,11 @@ import React, { useMemo, useState } from "react";
 import Image from "next/image";
 
 import inspectLogo from "@/assets/images/inspectlogo.png";
-import inspectIcon from "@/assets/images/inspecticon.png";
-import inspectShot1 from "@/assets/images/Airoflair Inspect 1.png";
-import inspectShot2 from "@/assets/images/Airoflair Inspect 2.png";
-import inspectShot3 from "@/assets/images/Airoflair Inspect 3.png";
-import inspectShot4 from "@/assets/images/Airoflair Inspect 4.png";
+import macbookMain from "@/assets/images/macbookmain.jpg";
+import inspectShot1 from "@/assets/images/Airoflair Inspect 1.jpg";
+import inspectShot2 from "@/assets/images/Airoflair Inspect 2.jpg";
+import inspectShot3 from "@/assets/images/Airoflair Inspect 3.jpg";
+import inspectShot4 from "@/assets/images/Airoflair Inspect 4.jpg";
 
 import quickIcon from "@/assets/images/quickicon.png";
 import quickShot1 from "@/assets/images/Airoflair Quick Inspect 1.png";
@@ -195,15 +195,15 @@ export default function HomePage() {
               </div>
 
               <div className="heroVisual">
-                <div className="heroOpenStage" aria-hidden="true">
+                <div className="heroOpenStage">
                   <div className="heroAmbientGlow heroAmbientGlowOne" />
                   <div className="heroAmbientGlow heroAmbientGlowTwo" />
 
-                  <div className="heroMainIconWrap">
+                  <div className="heroMainImageWrap">
                     <Image
-                      src={inspectIcon}
-                      alt="Airoflair Inspect icon"
-                      className="heroMainIcon"
+                      src={macbookMain}
+                      alt="Airoflair platform preview on MacBook"
+                      className="heroMainMacbook"
                       priority
                     />
                   </div>
