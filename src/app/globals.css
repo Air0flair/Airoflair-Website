@@ -485,7 +485,7 @@ img {
 .inspectGalleryImage {
   object-fit: contain;
   background: #ffffff;
-  padding: 6px;
+  padding: 10px;
 }
 
 .galleryImage {
@@ -619,7 +619,8 @@ img {
 }
 
 .inspectGalleryItem {
-  min-height: 145px;
+  min-height: 110px;
+  height: 110px;
 }
 
 .galleryItemLarge {
@@ -777,7 +778,8 @@ img {
   }
 
   .inspectGalleryItem {
-    min-height: 130px;
+    min-height: 100px;
+    height: 100px;
   }
 
   .headerCenter {
@@ -905,7 +907,8 @@ img {
   .galleryItemLarge,
   .galleryItemWide,
   .galleryItem {
-    min-height: 220px;
+    min-height: 180px;
+    height: auto;
   }
 
   .heroActions,
@@ -983,7 +986,7 @@ img {
   .galleryItem,
   .galleryItemLarge,
   .galleryItemWide {
-    min-height: 200px;
+    min-height: 170px;
   }
 
   .heroMainMacbook {
