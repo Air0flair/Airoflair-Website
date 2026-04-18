@@ -22,40 +22,46 @@ export default function Header() {
     <header className="headerWrap">
       <div className="container">
         <div className="headerRow">
-          <Link
-            href="/"
-            aria-label="Airoflair Home"
-            onClick={() => setOpen(false)}
-            className="brandLink"
-          >
-            <Image
-              src={logo}
-              alt="Airoflair"
-              priority
-              className="headerLogo"
-            />
-          </Link>
+          <div className="headerLeft">
+            <Link
+              href="/"
+              aria-label="Airoflair Home"
+              onClick={() => setOpen(false)}
+              className="brandLink"
+            >
+              <Image
+                src={logo}
+                alt="Airoflair"
+                priority
+                className="headerLogo"
+              />
+            </Link>
+          </div>
 
-          <nav className="navRow" aria-label="Primary">
-            {nav.map((item) => (
-              <a key={item.href} className="navLink" href={item.href}>
-                {item.label}
-              </a>
-            ))}
-          </nav>
+          <div className="headerCenter">
+            <nav className="navRow" aria-label="Primary">
+              {nav.map((item) => (
+                <a key={item.href} className="navLink" href={item.href}>
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+          </div>
 
-          <button
-            className="burger"
-            aria-label="Open menu"
-            aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
-          >
-            <div className="burgerLines" aria-hidden="true">
-              <span />
-              <span />
-              <span />
-            </div>
-          </button>
+          <div className="headerRight">
+            <button
+              className="burger"
+              aria-label="Open menu"
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+            >
+              <div className="burgerLines" aria-hidden="true">
+                <span />
+                <span />
+                <span />
+              </div>
+            </button>
+          </div>
         </div>
 
         {open && (

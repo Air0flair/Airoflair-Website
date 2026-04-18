@@ -4,7 +4,7 @@ import React, { useMemo, useState } from "react";
 import Image from "next/image";
 
 import inspectLogo from "@/assets/images/inspectlogo.png";
-import macbookMain from "@/assets/images/macbookmain.jpg";
+import macbookMain from "@/assets/images/macbookmain.png";
 import inspectShot1 from "@/assets/images/Airoflair Inspect 1.jpg";
 import inspectShot2 from "@/assets/images/Airoflair Inspect 2.jpg";
 import inspectShot3 from "@/assets/images/Airoflair Inspect 3.jpg";
@@ -251,18 +251,18 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="galleryGrid galleryGridFour">
-                <div className="galleryItem">
-                  <Image src={inspectShot1} alt="Airoflair Inspect preview 1" className="galleryImage" />
+              <div className="galleryGrid galleryGridFour inspectGalleryGrid">
+                <div className="galleryItem inspectGalleryItem">
+                  <Image src={inspectShot1} alt="Airoflair Inspect preview 1" className="galleryImage inspectGalleryImage" />
                 </div>
-                <div className="galleryItem">
-                  <Image src={inspectShot2} alt="Airoflair Inspect preview 2" className="galleryImage" />
+                <div className="galleryItem inspectGalleryItem">
+                  <Image src={inspectShot2} alt="Airoflair Inspect preview 2" className="galleryImage inspectGalleryImage" />
                 </div>
-                <div className="galleryItem">
-                  <Image src={inspectShot3} alt="Airoflair Inspect preview 3" className="galleryImage" />
+                <div className="galleryItem inspectGalleryItem">
+                  <Image src={inspectShot3} alt="Airoflair Inspect preview 3" className="galleryImage inspectGalleryImage" />
                 </div>
-                <div className="galleryItem">
-                  <Image src={inspectShot4} alt="Airoflair Inspect preview 4" className="galleryImage" />
+                <div className="galleryItem inspectGalleryItem">
+                  <Image src={inspectShot4} alt="Airoflair Inspect preview 4" className="galleryImage inspectGalleryImage" />
                 </div>
               </div>
             </div>
