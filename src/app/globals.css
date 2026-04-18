@@ -237,7 +237,7 @@ img {
 .headerRow {
   min-height: 88px;
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 16px;
 }
@@ -252,13 +252,15 @@ img {
 .headerCenter {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+  padding-right: 7%;
 }
 
 .headerRight {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  min-width: 42px;
 }
 
 .brandLink {
@@ -275,7 +277,7 @@ img {
 .navRow {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   gap: 28px;
 }
 
@@ -483,6 +485,7 @@ img {
 .inspectGalleryImage {
   object-fit: contain;
   background: #ffffff;
+  padding: 6px;
 }
 
 .galleryImage {
@@ -590,6 +593,10 @@ img {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.inspectGalleryGrid {
+  align-items: start;
+}
+
 .galleryGridTwo {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -612,7 +619,7 @@ img {
 }
 
 .inspectGalleryItem {
-  min-height: 300px;
+  min-height: 145px;
 }
 
 .galleryItemLarge {
@@ -770,7 +777,11 @@ img {
   }
 
   .inspectGalleryItem {
-    min-height: 260px;
+    min-height: 130px;
+  }
+
+  .headerCenter {
+    padding-right: 4%;
   }
 }
 
@@ -894,7 +905,7 @@ img {
   .galleryItemLarge,
   .galleryItemWide,
   .galleryItem {
-    min-height: 240px;
+    min-height: 220px;
   }
 
   .heroActions,
@@ -972,7 +983,7 @@ img {
   .galleryItem,
   .galleryItemLarge,
   .galleryItemWide {
-    min-height: 220px;
+    min-height: 200px;
   }
 
   .heroMainMacbook {
