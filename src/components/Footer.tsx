@@ -40,6 +40,7 @@ export default function Footer() {
               alignItems: "center",
               gap: 18,
               flexWrap: "wrap",
+              marginRight: "clamp(80px, 10vw, 140px)",
             }}
           >
             <Link
