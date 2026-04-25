@@ -546,6 +546,19 @@ img {
   flex-shrink: 0;
 }
 
+.quickBrandIcon {
+  width: 92px;
+  height: 92px;
+  border-radius: 22px;
+  flex-shrink: 0;
+}
+
+.dataBrandLogo {
+  width: 220px;
+  height: auto;
+  flex-shrink: 0;
+}
+
 .brandLabel {
   font-size: 14px;
   font-weight: 900;
@@ -555,7 +568,7 @@ img {
 }
 
 .splitBillLogo {
-  width: 160px;
+  width: 230px;
   height: auto;
 }
 
@@ -629,6 +642,17 @@ img {
 
 .galleryItemWide {
   min-height: 440px;
+}
+
+.splitBillGalleryItem {
+  min-height: 220px;
+  height: 220px;
+}
+
+.splitBillPreviewImage {
+  object-fit: contain;
+  background: #ffffff;
+  padding: 10px;
 }
 
 .platformSection {
@@ -911,6 +935,24 @@ img {
     height: auto;
   }
 
+  .quickBrandIcon {
+    width: 82px;
+    height: 82px;
+  }
+
+  .dataBrandLogo {
+    width: 190px;
+  }
+
+  .splitBillLogo {
+    width: 200px;
+  }
+
+  .splitBillGalleryItem {
+    min-height: 210px;
+    height: 210px;
+  }
+
   .heroActions,
   .badgeRow {
     width: 100%;
@@ -987,6 +1029,24 @@ img {
   .galleryItemLarge,
   .galleryItemWide {
     min-height: 220px;
+  }
+
+  .quickBrandIcon {
+    width: 76px;
+    height: 76px;
+  }
+
+  .dataBrandLogo {
+    width: 170px;
+  }
+
+  .splitBillLogo {
+    width: 180px;
+  }
+
+  .splitBillGalleryItem {
+    min-height: 190px;
+    height: 190px;
   }
 
   .heroMainMacbook {

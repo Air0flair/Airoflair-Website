@@ -11,13 +11,13 @@ import inspectShot3 from "@/assets/images/Airoflair Inspect 3.jpg";
 import inspectShot4 from "@/assets/images/Airoflair Inspect 4.jpg";
 
 import quickIcon from "@/assets/images/quickicon.png";
-import quickShot1 from "@/assets/images/Airoflair Quick Inspect 1.png";
-import quickShot2 from "@/assets/images/Airoflair Quick Inspect 2.png";
+import quickShot1 from "@/assets/images/Airoflair Quick Inspect 1.jpg";
+import quickShot2 from "@/assets/images/Airoflair Quick Inspect 2.jpg";
 
 import dataLogo from "@/assets/images/Airoflairdatalogo.png";
-import dataShot1 from "@/assets/images/Airoflair Data 1.png";
-import dataShot2 from "@/assets/images/Airoflair Data 2.png";
-import dataShot3 from "@/assets/images/Airoflair Data 3.png";
+import dataShot1 from "@/assets/images/Airoflair Data 1.jpg";
+import dataShot2 from "@/assets/images/Airoflair Data 2.jpg";
+import dataShot3 from "@/assets/images/Airoflair Data 3.jpg";
 
 import splitBillLogo from "@/assets/images/splitbilllogo.png";
 import splitBillShot from "@/assets/images/splitbill.png";
@@ -281,8 +281,7 @@ export default function HomePage() {
 
               <div className="productContent">
                 <div className="productBrandRow compactBrandRow">
-                  <Image src={quickIcon} alt="Airoflair Quick Inspect" className="brandIcon" />
-                  <span className="brandLabel">Quick Inspect</span>
+                  <Image src={quickIcon} alt="Airoflair Quick Inspect" className="quickBrandIcon" />
                 </div>
                 <h3 className="productHeading">Airoflair Quick Inspect</h3>
                 <p className="productText">
@@ -310,8 +309,7 @@ export default function HomePage() {
             <div className="productPanelGrid">
               <div className="productContent">
                 <div className="productBrandRow compactBrandRow">
-                  <Image src={dataLogo} alt="Airoflair Data" className="brandIcon" />
-                  <span className="brandLabel">Data</span>
+                  <Image src={dataLogo} alt="Airoflair Data" className="dataBrandLogo" />
                 </div>
                 <h3 className="productHeading">Airoflair Data</h3>
                 <p className="productText">
@@ -350,8 +348,8 @@ export default function HomePage() {
           <article className="productPanel">
             <div className="productPanelGrid reverseOnDesktop">
               <div className="galleryGrid galleryGridSingle">
-                <div className="galleryItem galleryItemWide">
-                  <Image src={splitBillShot} alt="SplitBill preview" className="galleryImage" />
+                <div className="galleryItem splitBillGalleryItem">
+                  <Image src={splitBillShot} alt="SplitBill preview" className="galleryImage splitBillPreviewImage" />
                 </div>
               </div>
 
@@ -359,7 +357,6 @@ export default function HomePage() {
                 <div className="productBrandRow compactBrandRow">
                   <Image src={splitBillLogo} alt="SplitBill" className="splitBillLogo" />
                 </div>
-                <h3 className="productHeading">SplitBill</h3>
                 <p className="productText">
                   A clean and simple way to split shared expenses, manage group costs and make bill
                   calculations easier for travel, events and everyday use.
