@@ -547,9 +547,9 @@ img {
 }
 
 .quickBrandIcon {
-  width: 92px;
-  height: 92px;
-  border-radius: 22px;
+  width: 220px;
+  height: auto;
+  border-radius: 34px;
   flex-shrink: 0;
 }
 
@@ -640,13 +640,23 @@ img {
   min-height: 380px;
 }
 
+.quickGalleryItem {
+  min-height: 430px;
+  height: 430px;
+}
+
+.dataGalleryItem {
+  min-height: 430px;
+  height: 430px;
+}
+
 .galleryItemWide {
   min-height: 440px;
 }
 
 .splitBillGalleryItem {
-  min-height: 220px;
-  height: 220px;
+  min-height: 367px;
+  height: 367px;
 }
 
 .splitBillPreviewImage {
@@ -936,8 +946,8 @@ img {
   }
 
   .quickBrandIcon {
-    width: 82px;
-    height: 82px;
+    width: 190px;
+    height: auto;
   }
 
   .dataBrandLogo {
@@ -949,8 +959,8 @@ img {
   }
 
   .splitBillGalleryItem {
-    min-height: 210px;
-    height: 210px;
+    min-height: 350px;
+    height: 350px;
   }
 
   .heroActions,
@@ -1032,8 +1042,8 @@ img {
   }
 
   .quickBrandIcon {
-    width: 76px;
-    height: 76px;
+    width: 170px;
+    height: auto;
   }
 
   .dataBrandLogo {
@@ -1045,8 +1055,8 @@ img {
   }
 
   .splitBillGalleryItem {
-    min-height: 190px;
-    height: 190px;
+    min-height: 317px;
+    height: 317px;
   }
 
   .heroMainMacbook {

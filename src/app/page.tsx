@@ -271,10 +271,10 @@ export default function HomePage() {
           <article className="productPanel">
             <div className="productPanelGrid reverseOnDesktop">
               <div className="galleryGrid galleryGridTwo">
-                <div className="galleryItem galleryItemLarge">
+                <div className="galleryItem galleryItemLarge quickGalleryItem">
                   <Image src={quickShot1} alt="Airoflair Quick Inspect preview 1" className="galleryImage" />
                 </div>
-                <div className="galleryItem galleryItemLarge">
+                <div className="galleryItem galleryItemLarge quickGalleryItem">
                   <Image src={quickShot2} alt="Airoflair Quick Inspect preview 2" className="galleryImage" />
                 </div>
               </div>
@@ -285,8 +285,9 @@ export default function HomePage() {
                 </div>
                 <h3 className="productHeading">Airoflair Quick Inspect</h3>
                 <p className="productText">
-                  A simpler inspection app focused on fast visual reporting, photo capture and efficient
-                  offline use when you need to work quickly without losing professionalism.
+                  A simpler inspection app focused on fast visual reporting, photo capture
+                  <br />
+                  and efficient offline use when you need to work quickly without losing professionalism.
                 </p>
                 <ul className="productBullets">
                   <li>Quick offline inspection workflows</li>
@@ -313,8 +314,9 @@ export default function HomePage() {
                 </div>
                 <h3 className="productHeading">Airoflair Data</h3>
                 <p className="productText">
-                  A practical engineering toolkit with calculators, technical reference data and field-friendly
-                  utilities across inspection, mechanical, electrical, HVAC and more.
+                  A practical engineering toolkit with calculators, technical reference data
+                  <br />
+                  and field-friendly utilities across inspection, mechanical, electrical, HVAC and more.
                 </p>
                 <ul className="productBullets">
                   <li>Engineering calculators and conversions</li>
@@ -332,13 +334,13 @@ export default function HomePage() {
               </div>
 
               <div className="galleryGrid galleryGridThree">
-                <div className="galleryItem">
+                <div className="galleryItem dataGalleryItem">
                   <Image src={dataShot1} alt="Airoflair Data preview 1" className="galleryImage" />
                 </div>
-                <div className="galleryItem">
+                <div className="galleryItem dataGalleryItem">
                   <Image src={dataShot2} alt="Airoflair Data preview 2" className="galleryImage" />
                 </div>
-                <div className="galleryItem">
+                <div className="galleryItem dataGalleryItem">
                   <Image src={dataShot3} alt="Airoflair Data preview 3" className="galleryImage" />
                 </div>
               </div>
