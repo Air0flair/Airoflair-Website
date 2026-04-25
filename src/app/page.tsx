@@ -360,8 +360,9 @@ export default function HomePage() {
                   <Image src={splitBillLogo} alt="SplitBill" className="splitBillLogo" />
                 </div>
                 <p className="productText">
-                  A clean and simple way to split shared expenses, manage group costs and make bill
-                  calculations easier for travel, events and everyday use.
+                  A clean and simple way to split shared expenses, manage group costs and make bill calculations
+                  <br />
+                  easier for travel, events and everyday use.
                 </p>
                 <ul className="productBullets">
                   <li>Fast shared expense calculation</li>
@@ -382,8 +383,8 @@ export default function HomePage() {
       <section id="platform" className="section platformSection">
         <div className="container">
           <div className="platformShell panel">
-            <div className="sectionIntro">
-              <span className="eyebrow">Why Airoflair</span>
+            <div className="sectionIntro centerIntro">
+              <span className="eyebrow productsEyebrow">Why Airoflair</span>
               <h2 className="sectionTitle">Built around practical field work, not unnecessary complexity</h2>
               <p className="sectionText">
                 Airoflair focuses on professional digital tools that are useful in real environments.

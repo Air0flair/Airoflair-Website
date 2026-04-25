@@ -568,7 +568,7 @@ img {
 }
 
 .splitBillLogo {
-  width: 230px;
+  width: 265px;
   height: auto;
 }
 
@@ -655,8 +655,8 @@ img {
 }
 
 .splitBillGalleryItem {
-  min-height: 367px;
-  height: 367px;
+  min-height: 734px;
+  height: 734px;
 }
 
 .splitBillPreviewImage {
@@ -670,7 +670,17 @@ img {
 }
 
 .platformShell {
-  padding: 36px;
+  padding: 44px 36px;
+  text-align: center;
+}
+
+.platformShell .sectionIntro {
+  justify-items: center;
+  text-align: center;
+}
+
+.platformShell .sectionText {
+  max-width: 980px;
 }
 
 .enhancedFeaturesGrid {
@@ -955,12 +965,12 @@ img {
   }
 
   .splitBillLogo {
-    width: 200px;
+    width: 230px;
   }
 
   .splitBillGalleryItem {
-    min-height: 350px;
-    height: 350px;
+    min-height: 520px;
+    height: 520px;
   }
 
   .heroActions,
@@ -1051,12 +1061,12 @@ img {
   }
 
   .splitBillLogo {
-    width: 180px;
+    width: 210px;
   }
 
   .splitBillGalleryItem {
-    min-height: 317px;
-    height: 317px;
+    min-height: 460px;
+    height: 460px;
   }
 
   .heroMainMacbook {
