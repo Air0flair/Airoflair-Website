@@ -517,19 +517,12 @@ img {
   padding: 32px;
 }
 
-.quickProductGrid {
-  grid-template-columns: minmax(0, 1.38fr) minmax(320px, 0.62fr);
-  gap: 34px;
+.productPanelGridMediaWide {
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
 }
 
-.dataProductGrid {
-  grid-template-columns: minmax(320px, 0.72fr) minmax(0, 1.28fr);
-  gap: 34px;
-}
-
-.splitBillProductGrid {
-  grid-template-columns: minmax(0, 1.18fr) minmax(360px, 0.82fr);
-  gap: 34px;
+.productContentRight {
+  padding-left: 18px;
 }
 
 .productContent {
@@ -562,9 +555,9 @@ img {
 }
 
 .quickBrandIcon {
-  width: 92px;
-  height: 92px;
-  border-radius: 22px;
+  width: 220px;
+  height: auto;
+  border-radius: 34px;
   flex-shrink: 0;
 }
 
@@ -583,8 +576,9 @@ img {
 }
 
 .splitBillLogo {
-  width: 230px;
+  width: 220px;
   height: auto;
+  flex-shrink: 0;
 }
 
 .productHeading {
@@ -655,13 +649,35 @@ img {
   min-height: 380px;
 }
 
+.quickGalleryGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.quickGalleryItem {
+  min-height: 430px;
+  height: 430px;
+}
+
+.dataGalleryGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.dataGalleryItem {
+  min-height: 480px;
+  height: 480px;
+}
+
 .galleryItemWide {
   min-height: 440px;
 }
 
+.splitBillGalleryGrid {
+  width: 88%;
+}
+
 .splitBillGalleryItem {
-  min-height: 220px;
-  height: 220px;
+  min-height: 880px;
+  height: 880px;
 }
 
 .splitBillPreviewImage {
@@ -675,7 +691,17 @@ img {
 }
 
 .platformShell {
-  padding: 36px;
+  padding: 44px 36px;
+  text-align: center;
+}
+
+.platformShell .sectionIntro {
+  justify-items: center;
+  text-align: center;
+}
+
+.platformShell .sectionText {
+  max-width: 980px;
 }
 
 .enhancedFeaturesGrid {
@@ -811,6 +837,24 @@ img {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .productPanelGridMediaWide {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  }
+
+  .dataGalleryGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .dataGalleryItem {
+    min-height: 440px;
+    height: 440px;
+  }
+
+  .splitBillGalleryItem {
+    min-height: 760px;
+    height: 760px;
+  }
+
   .heroMainMacbook {
     width: 88%;
     transform: translateX(2%);
@@ -829,19 +873,25 @@ img {
 @media (max-width: 980px) {
   .heroGrid,
   .productPanelGrid,
-  .quickProductGrid,
-  .dataProductGrid,
-  .splitBillProductGrid,
+  .productPanelGridMediaWide,
   .contactGrid {
     grid-template-columns: 1fr;
   }
 
   .reverseOnDesktop > :first-child {
-    order: 0;
+    order: 2;
   }
 
   .reverseOnDesktop > :last-child {
-    order: 0;
+    order: 1;
+  }
+
+  .productContentRight {
+    padding-left: 0;
+  }
+
+  .splitBillGalleryGrid {
+    width: 100%;
   }
 
   .heroShell {
@@ -953,22 +1003,22 @@ img {
     height: auto;
   }
 
-  .quickBrandIcon {
-    width: 82px;
-    height: 82px;
-  }
-
-  .dataBrandLogo {
-    width: 190px;
-  }
-
-  .splitBillLogo {
-    width: 200px;
+  .quickGalleryItem,
+  .dataGalleryItem {
+    min-height: 420px;
+    height: 420px;
   }
 
   .splitBillGalleryItem {
-    min-height: 210px;
-    height: 210px;
+    min-height: 620px;
+    height: 620px;
+  }
+
+  .quickBrandIcon,
+  .dataBrandLogo,
+  .splitBillLogo {
+    width: 190px;
+    height: auto;
   }
 
   .heroActions,
@@ -1049,22 +1099,22 @@ img {
     min-height: 220px;
   }
 
-  .quickBrandIcon {
-    width: 76px;
-    height: 76px;
-  }
-
-  .dataBrandLogo {
-    width: 170px;
-  }
-
-  .splitBillLogo {
-    width: 180px;
+  .quickGalleryItem,
+  .dataGalleryItem {
+    min-height: 360px;
+    height: 360px;
   }
 
   .splitBillGalleryItem {
-    min-height: 190px;
-    height: 190px;
+    min-height: 520px;
+    height: 520px;
+  }
+
+  .quickBrandIcon,
+  .dataBrandLogo,
+  .splitBillLogo {
+    width: 170px;
+    height: auto;
   }
 
   .heroMainMacbook {

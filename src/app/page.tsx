@@ -269,24 +269,24 @@ export default function HomePage() {
           </article>
 
           <article className="productPanel">
-            <div className="productPanelGrid reverseOnDesktop quickProductGrid">
-              <div className="galleryGrid galleryGridTwo">
-                <div className="galleryItem galleryItemLarge">
+            <div className="productPanelGrid productPanelGridMediaWide reverseOnDesktop">
+              <div className="galleryGrid galleryGridTwo quickGalleryGrid">
+                <div className="galleryItem quickGalleryItem">
                   <Image src={quickShot1} alt="Airoflair Quick Inspect preview 1" className="galleryImage" />
                 </div>
-                <div className="galleryItem galleryItemLarge">
+                <div className="galleryItem quickGalleryItem">
                   <Image src={quickShot2} alt="Airoflair Quick Inspect preview 2" className="galleryImage" />
                 </div>
               </div>
 
-              <div className="productContent">
+              <div className="productContent productContentRight">
                 <div className="productBrandRow compactBrandRow">
                   <Image src={quickIcon} alt="Airoflair Quick Inspect" className="quickBrandIcon" />
                 </div>
                 <h3 className="productHeading">Airoflair Quick Inspect</h3>
                 <p className="productText">
-                  A simpler inspection app focused on fast visual reporting, photo capture and efficient
-                  offline use when you need to work quickly without losing professionalism.
+                  A simpler inspection app focused on fast visual reporting, photo capture
+                  and efficient offline use when you need to work quickly without losing professionalism.
                 </p>
                 <ul className="productBullets">
                   <li>Quick offline inspection workflows</li>
@@ -306,15 +306,15 @@ export default function HomePage() {
           </article>
 
           <article className="productPanel">
-            <div className="productPanelGrid dataProductGrid">
+            <div className="productPanelGrid">
               <div className="productContent">
                 <div className="productBrandRow compactBrandRow">
                   <Image src={dataLogo} alt="Airoflair Data" className="dataBrandLogo" />
                 </div>
                 <h3 className="productHeading">Airoflair Data</h3>
                 <p className="productText">
-                  A practical engineering toolkit with calculators, technical reference data and field-friendly
-                  utilities across inspection, mechanical, electrical, HVAC and more.
+                  A practical engineering toolkit with calculators, technical reference data
+                  and field-friendly utilities across inspection, mechanical, electrical, HVAC and more.
                 </p>
                 <ul className="productBullets">
                   <li>Engineering calculators and conversions</li>
@@ -331,7 +331,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="galleryGrid galleryGridThree">
+              <div className="galleryGrid galleryGridThree dataGalleryGrid">
                 <div className="galleryItem dataGalleryItem">
                   <Image src={dataShot1} alt="Airoflair Data preview 1" className="galleryImage" />
                 </div>
@@ -346,20 +346,21 @@ export default function HomePage() {
           </article>
 
           <article className="productPanel">
-            <div className="productPanelGrid reverseOnDesktop splitBillProductGrid">
-              <div className="galleryGrid galleryGridSingle">
+            <div className="productPanelGrid productPanelGridMediaWide reverseOnDesktop">
+              <div className="galleryGrid galleryGridSingle splitBillGalleryGrid">
                 <div className="galleryItem splitBillGalleryItem">
                   <Image src={splitBillShot} alt="SplitBill preview" className="galleryImage splitBillPreviewImage" />
                 </div>
               </div>
 
-              <div className="productContent">
+              <div className="productContent productContentRight">
                 <div className="productBrandRow compactBrandRow">
                   <Image src={splitBillLogo} alt="SplitBill" className="splitBillLogo" />
                 </div>
+                <h3 className="productHeading">SplitBill</h3>
                 <p className="productText">
-                  A clean and simple way to split shared expenses, manage group costs and make bill
-                  calculations easier for travel, events and everyday use.
+                  A clean and simple way to split shared expenses, manage group costs and make bill calculations
+                  easier for travel, events and everyday use.
                 </p>
                 <ul className="productBullets">
                   <li>Fast shared expense calculation</li>
@@ -380,7 +381,7 @@ export default function HomePage() {
       <section id="platform" className="section platformSection">
         <div className="container">
           <div className="platformShell panel">
-            <div className="sectionIntro">
+            <div className="sectionIntro centerIntro">
               <span className="eyebrow productsEyebrow">Why Airoflair</span>
               <h2 className="sectionTitle">Built around practical field work, not unnecessary complexity</h2>
               <p className="sectionText">
