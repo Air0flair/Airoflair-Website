@@ -332,13 +332,13 @@ export default function HomePage() {
               </div>
 
               <div className="galleryGrid galleryGridThree">
-                <div className="galleryItem">
+                <div className="galleryItem dataGalleryItem">
                   <Image src={dataShot1} alt="Airoflair Data preview 1" className="galleryImage" />
                 </div>
-                <div className="galleryItem">
+                <div className="galleryItem dataGalleryItem">
                   <Image src={dataShot2} alt="Airoflair Data preview 2" className="galleryImage" />
                 </div>
-                <div className="galleryItem">
+                <div className="galleryItem dataGalleryItem">
                   <Image src={dataShot3} alt="Airoflair Data preview 3" className="galleryImage" />
                 </div>
               </div>
@@ -381,7 +381,7 @@ export default function HomePage() {
         <div className="container">
           <div className="platformShell panel">
             <div className="sectionIntro">
-              <span className="eyebrow">Why Airoflair</span>
+              <span className="eyebrow productsEyebrow">Why Airoflair</span>
               <h2 className="sectionTitle">Built around practical field work, not unnecessary complexity</h2>
               <p className="sectionText">
                 Airoflair focuses on professional digital tools that are useful in real environments.
