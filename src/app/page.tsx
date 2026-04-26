@@ -357,7 +357,7 @@ export default function HomePage() {
                 <div className="productBrandRow compactBrandRow">
                   <Image src={splitBillLogo} alt="SplitBill" className="splitBillLogo" />
                 </div>
-                <h3 className="productHeading">SplitBill</h3>
+                <h3 className="productHeading">Split Bill</h3>
                 <p className="productText">
                   A clean and simple way to split shared expenses, manage group costs and make bill calculations
                   easier for travel, events and everyday use.
@@ -369,7 +369,7 @@ export default function HomePage() {
                 </ul>
                 <div className="heroActions">
                   <a className="btn btnPrimary" href={appLinks.splitBill.web} target="_blank" rel="noreferrer">
-                    Open SplitBill
+                    Open Split Bill
                   </a>
                 </div>
               </div>
