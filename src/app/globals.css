@@ -517,6 +517,21 @@ img {
   padding: 32px;
 }
 
+.quickProductGrid {
+  grid-template-columns: minmax(0, 1.38fr) minmax(320px, 0.62fr);
+  gap: 34px;
+}
+
+.dataProductGrid {
+  grid-template-columns: minmax(320px, 0.72fr) minmax(0, 1.28fr);
+  gap: 34px;
+}
+
+.splitBillProductGrid {
+  grid-template-columns: minmax(0, 1.38fr) minmax(320px, 0.62fr);
+  gap: 34px;
+}
+
 .productContent {
   display: grid;
   gap: 14px;
@@ -547,9 +562,9 @@ img {
 }
 
 .quickBrandIcon {
-  width: 220px;
-  height: auto;
-  border-radius: 34px;
+  width: 92px;
+  height: 92px;
+  border-radius: 22px;
   flex-shrink: 0;
 }
 
@@ -568,7 +583,7 @@ img {
 }
 
 .splitBillLogo {
-  width: 265px;
+  width: 230px;
   height: auto;
 }
 
@@ -640,23 +655,13 @@ img {
   min-height: 380px;
 }
 
-.quickGalleryItem {
-  min-height: 430px;
-  height: 430px;
-}
-
-.dataGalleryItem {
-  min-height: 430px;
-  height: 430px;
-}
-
 .galleryItemWide {
   min-height: 440px;
 }
 
 .splitBillGalleryItem {
-  min-height: 734px;
-  height: 734px;
+  min-height: 220px;
+  height: 220px;
 }
 
 .splitBillPreviewImage {
@@ -670,17 +675,7 @@ img {
 }
 
 .platformShell {
-  padding: 44px 36px;
-  text-align: center;
-}
-
-.platformShell .sectionIntro {
-  justify-items: center;
-  text-align: center;
-}
-
-.platformShell .sectionText {
-  max-width: 980px;
+  padding: 36px;
 }
 
 .enhancedFeaturesGrid {
@@ -834,6 +829,9 @@ img {
 @media (max-width: 980px) {
   .heroGrid,
   .productPanelGrid,
+  .quickProductGrid,
+  .dataProductGrid,
+  .splitBillProductGrid,
   .contactGrid {
     grid-template-columns: 1fr;
   }
@@ -956,8 +954,8 @@ img {
   }
 
   .quickBrandIcon {
-    width: 190px;
-    height: auto;
+    width: 82px;
+    height: 82px;
   }
 
   .dataBrandLogo {
@@ -965,12 +963,12 @@ img {
   }
 
   .splitBillLogo {
-    width: 230px;
+    width: 200px;
   }
 
   .splitBillGalleryItem {
-    min-height: 520px;
-    height: 520px;
+    min-height: 210px;
+    height: 210px;
   }
 
   .heroActions,
@@ -1052,8 +1050,8 @@ img {
   }
 
   .quickBrandIcon {
-    width: 170px;
-    height: auto;
+    width: 76px;
+    height: 76px;
   }
 
   .dataBrandLogo {
@@ -1061,12 +1059,12 @@ img {
   }
 
   .splitBillLogo {
-    width: 210px;
+    width: 180px;
   }
 
   .splitBillGalleryItem {
-    min-height: 460px;
-    height: 460px;
+    min-height: 190px;
+    height: 190px;
   }
 
   .heroMainMacbook {
