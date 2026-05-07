@@ -20,7 +20,7 @@ import dataShot2 from "@/assets/images/Airoflair Data 2.jpg";
 import dataShot3 from "@/assets/images/Airoflair Data 3.jpg";
 
 import splitBillLogo from "@/assets/images/splitbilllogo.png";
-import splitBillShot from "@/assets/images/splitbill.png";
+import splitBillShot from "@/assets/images/splitbill.jpg";
 
 import appleStore from "@/assets/images/apple-store.svg";
 import googlePlay from "@/assets/images/google-play.svg";
