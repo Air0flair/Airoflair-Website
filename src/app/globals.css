@@ -482,6 +482,11 @@ img {
   height: 100%;
 }
 
+.galleryImage {
+  transition: transform 0.45s ease, filter 0.45s ease;
+  will-change: transform;
+}
+
 .inspectGalleryImage {
   object-fit: contain;
   background: #ffffff;
@@ -632,12 +637,37 @@ img {
 }
 
 .galleryItem {
+  position: relative;
   overflow: hidden;
   border-radius: 20px;
   border: 1px solid rgba(230, 234, 242, 0.95);
   background: linear-gradient(180deg, #ffffff 0%, #f7f9fc 100%);
   box-shadow: var(--shadow);
   min-height: 240px;
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+}
+
+.galleryItem:hover {
+  transform: translateY(-3px);
+  border-color: rgba(42, 47, 143, 0.22);
+  box-shadow: var(--shadow2);
+}
+
+.galleryItem:hover .galleryImage {
+  transform: scale(1.045);
+  filter: saturate(1.04) contrast(1.02);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .galleryItem,
+  .galleryImage {
+    transition: none;
+  }
+
+  .galleryItem:hover,
+  .galleryItem:hover .galleryImage {
+    transform: none;
+  }
 }
 
 .inspectGalleryItem {
