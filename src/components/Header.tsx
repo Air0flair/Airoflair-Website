@@ -12,6 +12,7 @@ export default function Header() {
   const nav = useMemo(
     () => [
       { label: "Products", href: "/#products" },
+      { label: "Pricing", href: "/#inspect-company-plans" },
       { label: "Platform", href: "/#platform" },
       { label: "Contact", href: "/#contact" },
     ],
@@ -49,6 +50,20 @@ export default function Header() {
           </div>
 
           <div className="headerRight">
+            <div className="headerActions" aria-label="Account actions">
+              <a className="headerButton headerButtonPrimary" href="/#inspect-company-plans">
+                Sign Up
+              </a>
+              <a
+                className="headerButton headerButtonGhost"
+                href="https://inspect.airoflair.com"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Login
+              </a>
+            </div>
+
             <button
               className="burger"
               aria-label="Open menu"
@@ -77,6 +92,22 @@ export default function Header() {
                   {item.label}
                 </a>
               ))}
+              <a
+                className="btn btnPrimary"
+                href="/#inspect-company-plans"
+                onClick={() => setOpen(false)}
+              >
+                Sign Up
+              </a>
+              <a
+                className="btn btnGhost"
+                href="https://inspect.airoflair.com"
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => setOpen(false)}
+              >
+                Login
+              </a>
             </div>
           </div>
         )}

@@ -263,6 +263,50 @@ img {
   min-width: 42px;
 }
 
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.headerButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 16px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+.headerButton:hover {
+  transform: translateY(-1px);
+}
+
+.headerButtonPrimary {
+  color: #fff;
+  background: linear-gradient(135deg, var(--brand), var(--brand2));
+  box-shadow: 0 12px 24px rgba(42, 47, 143, 0.18);
+}
+
+.headerButtonGhost {
+  color: #2a2f8f;
+  background: #fff;
+  border: 1px solid rgba(42, 47, 143, 0.22);
+}
+
+.headerButtonGhost:hover {
+  border-color: rgba(42, 47, 143, 0.45);
+  box-shadow: 0 12px 24px rgba(42, 47, 143, 0.1);
+}
+
 .brandLink {
   display: inline-flex;
   align-items: center;
@@ -954,6 +998,10 @@ img {
     display: none;
   }
 
+  .headerActions {
+    display: none;
+  }
+
   .navRow {
     display: none;
   }
@@ -1149,5 +1197,176 @@ img {
 
   .heroMainMacbook {
     width: 96%;
+  }
+}
+
+.inspectActions {
+  margin-top: 2px;
+}
+
+.inspectPricingPanel {
+  width: 100%;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  border: 1px solid rgba(230, 234, 242, 0.95);
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+  padding: 34px;
+  scroll-margin-top: 100px;
+}
+
+.compactPricingIntro {
+  margin-bottom: 24px;
+}
+
+.pricingGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  align-items: stretch;
+}
+
+.pricingCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+  background: #ffffff;
+  border: 1px solid rgba(225, 231, 242, 0.95);
+  border-radius: 22px;
+  padding: 22px;
+  box-shadow: 0 16px 46px rgba(15, 23, 42, 0.08);
+}
+
+.pricingCardFeatured {
+  border-color: rgba(46, 49, 146, 0.42);
+  box-shadow: 0 20px 60px rgba(46, 49, 146, 0.14);
+}
+
+.popularBadge {
+  align-self: flex-start;
+  border-radius: 999px;
+  background: rgba(46, 49, 146, 0.1);
+  color: var(--brand);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 7px 10px;
+}
+
+.pricingCard h3 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: #0b1220;
+}
+
+.pricingAmountRow {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  min-height: 48px;
+}
+
+.pricingAmount {
+  font-size: 42px;
+  line-height: 1;
+  font-weight: 950;
+  letter-spacing: -0.05em;
+  color: #0b1220;
+}
+
+.pricingPeriod {
+  padding-bottom: 5px;
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.pricingYearly,
+.pricingInspectors,
+.pricingDescription {
+  margin: 0;
+}
+
+.pricingYearly {
+  color: var(--brand);
+  font-weight: 900;
+}
+
+.pricingInspectors {
+  color: #0b1220;
+  font-weight: 900;
+}
+
+.pricingDescription {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.pricingFeatures {
+  margin: 2px 0 4px 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 7px;
+  color: #243044;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.pricingButton {
+  width: 100%;
+  justify-content: center;
+  margin-top: auto;
+}
+
+.inspectWorkflowGrid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.workflowCard {
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(225, 231, 242, 0.95);
+  border-radius: 18px;
+  padding: 18px;
+}
+
+.workflowCard h3 {
+  margin: 0 0 8px 0;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.workflowCard p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+@media (max-width: 1100px) {
+  .pricingGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .inspectPricingPanel {
+    padding: 22px;
+  }
+
+  .pricingGrid,
+  .inspectWorkflowGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .pricingAmount {
+    font-size: 38px;
   }
 }

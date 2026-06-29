@@ -71,6 +71,42 @@ export default function HomePage() {
     []
   );
 
+  const companyPlans = [
+    {
+      name: "Starter",
+      monthly: "$49",
+      yearly: "$499",
+      inspectors: "3 inspectors",
+      description: "For smaller inspection teams starting with controlled company templates and assigned mobile inspections.",
+      features: ["1 month free trial", "Approved company templates", "Assigned inspections", "Company-controlled inspector setup"],
+    },
+    {
+      name: "Professional",
+      monthly: "$99",
+      yearly: "$999",
+      inspectors: "10 inspectors",
+      description: "The main company plan for inspection teams that need a structured dashboard and controlled mobile workflow.",
+      features: ["1 month free trial", "Up to 10 inspectors", "Template approval workflow", "Inspection management dashboard"],
+      highlighted: true,
+    },
+    {
+      name: "Team",
+      monthly: "$199",
+      yearly: "$1,999",
+      inspectors: "25 inspectors",
+      description: "For larger inspection teams managing more inspectors, more assigned work and a wider template library.",
+      features: ["1 month free trial", "Up to 25 inspectors", "Portal-controlled profiles", "Priority setup support"],
+    },
+    {
+      name: "Enterprise",
+      monthly: "Custom",
+      yearly: "Dedicated setup",
+      inspectors: "Custom users",
+      description: "For companies needing a dedicated setup, custom workflow, larger user control or tailored reporting structure.",
+      features: ["Custom company setup", "Custom users and templates", "Dedicated workflow planning", "Enterprise support"],
+    },
+  ];
+
   const contactEndpoint = (process.env.NEXT_PUBLIC_CONTACT_ENDPOINT || "").trim();
 
   function getSiteKey() {
@@ -233,14 +269,24 @@ export default function HomePage() {
                 </div>
                 <h3 className="productHeading">Airoflair Inspect</h3>
                 <p className="productText">
-                  Professional inspection reporting with structured templates, cleaner workflows and a
-                  polished mobile experience for teams that need consistency, speed and professional output.
+                  Airoflair Inspect now supports two workflows: single-user mobile inspection reporting through
+                  the app stores, and company plans for teams that need controlled templates, assigned inspections
+                  and a professional inspection management dashboard.
                 </p>
                 <ul className="productBullets">
-                  <li>Structured inspection templates</li>
-                  <li>Professional field data capture</li>
-                  <li>Clear, consistent reporting output</li>
+                  <li>Single-user mobile access through Apple and Google subscriptions</li>
+                  <li>Company plans with portal-controlled templates and inspectors</li>
+                  <li>Assigned inspections prepared in the portal and completed on mobile</li>
+                  <li>Approved templates only show in the app for company users</li>
                 </ul>
+                <div className="heroActions inspectActions">
+                  <a className="btn btnPrimary" href="#inspect-company-plans">
+                    View Company Plans
+                  </a>
+                  <a className="btn btnGhost" href="#contact">
+                    Discuss Setup
+                  </a>
+                </div>
                 <div className="badgeRow">
                   <a href={appLinks.inspect.apple} target="_blank" rel="noreferrer" aria-label="Airoflair Inspect on the App Store">
                     <Image src={appleStore} alt="App Store" width={140} height={42} style={{ height: 42, width: "auto" }} />
@@ -267,6 +313,59 @@ export default function HomePage() {
               </div>
             </div>
           </article>
+
+          <section id="inspect-company-plans" className="inspectPricingPanel">
+            <div className="sectionIntro centerIntro compactPricingIntro">
+              <span className="eyebrow productsEyebrow">Airoflair Inspect Company Plans</span>
+              <h2 className="sectionTitle">Choose a plan and start with a 1 month trial</h2>
+              <p className="sectionText">
+                Company accounts are designed for inspection teams that want the portal to control users,
+                approved templates, assigned inspections and completed inspection data. The mobile app remains
+                simple for inspectors while the company dashboard manages the workflow.
+              </p>
+            </div>
+
+            <div className="pricingGrid">
+              {companyPlans.map((plan) => (
+                <div key={plan.name} className={`pricingCard ${plan.highlighted ? "pricingCardFeatured" : ""}`}>
+                  {plan.highlighted && <div className="popularBadge">Most Popular</div>}
+                  <h3>{plan.name}</h3>
+                  <div className="pricingAmountRow">
+                    <span className="pricingAmount">{plan.monthly}</span>
+                    {plan.monthly !== "Custom" && <span className="pricingPeriod">/ month</span>}
+                  </div>
+                  <p className="pricingYearly">
+                    {plan.monthly === "Custom" ? plan.yearly : `${plan.yearly} / year`}
+                  </p>
+                  <p className="pricingInspectors">{plan.inspectors}</p>
+                  <p className="pricingDescription">{plan.description}</p>
+                  <ul className="pricingFeatures">
+                    {plan.features.map((feature) => (
+                      <li key={feature}>{feature}</li>
+                    ))}
+                  </ul>
+                  <a className="btn btnPrimary pricingButton" href="#contact">
+                    {plan.name === "Enterprise" ? "Contact for Setup" : `Choose ${plan.name}`}
+                  </a>
+                </div>
+              ))}
+            </div>
+
+            <div className="inspectWorkflowGrid">
+              <div className="workflowCard">
+                <h3>1. Sign up and choose your plan</h3>
+                <p>Select the company plan that matches your inspector count. Initial setup can run while the full Azure portal is being completed.</p>
+              </div>
+              <div className="workflowCard">
+                <h3>2. Set up company templates</h3>
+                <p>Approved templates will be controlled from the portal so inspectors only see the templates released for use.</p>
+              </div>
+              <div className="workflowCard">
+                <h3>3. Assign inspections to mobile</h3>
+                <p>Inspection work can be prepared in the company dashboard and then completed by inspectors in the Airoflair Inspect app.</p>
+              </div>
+            </div>
+          </section>
 
           <article className="productPanel">
             <div className="productPanelGrid productPanelGridMediaWide reverseOnDesktop">
@@ -435,6 +534,9 @@ export default function HomePage() {
               <div className="contactHeader">
                 <h2>Contact Us</h2>
                 <p>Please fill in the form below and we will get back to you.</p>
+                <p className="small muted" style={{ marginTop: 8 }}>
+                  For Airoflair Inspect company plans, include the plan name you want to start with: Starter, Professional, Team or Enterprise.
+                </p>
               </div>
 
               <div className="contactGrid">

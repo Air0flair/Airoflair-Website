@@ -1,0 +1,58 @@
+.gitignore
+BingSiteAuth.xml
+README.md
+REDEPLOY.txt
+eslint.config.mjs
+next-env.d.ts
+next.config.mjs
+package-lock.json
+package.json
+postcss.config.js
+public/favicon.ico
+public/file.svg
+public/globe.svg
+public/next.svg
+public/vercel.svg
+public/window.svg
+src/app/api/contact/route.ts
+src/app/favicon.ico
+src/app/globals.css
+src/app/layout.tsx
+src/app/page.tsx
+src/app/privacy-policy/page.tsx
+src/app/robots.txt
+src/app/sitemap.ts
+src/app/terms-of-service/page.tsx
+src/assets/images/Airoflair Data 1.jpg
+src/assets/images/Airoflair Data 2.jpg
+src/assets/images/Airoflair Data 3.jpg
+src/assets/images/Airoflair Inspect 1.jpg
+src/assets/images/Airoflair Inspect 2.jpg
+src/assets/images/Airoflair Inspect 3.jpg
+src/assets/images/Airoflair Inspect 4.jpg
+src/assets/images/Airoflair Quick Inspect 1.jpg
+src/assets/images/Airoflair Quick Inspect 2.jpg
+src/assets/images/Airoflairdatalogo.png
+src/assets/images/X.svg
+src/assets/images/apple-store.svg
+src/assets/images/data.png
+src/assets/images/facebook.svg
+src/assets/images/google-play.svg
+src/assets/images/inspecticon.png
+src/assets/images/inspectiphone.png
+src/assets/images/inspectlogo.png
+src/assets/images/inspectmacbook.png
+src/assets/images/instagram.svg
+src/assets/images/linkedin.svg
+src/assets/images/logo.png
+src/assets/images/macbookmain.png
+src/assets/images/mail.svg
+src/assets/images/quickicon.png
+src/assets/images/quickinspectiphone.png
+src/assets/images/splitbill.jpg
+src/assets/images/splitbilllogo.png
+src/assets/images/whatsapp.svg
+src/components/Footer.tsx
+src/components/Header.tsx
+tailwind.config.js
+tsconfig.json
