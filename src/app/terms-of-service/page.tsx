@@ -77,7 +77,7 @@ export default function TermsOfServicePage() {
             valid billing details and may renew automatically according to the selected plan.
           </p>
           <p className="p">
-            Company plan payments are processed through a Paystack as a third-party payment
+            Company plan payments are processed through Paystack as a third-party payment
             provider. Prices may be shown in USD for reference,
             while payment may be charged in the supported checkout currency.
             Taxes, exchange-rate differences, bank fees, and payment-provider fees
