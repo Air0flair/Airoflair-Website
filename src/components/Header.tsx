@@ -6,6 +6,8 @@ import Link from "next/link";
 
 import logo from "@/assets/images/logo.png";
 
+const INSPECT_SIGNUP_URL = "https://inspect.airoflair.com/signup";
+
 export default function Header() {
   const [open, setOpen] = useState(false);
 
@@ -51,7 +53,7 @@ export default function Header() {
 
           <div className="headerRight">
             <div className="headerActions" aria-label="Account actions">
-              <a className="headerButton headerButtonPrimary" href="/#inspect-company-plans">
+              <a className="headerButton headerButtonPrimary" href={INSPECT_SIGNUP_URL}>
                 Sign Up
               </a>
               <a
@@ -94,7 +96,7 @@ export default function Header() {
               ))}
               <a
                 className="btn btnPrimary"
-                href="/#inspect-company-plans"
+                href={INSPECT_SIGNUP_URL}
                 onClick={() => setOpen(false)}
               >
                 Sign Up

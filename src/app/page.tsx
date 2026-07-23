@@ -38,6 +38,8 @@ declare global {
   }
 }
 
+const INSPECT_SIGNUP_URL = "https://inspect.airoflair.com/signup";
+
 export default function HomePage() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState<string>("");
@@ -283,8 +285,8 @@ export default function HomePage() {
                   <a className="btn btnPrimary" href="#inspect-company-plans">
                     View Company Plans
                   </a>
-                  <a className="btn btnGhost" href="#contact">
-                    Discuss Setup
+                  <a className="btn btnGhost" href={INSPECT_SIGNUP_URL}>
+                    Create Company Account
                   </a>
                 </div>
                 <div className="badgeRow">
@@ -344,17 +346,27 @@ export default function HomePage() {
                       <li key={feature}>{feature}</li>
                     ))}
                   </ul>
-                  <a className="btn btnPrimary pricingButton" href="#contact">
-                    {plan.name === "Enterprise" ? "Contact for Setup" : `Choose ${plan.name}`}
+                  <a className="btn btnPrimary pricingButton" href={INSPECT_SIGNUP_URL}>
+                    {plan.name === "Enterprise" ? "Start Enterprise Setup" : `Choose ${plan.name}`}
                   </a>
                 </div>
               ))}
             </div>
 
+            <div className="pricingSignupBar">
+              <div>
+                <strong>Ready to start?</strong>
+                <span>Create your company account and configure your inspection workspace.</span>
+              </div>
+              <a className="btn btnPrimary" href={INSPECT_SIGNUP_URL}>
+                Sign Up for Airoflair Inspect
+              </a>
+            </div>
+
             <div className="inspectWorkflowGrid">
               <div className="workflowCard">
                 <h3>1. Sign up and choose your plan</h3>
-                <p>Select the company plan that matches your inspector count. Initial setup can run while the full Azure portal is being completed.</p>
+                <p>Select the company plan that matches your inspector count, create your company account and begin configuring your inspection portal.</p>
               </div>
               <div className="workflowCard">
                 <h3>2. Set up company templates</h3>

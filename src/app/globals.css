@@ -1370,3 +1370,42 @@ img {
     font-size: 38px;
   }
 }
+
+
+.pricingSignupBar {
+  margin-top: 28px;
+  padding: 20px 22px;
+  border: 1px solid rgba(46, 49, 146, 0.16);
+  border-radius: 22px;
+  background: linear-gradient(135deg, rgba(46, 49, 146, 0.08), rgba(37, 99, 235, 0.05));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.pricingSignupBar > div {
+  display: grid;
+  gap: 5px;
+}
+
+.pricingSignupBar strong {
+  color: var(--text);
+  font-size: 18px;
+}
+
+.pricingSignupBar span {
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+@media (max-width: 760px) {
+  .pricingSignupBar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .pricingSignupBar .btn {
+    width: 100%;
+  }
+}
