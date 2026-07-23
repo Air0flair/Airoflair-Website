@@ -346,7 +346,10 @@ export default function HomePage() {
                       <li key={feature}>{feature}</li>
                     ))}
                   </ul>
-                  <a className="btn btnPrimary pricingButton" href={INSPECT_SIGNUP_URL}>
+                  <a
+                    className="btn btnPrimary pricingButton"
+                    href={plan.name === "Enterprise" ? "#contact" : INSPECT_SIGNUP_URL}
+                  >
                     {plan.name === "Enterprise" ? "Start Enterprise Setup" : `Choose ${plan.name}`}
                   </a>
                 </div>
@@ -354,10 +357,8 @@ export default function HomePage() {
             </div>
 
             <div className="pricingSignupBar">
-              <div>
-                <strong>Ready to start?</strong>
-                <span>Create your company account and configure your inspection workspace.</span>
-              </div>
+              <strong>Ready to start?</strong>
+              <span>Create your company account and configure your inspection workspace.</span>
               <a className="btn btnPrimary" href={INSPECT_SIGNUP_URL}>
                 Sign Up for Airoflair Inspect
               </a>
