@@ -932,6 +932,8 @@ img {
 
 .footerRight {
   gap: 24px;
+  /* Keep the legal/social group clear of the fixed reCAPTCHA badge. */
+  margin-right: 230px;
 }
 
 .footerLinks {
@@ -1199,6 +1201,7 @@ img {
 
   .footerRight {
     gap: 14px;
+    margin-right: 0;
   }
 }
 
