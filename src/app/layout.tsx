@@ -13,7 +13,7 @@ const RECAPTCHA_SITE_KEY = (process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "").tr
 
 export const metadata = {
   title: "Airoflair",
-  description: "Engineering tools and inspection solutions",
+  description: "Professional inspection software for companies, individual inspectors and fast field reporting.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

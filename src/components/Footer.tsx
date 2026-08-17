@@ -1,71 +1,48 @@
+import Image from "next/image";
 import Link from "next/link";
+
+import facebookIcon from "@/assets/images/facebook.svg";
+import instagramIcon from "@/assets/images/instagram.svg";
+import xIcon from "@/assets/images/X.svg";
+import linkedinIcon from "@/assets/images/linkedin.svg";
+
+const socialLinks = [
+  { label: "Facebook", href: "https://www.facebook.com/airoflair", icon: facebookIcon },
+  { label: "Instagram", href: "https://www.instagram.com/airoflair/", icon: instagramIcon },
+  { label: "X / Twitter", href: "https://twitter.com/airoflair", icon: xIcon },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/airoflair", icon: linkedinIcon },
+];
 
 export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer
-      style={{
-        width: "100%",
-        borderTop: "1px solid #e6eaf2",
-        background: "#ffffff",
-      }}
-    >
+    <footer className="siteFooter">
       <div className="container">
-        <div
-          style={{
-            minHeight: 78,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: 16,
-            flexWrap: "wrap",
-            padding: "18px 0",
-          }}
-        >
-          <p
-            style={{
-              margin: 0,
-              color: "#5c677a",
-              fontSize: 14,
-              lineHeight: 1.5,
-            }}
-          >
-            © {year} Airoflair. All rights reserved.
-          </p>
+        <div className="footerInner">
+          <p className="footerCopyright">© {year} Airoflair. All rights reserved.</p>
 
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 18,
-              flexWrap: "wrap",
-              marginRight: "clamp(80px, 10vw, 140px)",
-            }}
-          >
-            <Link
-              href="/privacy-policy"
-              style={{
-                color: "#5c677a",
-                fontSize: 14,
-                fontWeight: 600,
-                textDecoration: "none",
-              }}
-            >
-              Privacy Policy
-            </Link>
+          <div className="footerRight">
+            <nav className="footerLinks" aria-label="Legal">
+              <Link href="/privacy-policy">Privacy Policy</Link>
+              <Link href="/terms-of-service">Terms of Service</Link>
+            </nav>
 
-            <Link
-              href="/terms-of-service"
-              style={{
-                color: "#5c677a",
-                fontSize: 14,
-                fontWeight: 600,
-                textDecoration: "none",
-              }}
-            >
-              Terms of Service
-            </Link>
+            <div className="footerSocials" aria-label="Airoflair social media">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  className="footerSocialLink"
+                  href={social.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Airoflair on ${social.label}`}
+                  title={social.label}
+                >
+                  <Image src={social.icon} alt="" aria-hidden="true" className="footerSocialIcon" />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>

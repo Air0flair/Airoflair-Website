@@ -10,17 +10,12 @@ import inspectShot2 from "@/assets/images/Airoflair Inspect 2.jpg";
 import inspectShot3 from "@/assets/images/Airoflair Inspect 3.jpg";
 import inspectShot4 from "@/assets/images/Airoflair Inspect 4.jpg";
 
-import quickIcon from "@/assets/images/quickicon.png";
 import quickShot1 from "@/assets/images/Airoflair Quick Inspect 1.jpg";
 import quickShot2 from "@/assets/images/Airoflair Quick Inspect 2.jpg";
 
-import dataLogo from "@/assets/images/Airoflairdatalogo.png";
 import dataShot1 from "@/assets/images/Airoflair Data 1.jpg";
 import dataShot2 from "@/assets/images/Airoflair Data 2.jpg";
 import dataShot3 from "@/assets/images/Airoflair Data 3.jpg";
-
-import splitBillLogo from "@/assets/images/splitbilllogo.png";
-import splitBillShot from "@/assets/images/splitbill.jpg";
 
 import appleStore from "@/assets/images/apple-store.svg";
 import googlePlay from "@/assets/images/google-play.svg";
@@ -57,17 +52,6 @@ export default function HomePage() {
       inspect: {
         apple: "https://apps.apple.com/us/app/airoflair-inspect/id6443913558",
         google: "https://play.google.com/store/apps/details?id=com.inspectmobile",
-      },
-      quickInspect: {
-        apple: "https://apps.apple.com/us/app/airoflair-quick-inspect/id6751975606",
-        google: "https://play.google.com/store/apps/details?id=com.airoflair.quickinspect",
-      },
-      data: {
-        apple: "https://apps.apple.com/us/app/airoflair-data/id6749357700",
-        google: "https://play.google.com/store/apps/details?id=com.airoflair.data",
-      },
-      splitBill: {
-        web: "https://splitbill.airoflair.com",
       },
     }),
     []
@@ -226,7 +210,7 @@ export default function HomePage() {
                     <span>Fast offline visual inspections with simple report creation on site.</span>
                   </div>
                   <div className="statCard">
-                    <strong>Data &amp; SplitBill</strong>
+                    <strong>Data</strong>
                     <span>Useful engineering tools and practical everyday calculators in one ecosystem.</span>
                   </div>
                 </div>
@@ -256,10 +240,11 @@ export default function HomePage() {
         <div className="container sectionStack">
           <div className="sectionIntro centerIntro">
             <span className="eyebrow productsEyebrow">Products</span>
-            <h2 className="sectionTitle">Purpose-built apps for real work in the field</h2>
+            <h2 className="sectionTitle">One inspection app. Three ways to work.</h2>
             <p className="sectionText">
-              Airoflair products are designed to solve real workflow needs, from structured inspection
-              reporting to fast offline capture, engineering calculations and simple utility tools.
+              Airoflair Inspect brings Company Login, Single User and Quick Inspect into one app.
+              Company Login and Single User also include the Airoflair Data engineering tools, giving
+              inspection professionals one consistent place to report, calculate and work in the field.
             </p>
           </div>
 
@@ -271,15 +256,29 @@ export default function HomePage() {
                 </div>
                 <h3 className="productHeading">Airoflair Inspect</h3>
                 <p className="productText">
-                  Airoflair Inspect now supports two workflows: single-user mobile inspection reporting through
-                  the app stores, and company plans for teams that need controlled templates, assigned inspections
-                  and a professional inspection management dashboard.
+                  Airoflair Inspect is the single mobile app for Airoflair inspection workflows. Choose
+                  Company Login for managed team inspections, Single User for professional independent
+                  reporting, or Quick Inspect when you need a simple, fast and free inspection tool.
                 </p>
+                <div className="modeGrid">
+                  <div className="modeCard">
+                    <strong>Company Login</strong>
+                    <span>Portal-controlled users, templates, assigned inspections and company reporting workflows.</span>
+                  </div>
+                  <div className="modeCard">
+                    <strong>Single User</strong>
+                    <span>Full professional inspection reporting for individual users, with Data tools included.</span>
+                  </div>
+                  <div className="modeCard">
+                    <strong>Quick Inspect</strong>
+                    <span>Simple, fast and free inspection reporting for straightforward field work.</span>
+                  </div>
+                </div>
                 <ul className="productBullets">
-                  <li>Single-user mobile access through Apple and Google subscriptions</li>
-                  <li>Company plans with portal-controlled templates and inspectors</li>
-                  <li>Assigned inspections prepared in the portal and completed on mobile</li>
-                  <li>Approved templates only show in the app for company users</li>
+                  <li>One Airoflair Inspect app across all inspection workflows</li>
+                  <li>Airoflair Data tools included with Company Login and Single User</li>
+                  <li>Company inspections prepared in the portal and completed on mobile</li>
+                  <li>Professional reporting with a workflow suited to the way you work</li>
                 </ul>
                 <div className="heroActions inspectActions">
                   <a className="btn btnPrimary" href="#inspect-company-plans">
@@ -321,9 +320,9 @@ export default function HomePage() {
               <span className="eyebrow productsEyebrow">Airoflair Inspect Company Plans</span>
               <h2 className="sectionTitle">Choose a plan and start with a 1 month trial</h2>
               <p className="sectionText">
-                Company accounts are designed for inspection teams that want the portal to control users,
-                approved templates, assigned inspections and completed inspection data. The mobile app remains
-                simple for inspectors while the company dashboard manages the workflow.
+                Company Login is designed for inspection teams that want the portal to control users, approved
+                templates, assigned inspections and completed inspection data. Inspectors use the same Airoflair
+                Inspect app while the company dashboard manages the connected workflow.
               </p>
             </div>
 
@@ -384,32 +383,35 @@ export default function HomePage() {
             <div className="productPanelGrid productPanelGridMediaWide reverseOnDesktop">
               <div className="galleryGrid galleryGridTwo quickGalleryGrid">
                 <div className="galleryItem quickGalleryItem">
-                  <Image src={quickShot1} alt="Airoflair Quick Inspect preview 1" className="galleryImage" />
+                  <Image src={quickShot1} alt="Quick Inspect workflow preview 1" className="galleryImage" />
                 </div>
                 <div className="galleryItem quickGalleryItem">
-                  <Image src={quickShot2} alt="Airoflair Quick Inspect preview 2" className="galleryImage" />
+                  <Image src={quickShot2} alt="Quick Inspect workflow preview 2" className="galleryImage" />
                 </div>
               </div>
 
               <div className="productContent productContentRight">
-                <div className="productBrandRow compactBrandRow">
-                  <Image src={quickIcon} alt="Airoflair Quick Inspect" className="quickBrandIcon" />
+                <div className="featureLabelRow">
+                  <span className="featureLabel">Inside Airoflair Inspect</span>
+                  <span className="featureLabel featureLabelFree">Free</span>
                 </div>
-                <h3 className="productHeading">Airoflair Quick Inspect</h3>
+                <h3 className="productHeading">Quick Inspect</h3>
                 <p className="productText">
-                  A simpler inspection app focused on fast visual reporting, photo capture
-                  and efficient offline use when you need to work quickly without losing professionalism.
+                  Quick Inspect is the simple, fast and free inspection option inside Airoflair Inspect.
+                  It is designed for straightforward field reporting when you want to capture the essentials
+                  and produce a clean inspection report with minimal setup.
                 </p>
                 <ul className="productBullets">
-                  <li>Quick offline inspection workflows</li>
-                  <li>Photo-rich reporting for site use</li>
-                  <li>Simple, clean mobile-first experience</li>
+                  <li>Fast visual inspection workflow</li>
+                  <li>Simple photo capture and report creation</li>
+                  <li>Free inspection option for quick field work</li>
+                  <li>Available directly inside the Airoflair Inspect app</li>
                 </ul>
                 <div className="badgeRow">
-                  <a href={appLinks.quickInspect.apple} target="_blank" rel="noreferrer" aria-label="Airoflair Quick Inspect on the App Store">
+                  <a href={appLinks.inspect.apple} target="_blank" rel="noreferrer" aria-label="Airoflair Inspect on the App Store">
                     <Image src={appleStore} alt="App Store" width={140} height={42} style={{ height: 42, width: "auto" }} />
                   </a>
-                  <a href={appLinks.quickInspect.google} target="_blank" rel="noreferrer" aria-label="Airoflair Quick Inspect on Google Play">
+                  <a href={appLinks.inspect.google} target="_blank" rel="noreferrer" aria-label="Airoflair Inspect on Google Play">
                     <Image src={googlePlay} alt="Google Play" width={140} height={42} style={{ height: 42, width: "auto" }} />
                   </a>
                 </div>
@@ -420,69 +422,33 @@ export default function HomePage() {
           <article className="productPanel">
             <div className="productPanelGrid">
               <div className="productContent">
-                <div className="productBrandRow compactBrandRow">
-                  <Image src={dataLogo} alt="Airoflair Data" className="dataBrandLogo" />
+                <div className="featureLabelRow">
+                  <span className="featureLabel">Built into Airoflair Inspect</span>
+                  <span className="featureLabel">Company + Single User</span>
                 </div>
-                <h3 className="productHeading">Airoflair Data</h3>
+                <h3 className="productHeading">Engineering Data Tools</h3>
                 <p className="productText">
-                  A practical engineering toolkit with calculators, technical reference data
-                  and field-friendly utilities across inspection, mechanical, electrical, HVAC and more.
+                  The engineering calculators and field utilities previously provided through Airoflair Data
+                  are now built into Airoflair Inspect for Company Login and Single User. This keeps inspection
+                  reporting and frequently used technical tools together in one professional app.
                 </p>
                 <ul className="productBullets">
-                  <li>Engineering calculators and conversions</li>
+                  <li>Engineering calculators and unit conversions</li>
                   <li>Inspection and radiography utilities</li>
-                  <li>Consistent mobile access to trusted data</li>
+                  <li>Mechanical, electrical and HVAC field tools</li>
+                  <li>Included with Company Login and Single User</li>
                 </ul>
-                <div className="badgeRow">
-                  <a href={appLinks.data.apple} target="_blank" rel="noreferrer" aria-label="Airoflair Data on the App Store">
-                    <Image src={appleStore} alt="App Store" width={140} height={42} style={{ height: 42, width: "auto" }} />
-                  </a>
-                  <a href={appLinks.data.google} target="_blank" rel="noreferrer" aria-label="Airoflair Data on Google Play">
-                    <Image src={googlePlay} alt="Google Play" width={140} height={42} style={{ height: 42, width: "auto" }} />
-                  </a>
-                </div>
               </div>
 
               <div className="galleryGrid galleryGridThree dataGalleryGrid">
                 <div className="galleryItem dataGalleryItem">
-                  <Image src={dataShot1} alt="Airoflair Data preview 1" className="galleryImage" />
+                  <Image src={dataShot1} alt="Engineering Data tools preview 1" className="galleryImage" />
                 </div>
                 <div className="galleryItem dataGalleryItem">
-                  <Image src={dataShot2} alt="Airoflair Data preview 2" className="galleryImage" />
+                  <Image src={dataShot2} alt="Engineering Data tools preview 2" className="galleryImage" />
                 </div>
                 <div className="galleryItem dataGalleryItem">
-                  <Image src={dataShot3} alt="Airoflair Data preview 3" className="galleryImage" />
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <article className="productPanel">
-            <div className="productPanelGrid productPanelGridMediaWide reverseOnDesktop">
-              <div className="galleryGrid galleryGridSingle splitBillGalleryGrid">
-                <div className="galleryItem splitBillGalleryItem">
-                  <Image src={splitBillShot} alt="SplitBill preview" className="galleryImage splitBillPreviewImage" />
-                </div>
-              </div>
-
-              <div className="productContent productContentRight">
-                <div className="productBrandRow compactBrandRow">
-                  <Image src={splitBillLogo} alt="SplitBill" className="splitBillLogo" />
-                </div>
-                <h3 className="productHeading">Split Bill</h3>
-                <p className="productText">
-                  A clean and simple way to split shared expenses, manage group costs and make bill calculations
-                  easier for travel, events and everyday use.
-                </p>
-                <ul className="productBullets">
-                  <li>Fast shared expense calculation</li>
-                  <li>Simple and clean experience</li>
-                  <li>Useful everyday companion tool</li>
-                </ul>
-                <div className="heroActions">
-                  <a className="btn btnPrimary" href={appLinks.splitBill.web} target="_blank" rel="noreferrer">
-                    Open Split Bill
-                  </a>
+                  <Image src={dataShot3} alt="Engineering Data tools preview 3" className="galleryImage" />
                 </div>
               </div>
             </div>
@@ -529,10 +495,10 @@ export default function HomePage() {
               </div>
 
               <div className="featureCard">
-                <h3>Growing product family</h3>
+                <h3>One connected inspection app</h3>
                 <p>
-                  Inspect, Quick Inspect, Data and SplitBill each serve a different purpose while still
-                  feeling part of one consistent Airoflair ecosystem.
+                  Company Login, Single User, Quick Inspect and engineering Data tools now work within
+                  Airoflair Inspect, giving users a clearer and more consistent software experience.
                 </p>
               </div>
             </div>
