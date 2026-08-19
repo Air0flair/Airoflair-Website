@@ -60,16 +60,16 @@ export default function HomePage() {
   const companyPlans = [
     {
       name: "Starter",
-      monthly: "$49",
-      yearly: "$499",
+      monthly: "$29",
+      yearly: "$299",
       inspectors: "3 inspectors",
       description: "For smaller inspection teams starting with controlled company templates and assigned mobile inspections.",
       features: ["1 month free trial", "Approved company templates", "Assigned inspections", "Company-controlled inspector setup"],
     },
     {
       name: "Professional",
-      monthly: "$99",
-      yearly: "$999",
+      monthly: "$49",
+      yearly: "$499",
       inspectors: "10 inspectors",
       description: "The main company plan for inspection teams that need a structured dashboard and controlled mobile workflow.",
       features: ["1 month free trial", "Up to 10 inspectors", "Template approval workflow", "Inspection management dashboard"],
@@ -77,8 +77,8 @@ export default function HomePage() {
     },
     {
       name: "Team",
-      monthly: "$199",
-      yearly: "$1,999",
+      monthly: "$89",
+      yearly: "$899",
       inspectors: "25 inspectors",
       description: "For larger inspection teams managing more inspectors, more assigned work and a wider template library.",
       features: ["1 month free trial", "Up to 25 inspectors", "Portal-controlled profiles", "Priority setup support"],
